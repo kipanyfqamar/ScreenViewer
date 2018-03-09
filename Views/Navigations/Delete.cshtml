@@ -1,0 +1,80 @@
+﻿@model ScreenViewer.Data.ContactNavigation
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>ContactNavigation</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Sequence)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Sequence)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Section)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Section)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.WorkFlow)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.WorkFlow)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ClientId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactRecord.ClientCallId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ContactRecord.ClientCallId)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .nopad {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .row-eq-height {
+            display: flex;
+        }
+
+            .row-eq-height [class*="col-"] {
+                padding: 0;
+            }
+
+            .row-eq-height img {
+                width: 100%;
+            }
+html,body,.container{
+        height:100%;
+    }
+    .tablewrapper{
+        display:table;
+        height:100%;
+    }
+    .tablerowwrapper{
+        display:table-row;
+    }
+    .navpane,.contentpane{
+        display:table-cell;
+        height:100%;
+        float:none;
+    }
+    .pad_top10{
+        padding-top:10px;
+    }
+        .pad_Bottom10{
+        padding-bottom:10px;
+    }
+
+    </style>
+</head>
+<body style="background-color:#231F20">
+
+    <div class="container">
+        <div class="row pad_top10 pad_Bottom10">
+            <div id="header" class="col-md-4">
+                <img src="images/_0002_Vector-Smart-Object.png" />
+            </div>
+            <div id="Workflow" class="col-md-4">
+                <span style="color:antiquewhite">Workflow Name</span>
+            </div>
+            <div id="Section" class="col-md-4">
+                <span style="color:antiquewhite">Section Name Name</span>
+            </div>
+        </div>
+        <div class="row" style="background-color:#CDCFD0">
+            <div id="SP_Menu" class="col-md-12">
+            This is the place holder for the menu.
+            </div>
+        </div>
+        <div class="row" style="background-color:#6D6E71">
+            <div id="SP_LeadInfo" class="col-md-12">
+                The lead info will display here
+            </div>
+        </div>
+        <div  class="row" style="background-color:ghostwhite">
+            <div id="content" class="col-md-12">
+            </div>
+        </div>
+
+            
+</div>
+</body>
+</html>
