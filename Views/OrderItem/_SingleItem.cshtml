@@ -1,0 +1,75 @@
+﻿
+<div><h2><u>@ViewBag.Title</u></h2></div>
+
+<table id="itemSelector_@ViewBag.OID" name="itemSelector_@ViewBag.OID">
+    <colgroup>
+        <col style="width:100px" />
+        <col style="width:140px" />
+        <col style="width:160px" />
+        <col style="width:70px" />
+        <col style="width:70px" />
+        <col style="width:70px" />
+
+    </colgroup>
+    <thead>
+        <tr>
+            @foreach (System.Data.DataColumn column in Model.Data.Columns)
+            {
+                if (column.ColumnName != "quantity" && column.ColumnName != "filterKey" && column.ColumnName != "ItemMaxQuantity" && column.ColumnName != "Code")
+                {
+                    <th>@column.ColumnName</th>
+                }
+            }
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (System.Data.DataRow row in Model.Data.Rows)
+        {
+            <tr>
+                @foreach (System.Data.DataColumn column in Model.Data.Columns)
+                {
+                    if (column.ColumnName != "quantity" && column.ColumnName != "filterKey" && column.ColumnName != "ItemMaxQuantity" && column.ColumnName != "Code")
+                    {
+                        if (column.ColumnName == "ItemPrice" || column.ColumnName == "ItemShippingPrice" || column.ColumnName == "ItemHandlingPrice")
+                        {
+                            <td>@string.Format("${0:C}", row[column.ColumnName].ToString())</td>
+                        }
+                        else
+                        {
+                            <td>@row[column.ColumnName].ToString()</td>
+                        }
+                    }
+                }
+
+                <td>
+                    @if (Convert.ToInt32(row["ItemMaxQuantity"]) > 1)
+                    {
+                        <input type="number" min="0" max="@row["ItemMaxQuantity"].ToString()" value="@row["quantity"].ToString()" name="SPitemquant_@(ViewBag.OID + "_" + row["Code"].ToString())" style="width:35px" />
+                    }
+                    else if (Convert.ToInt32(row["ItemMaxQuantity"]) == 0)
+                    {
+                        <input type="number" min="0" value="@row["quantity"].ToString()" name="SPitemquant_@(ViewBag.OID + "_" + row["Code"].ToString())" style="width:75px" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="SPitemcheck_@(ViewBag.OID + "_" + row["Code"].ToString())" checked="@System.Convert.ToBoolean(Convert.ToInt32(row["quantity"]))" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $("#itemSelector_@ViewBag.OID").kendoGrid({
+             sortable: true
+        });
+
+        $('.k-grid-header .k-header').css('font-weight', 'bold');
+        $('.k-grid-header .k-header').css('background', '#b9babb');
+    });
+</script>
+<input type="hidden" name="SPShownItemCollection_@ViewBag.OID" value="@ViewBag.ItemCollection" id="selectItemCollection_@ViewBag.OID" />
+<input type="hidden" name="SPsetKey_@ViewBag.OID" value="@ViewBag.SetKeys" id="setKey_@ViewBag.OID" />

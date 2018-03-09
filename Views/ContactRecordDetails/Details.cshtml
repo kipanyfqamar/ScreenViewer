@@ -1,0 +1,74 @@
+﻿@model ScreenViewer.Data.ContactRecordDetail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>ContactRecordDetail</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.QuestionId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QuestionId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.QuestionText)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QuestionText)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.QuestionResponseText)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QuestionResponseText)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.QuestionResponseValue)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QuestionResponseValue)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.QuestionKeys)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QuestionKeys)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactRecord.ClientCallId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ContactRecord.ClientCallId)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ContactRecordDetailId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

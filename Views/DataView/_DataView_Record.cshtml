@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ScreenViewer.Models.DataDetails>
+
+@(Html.Kendo().Grid(Model)
+    .Name("Grid")
+    //.HtmlAttributes(new { style = "height: 700px;" })
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.DetailName).Width(200).HeaderHtmlAttributes(new { style = "font-size:12pt;font-weight: bold;" });
+        columns.Bound(p => p.DetailValue).Width(300).HeaderHtmlAttributes(new { style = "font-size:12pt;font-weight: bold;" });
+                        
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Selectable()
+    .Scrollable()
+    .DataSource(dataSource => dataSource
+    .Server()
+    .Model(model => model.Id(p => p.DetailID))
+    )
+    )
+
+

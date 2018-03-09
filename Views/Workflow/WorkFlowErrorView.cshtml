@@ -1,0 +1,435 @@
+﻿
+@model ScreenViewer.Models.WorkflowDisplay
+
+<style>
+    #KSP_MainDisplay {
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        vertical-align: middle;
+        margin: 0 auto;
+        padding: 4px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #Workflow {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    html, body, div {
+        margin: 0;
+    }
+
+    #Workflow_Header {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Footer {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Content {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1225px;
+        position: relative;
+        height: 800px;
+        background-color: #F0F0F0;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Sections {
+        float: left;
+        width: 1225px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #Workflow_Panel {
+        /*margin-left: 925px;*/
+        /*width: 300px;*/
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    #Workflow_Button {
+        width: 1225px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    #Menu {
+        margin: 0 auto;
+    }
+
+    .bttn {
+        background-color: #286090;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        background-position: 95px 10px;
+        color: #FFFFFF !important;
+        padding: 10px 20px;
+        border: 0px;
+        line-height: 1.33;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .bttn:hover {
+            background-image: none;
+            background-color: #3989e3;
+        }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    .control {
+        /*background-color: #FFFFFF;*/
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+
+    .k-menu .k-link {
+        color: #434E54;
+        font-size: small;
+    }
+
+    .k-menu:after /* clear fix to expand content */ {
+        content: '';
+        display: block;
+        width: 99%;
+        height: 0;
+        float: inherit;
+        overflow: hidden;
+    }
+
+    k-panelbar {
+        height: 35px;
+    }
+
+    #progress {
+        background-color: #DADADA;
+        left: 50%;
+        top: 40%;
+        width: 240px;
+        height: 60px;
+        margin-top: -30px; /* make this half your image/element height */
+        margin-left: -120px; /* make this half your image/element width */
+        position: absolute;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        color: #838383;
+        font-weight: bold;
+        line-height: 60px;
+        z-index: 100002 !important;
+    }
+
+    .k-panelbar {
+        /*position:fixed;*/
+        height: 100%;
+        /*background:red;*/
+        width: 285px !important;
+        right: -80px;
+        margin-right: -200px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .nopad {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .row-eq-height {
+        display: flex;
+    }
+
+        .row-eq-height [class*="col-"] {
+            padding: 0;
+        }
+
+        .row-eq-height img {
+            width: 100%;
+        }
+
+
+    .blink {
+        -webkit-animation-name: blinker;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: blinker;
+        -moz-animation-duration: 2s;
+        -moz-animation-timing-function: linear;
+        -moz-animation-iteration-count: infinite;
+        animation-name: blinker;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    @@-moz-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@-webkit-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    div#progress {
+        display: none;
+    }
+
+    .navbar-nav > li > a, .navbar-brand {
+        padding-top: 5px !important;
+        padding-bottom: 0 !important;
+        height: 30px;
+    }
+
+    .navbar {
+        min-height: 30px !important;
+    }
+</style>
+
+@using (Ajax.BeginForm("myFormError", new AjaxOptions { UpdateTargetId = "Content", LoadingElementId = "progress", OnBegin = "myFormBegin", OnFailure = "myFormFailure", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
+{
+    <div id="LayoutTemplate">
+        @Html.Raw(Model.Layout)
+    </div>
+}
+<div id="Workflow_Sections" style="display:none">
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11">
+                <div class="error-template">
+                    <h2>
+                        An error occured while loading the script!
+                    </h2>
+                    <div class="error-details">
+                        <div>
+                            <p>
+                                <div class="alert alert-danger">
+                                    <b>Error Message:</b> @Model.ExceptionMessage<br />
+                                    <b>Class Name:</b> @Model.ClassName<br />
+                                    <b>Method Name:</b> @Model.MethodName<br />
+                                    <b>Contact Id:</b> @Model.ContactID<br />
+                                </div>
+                            </p>
+                            <div>
+                                <div class="alert alert-warning">
+                                    <pre>
+                                        @Model.StackTrace
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error-actions">
+                        <input type="submit" class="btn btn-primary btn-lg" name="ButtonType" value="Back" formnovalidate />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <input type="hidden" name="hdnWorkflowId" value="@Model.workflowID" />
+    <input type="hidden" name="hdnCurrentNodeId" value="@Model.CurrentNodeId" />
+
+    <table>
+        <tr>
+            <td>
+                <input id="btnReload" type="submit" name="ButtonType" value="Current" style="display:none" formnovalidate />
+                <input id="btnSection" type="submit" name="ButtonType" value="Section" style="display:none" formnovalidate />
+                <input type="hidden" name="hdnSectionId" id="hdnSectionId" />
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div id="thecallback" style="display:none;padding: 5px;"></div>
+<div id="notif" style="display:none">@Html.Raw(Model.Notifications)</div>
+<div id="menubar" style="display:none">@Html.Raw(Model.menuHTML)</div>
+
+<script>
+    var divString = $("#Workflow_Sections").html();
+
+    var html = $(divString.bold());
+
+    html.find("script:last").remove();
+    $("#Menu").html($("#menubar").html());
+    @*$("#Workflow").html('Workflow: @Model.workflowName');
+    $("#Section").html('Section: @Model.nextNode.nodeName');*@
+    $("#Notes").html('<div style="padding: 5px;"><div><p><textarea id="SP_Notes" class="form-control" rows="10" name="SP_Notes" cols="32">@Model.callNotes</textarea></p></div></div>')
+    $('#Callback').html($("#thecallback").html());
+    $('#KBSearch').html($("#thesearch").html());
+    $("#Notifications").html($("#notif").html());
+    $("#Notif").empty();
+    $("#thecallback").empty();
+    $("#Content").html(html.html());
+    $("#Workflow_Sections").empty();
+
+</script>
+
+<div id="progress">
+    <img src="/Includes/images/loading.gif" /> Loading Please Wait...
+</div>
+
+<script>
+    $(document).ready(function () {
+        var height = $("#Footer").height() + $("#Header").height();
+        $("#Content").css("height", $(document).height() - height + "px");
+
+        $("form").change(function (e) {
+                 var controlName = $(e.target).attr('name');
+
+                 if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPQuestion") > -1)
+                     ReloadSection();
+                 else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemquant") > -1)
+                     ReloadSection();
+                 else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemcheck") > -1)
+                     ReloadSection();
+             });
+
+         });
+
+    $('form').submit(function () {
+        $("input[name*='action:Next']").hide();
+        $("input[name*='action:Previous']").hide();
+    });
+
+
+    function ReloadSection()
+    {
+        $('#btnReload').click();
+    }
+
+    function SetListBoxText()
+    {
+        $("[id$='_ddl']").each(function () {
+            var dropdown = this.id.replace("_ddl", "");
+            $('#' + this.id).val($('#' + dropdown).find('option:selected').text());
+        });
+
+        var selectedText = ''
+        $("[id$='_mddl']").each(function () {
+            var dropdown = this.id.replace("_mddl", "");
+            $('#' + dropdown + '_taglist li').each(function () {
+                selectedText += $(this).find('span').first().html() + ',';
+            })
+            $('#' + this.id).val(selectedText);
+        });
+
+        return true;
+    }
+
+    function myFormBegin() {
+        $("#progress").hide();
+    }
+
+    function myFormFailure(ajaxContext) {
+        var response = ajaxContext.responseText;
+        //alert("Error Code [" + ajaxContext.ErrorCode + "] " + response);
+        alert("Sorry, the request is failed");
+    }
+
+    function clickSection(id)
+    {
+        $('#hdnSectionId').val(id);
+        $('#btnSection').click();
+    }
+
+</script>

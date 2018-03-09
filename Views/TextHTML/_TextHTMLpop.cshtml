@@ -1,0 +1,39 @@
+﻿
+<span id="TextContainer_@ViewBag.TextID">
+    <strong><u><a class="tooltip_@ViewBag.TextID" id="tooltip_@ViewBag.TextID" href="#" style="text-decoration: none !important; color: #009CA7;">@ViewBag.TextTitle</a></u></strong>
+</span>
+
+<script>
+    $("#tooltip_@ViewBag.TextID").kendoTooltip({
+        autoHide: true,
+        content: '@ViewBag.Content',
+        position: "right",
+        width: 800,
+    });
+
+</script>
+
+
+<style>
+    .k-tooltip {
+        background: white !important;
+        color: black !important;
+        text-align: left;
+    }
+    .k-tooltip-content {
+        text-align:left;
+    }
+
+    .k-tooltip-content {
+        text-align: left !important;
+        color: black !important;
+        overflow: hidden;
+    }
+
+    .k-chart div {
+        z-index: 1000;
+    }
+
+</style>
+
+

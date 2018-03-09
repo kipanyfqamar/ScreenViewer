@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ScreenPlayClientsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationGroup">
+          <Key>
+            <PropertyRef Name="ApplicationGroupId" />
+          </Key>
+          <Property Name="ApplicationGroupId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="OwnerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ScriptClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationGroupRoles">
+          <Key>
+            <PropertyRef Name="ApplicationGroupRoleId" />
+          </Key>
+          <Property Name="ApplicationGroupRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationRoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ApplicationGroupId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationUserGroup">
+          <Key>
+            <PropertyRef Name="ApplicationUserGroupId" />
+          </Key>
+          <Property Name="ApplicationUserGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ApplicationGroupId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptClient">
+          <Key>
+            <PropertyRef Name="ScriptClientID" />
+          </Key>
+          <Property Name="ScriptClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptClientEnvironment">
+          <Key>
+            <PropertyRef Name="ScriptClientEnvironmentId" />
+          </Key>
+          <Property Name="ScriptClientEnvironmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DBServer" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DBName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptClientUser">
+          <Key>
+            <PropertyRef Name="ScriptClientUserID" />
+          </Key>
+          <Property Name="ScriptClientUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ApplicationGroupRoles_ApplicationGroup">
+          <End Role="ApplicationGroup" Type="Self.ApplicationGroup" Multiplicity="1" />
+          <End Role="ApplicationGroupRoles" Type="Self.ApplicationGroupRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationGroup">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Principal>
+            <Dependent Role="ApplicationGroupRoles">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserGroup_ApplicationGroup">
+          <End Role="ApplicationGroup" Type="Self.ApplicationGroup" Multiplicity="1" />
+          <End Role="ApplicationUserGroup" Type="Self.ApplicationUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationGroup">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Principal>
+            <Dependent Role="ApplicationUserGroup">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserGroup_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ApplicationUserGroup" Type="Self.ApplicationUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationUserGroup">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptClientEnvironment_ScriptClient">
+          <End Role="ScriptClient" Type="Self.ScriptClient" Multiplicity="1" />
+          <End Role="ScriptClientEnvironment" Type="Self.ScriptClientEnvironment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptClient">
+              <PropertyRef Name="ScriptClientID" />
+            </Principal>
+            <Dependent Role="ScriptClientEnvironment">
+              <PropertyRef Name="ScriptClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptClientUser_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ScriptClientUser" Type="Self.ScriptClientUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ScriptClientUser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptClientUser_ScriptClient">
+          <End Role="ScriptClient" Type="Self.ScriptClient" Multiplicity="1" />
+          <End Role="ScriptClientUser" Type="Self.ScriptClientUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptClient">
+              <PropertyRef Name="ScriptClientID" />
+            </Principal>
+            <Dependent Role="ScriptClientUser">
+              <PropertyRef Name="ScriptClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScreenPlayClientsModelStoreContainer">
+          <EntitySet Name="ApplicationGroup" EntityType="Self.ApplicationGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationGroupRoles" EntityType="Self.ApplicationGroupRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationUserGroup" EntityType="Self.ApplicationUserGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptClient" EntityType="Self.ScriptClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptClientEnvironment" EntityType="Self.ScriptClientEnvironment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptClientUser" EntityType="Self.ScriptClientUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ApplicationGroupRoles_ApplicationGroup" Association="Self.FK_ApplicationGroupRoles_ApplicationGroup">
+            <End Role="ApplicationGroup" EntitySet="ApplicationGroup" />
+            <End Role="ApplicationGroupRoles" EntitySet="ApplicationGroupRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserGroup_ApplicationGroup" Association="Self.FK_ApplicationUserGroup_ApplicationGroup">
+            <End Role="ApplicationGroup" EntitySet="ApplicationGroup" />
+            <End Role="ApplicationUserGroup" EntitySet="ApplicationUserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserGroup_AspNetUsers" Association="Self.FK_ApplicationUserGroup_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ApplicationUserGroup" EntitySet="ApplicationUserGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptClientEnvironment_ScriptClient" Association="Self.FK_ScriptClientEnvironment_ScriptClient">
+            <End Role="ScriptClient" EntitySet="ScriptClient" />
+            <End Role="ScriptClientEnvironment" EntitySet="ScriptClientEnvironment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptClientUser_AspNetUsers" Association="Self.FK_ScriptClientUser_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ScriptClientUser" EntitySet="ScriptClientUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptClientUser_ScriptClient" Association="Self.FK_ScriptClientUser_ScriptClient">
+            <End Role="ScriptClient" EntitySet="ScriptClient" />
+            <End Role="ScriptClientUser" EntitySet="ScriptClientUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScreenPlayClientsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationGroup">
+          <Key>
+            <PropertyRef Name="ApplicationGroupId" />
+          </Key>
+          <Property Name="ApplicationGroupId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ScriptClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApplicationGroupRoles" Relationship="Self.FK_ApplicationGroupRoles_ApplicationGroup" FromRole="ApplicationGroup" ToRole="ApplicationGroupRoles" />
+          <NavigationProperty Name="ApplicationUserGroups" Relationship="Self.FK_ApplicationUserGroup_ApplicationGroup" FromRole="ApplicationGroup" ToRole="ApplicationUserGroup" />
+        </EntityType>
+        <EntityType Name="ApplicationGroupRole">
+          <Key>
+            <PropertyRef Name="ApplicationGroupRoleId" />
+          </Key>
+          <Property Name="ApplicationGroupRoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationRoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationGroupId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApplicationGroup" Relationship="Self.FK_ApplicationGroupRoles_ApplicationGroup" FromRole="ApplicationGroupRoles" ToRole="ApplicationGroup" />
+        </EntityType>
+        <EntityType Name="ApplicationUserGroup">
+          <Key>
+            <PropertyRef Name="ApplicationUserGroupId" />
+          </Key>
+          <Property Name="ApplicationUserGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ApplicationGroupId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApplicationGroup" Relationship="Self.FK_ApplicationUserGroup_ApplicationGroup" FromRole="ApplicationUserGroup" ToRole="ApplicationGroup" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ApplicationUserGroup_AspNetUsers" FromRole="ApplicationUserGroup" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApplicationUserGroups" Relationship="Self.FK_ApplicationUserGroup_AspNetUsers" FromRole="AspNetUsers" ToRole="ApplicationUserGroup" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="ScriptClientUsers" Relationship="Self.FK_ScriptClientUser_AspNetUsers" FromRole="AspNetUsers" ToRole="ScriptClientUser" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="ScriptClient">
+          <Key>
+            <PropertyRef Name="ScriptClientID" />
+          </Key>
+          <Property Name="ScriptClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ScriptClientEnvironments" Relationship="Self.FK_ScriptClientEnvironment_ScriptClient" FromRole="ScriptClient" ToRole="ScriptClientEnvironment" />
+          <NavigationProperty Name="ScriptClientUsers" Relationship="Self.FK_ScriptClientUser_ScriptClient" FromRole="ScriptClient" ToRole="ScriptClientUser" />
+        </EntityType>
+        <EntityType Name="ScriptClientEnvironment">
+          <Key>
+            <PropertyRef Name="ScriptClientEnvironmentId" />
+          </Key>
+          <Property Name="ScriptClientEnvironmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DBServer" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DBName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ScriptClient" Relationship="Self.FK_ScriptClientEnvironment_ScriptClient" FromRole="ScriptClientEnvironment" ToRole="ScriptClient" />
+        </EntityType>
+        <EntityType Name="ScriptClientUser">
+          <Key>
+            <PropertyRef Name="ScriptClientUserID" />
+          </Key>
+          <Property Name="ScriptClientUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_ScriptClientUser_AspNetUsers" FromRole="ScriptClientUser" ToRole="AspNetUsers" />
+          <NavigationProperty Name="ScriptClient" Relationship="Self.FK_ScriptClientUser_ScriptClient" FromRole="ScriptClientUser" ToRole="ScriptClient" />
+        </EntityType>
+        <Association Name="FK_ApplicationGroupRoles_ApplicationGroup">
+          <End Role="ApplicationGroup" Type="Self.ApplicationGroup" Multiplicity="1" />
+          <End Role="ApplicationGroupRoles" Type="Self.ApplicationGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationGroup">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Principal>
+            <Dependent Role="ApplicationGroupRoles">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserGroup_ApplicationGroup">
+          <End Role="ApplicationGroup" Type="Self.ApplicationGroup" Multiplicity="1" />
+          <End Role="ApplicationUserGroup" Type="Self.ApplicationUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationGroup">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Principal>
+            <Dependent Role="ApplicationUserGroup">
+              <PropertyRef Name="ApplicationGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationUserGroup_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="ApplicationUserGroup" Type="Self.ApplicationUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationUserGroup">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptClientUser_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
+          <End Role="ScriptClientUser" Type="Self.ScriptClientUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ScriptClientUser">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptClientEnvironment_ScriptClient">
+          <End Role="ScriptClient" Type="Self.ScriptClient" Multiplicity="1" />
+          <End Role="ScriptClientEnvironment" Type="Self.ScriptClientEnvironment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptClient">
+              <PropertyRef Name="ScriptClientID" />
+            </Principal>
+            <Dependent Role="ScriptClientEnvironment">
+              <PropertyRef Name="ScriptClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptClientUser_ScriptClient">
+          <End Role="ScriptClient" Type="Self.ScriptClient" Multiplicity="1" />
+          <End Role="ScriptClientUser" Type="Self.ScriptClientUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptClient">
+              <PropertyRef Name="ScriptClientID" />
+            </Principal>
+            <Dependent Role="ScriptClientUser">
+              <PropertyRef Name="ScriptClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ScreenPlayClientsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationGroups" EntityType="Self.ApplicationGroup" />
+          <EntitySet Name="ApplicationGroupRoles" EntityType="Self.ApplicationGroupRole" />
+          <EntitySet Name="ApplicationUserGroups" EntityType="Self.ApplicationUserGroup" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="ScriptClients" EntityType="Self.ScriptClient" />
+          <EntitySet Name="ScriptClientEnvironments" EntityType="Self.ScriptClientEnvironment" />
+          <EntitySet Name="ScriptClientUsers" EntityType="Self.ScriptClientUser" />
+          <AssociationSet Name="FK_ApplicationGroupRoles_ApplicationGroup" Association="Self.FK_ApplicationGroupRoles_ApplicationGroup">
+            <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
+            <End Role="ApplicationGroupRoles" EntitySet="ApplicationGroupRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserGroup_ApplicationGroup" Association="Self.FK_ApplicationUserGroup_ApplicationGroup">
+            <End Role="ApplicationGroup" EntitySet="ApplicationGroups" />
+            <End Role="ApplicationUserGroup" EntitySet="ApplicationUserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationUserGroup_AspNetUsers" Association="Self.FK_ApplicationUserGroup_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ApplicationUserGroup" EntitySet="ApplicationUserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptClientUser_AspNetUsers" Association="Self.FK_ScriptClientUser_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ScriptClientUser" EntitySet="ScriptClientUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptClientEnvironment_ScriptClient" Association="Self.FK_ScriptClientEnvironment_ScriptClient">
+            <End Role="ScriptClient" EntitySet="ScriptClients" />
+            <End Role="ScriptClientEnvironment" EntitySet="ScriptClientEnvironments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptClientUser_ScriptClient" Association="Self.FK_ScriptClientUser_ScriptClient">
+            <End Role="ScriptClient" EntitySet="ScriptClients" />
+            <End Role="ScriptClientUser" EntitySet="ScriptClientUsers" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScreenPlayClientsModelStoreContainer" CdmEntityContainer="ScreenPlayClientsEntities">
+          <EntitySetMapping Name="ApplicationGroups">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.ApplicationGroup">
+              <MappingFragment StoreEntitySet="ApplicationGroup">
+                <ScalarProperty Name="ApplicationGroupId" ColumnName="ApplicationGroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+                <ScalarProperty Name="ScriptClientID" ColumnName="ScriptClientID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationGroupRoles">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.ApplicationGroupRole">
+              <MappingFragment StoreEntitySet="ApplicationGroupRoles">
+                <ScalarProperty Name="ApplicationGroupRoleId" ColumnName="ApplicationGroupRoleId" />
+                <ScalarProperty Name="ApplicationRoleId" ColumnName="ApplicationRoleId" />
+                <ScalarProperty Name="ApplicationGroupId" ColumnName="ApplicationGroupId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationUserGroups">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.ApplicationUserGroup">
+              <MappingFragment StoreEntitySet="ApplicationUserGroup">
+                <ScalarProperty Name="ApplicationUserGroupId" ColumnName="ApplicationUserGroupId" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+                <ScalarProperty Name="ApplicationGroupId" ColumnName="ApplicationGroupId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptClients">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.ScriptClient">
+              <MappingFragment StoreEntitySet="ScriptClient">
+                <ScalarProperty Name="ScriptClientID" ColumnName="ScriptClientID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptClientEnvironments">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.ScriptClientEnvironment">
+              <MappingFragment StoreEntitySet="ScriptClientEnvironment">
+                <ScalarProperty Name="ScriptClientEnvironmentId" ColumnName="ScriptClientEnvironmentId" />
+                <ScalarProperty Name="ScriptClientID" ColumnName="ScriptClientID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DBServer" ColumnName="DBServer" />
+                <ScalarProperty Name="DBName" ColumnName="DBName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptClientUsers">
+            <EntityTypeMapping TypeName="ScreenPlayClientsModel.ScriptClientUser">
+              <MappingFragment StoreEntitySet="ScriptClientUser">
+                <ScalarProperty Name="ScriptClientUserID" ColumnName="ScriptClientUserID" />
+                <ScalarProperty Name="ScriptClientID" ColumnName="ScriptClientID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ScreenPlayClientsModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

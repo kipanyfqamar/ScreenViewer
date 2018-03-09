@@ -1,0 +1,22 @@
+﻿@if (ViewBag.DisplayLabel == true)
+{
+    <label class="Question">@ViewBag.QuestionDisplay</label><br />
+}
+@if (ViewBag.MinValue != null && ViewBag.MaxValue != null && ViewBag.MaxValue > 0)
+{
+    <input type="number" class="form-control" name="@ViewBag.ControlName" id="@ViewBag.ControlName" min="@ViewBag.MinValue" max="@ViewBag.MaxValue" step="any" value="@ViewBag.CurrentResponse" @ViewBag.AnswerRequired>
+}
+else if (ViewBag.MinValue != null)
+{
+    <input type="number" class="form-control" name="@ViewBag.ControlName" id="@ViewBag.ControlName" min="@ViewBag.MinValue" value="@ViewBag.CurrentResponse" step="any" @ViewBag.AnswerRequired>
+}
+
+else if (ViewBag.MaxValue != null && ViewBag.MaxValue > 0)
+{
+    <input type="number" class="form-control" name="@ViewBag.ControlName" id="@ViewBag.ControlName" max="@ViewBag.MaxValue" value="@ViewBag.CurrentResponse" step="any" @ViewBag.AnswerRequired>
+}
+else
+{
+    <input type="number" class="form-control" name="@ViewBag.ControlName" id="@ViewBag.ControlName" value="@ViewBag.CurrentResponse" step="any" @ViewBag.AnswerRequired>
+}
+

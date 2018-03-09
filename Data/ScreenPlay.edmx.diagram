@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="48a386f6e6774ba38e4237999b074616" Name="Diagram1">
+        <EntityTypeShape EntityType="ScreenPlayModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="13.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptAction" Width="1.5" PointX="7.75" PointY="14.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptCalculation" Width="1.5" PointX="17.75" PointY="6.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptClause" Width="1.5" PointX="5.75" PointY="15" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptDataView" Width="1.5" PointX="15.75" PointY="19.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptImage" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptItem" Width="1.5" PointX="17.75" PointY="14.125" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptItemKey" Width="1.5" PointX="20" PointY="15.125" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptItemSelector" Width="1.5" PointX="17.75" PointY="19.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptLayout" Width="1.5" PointX="17.75" PointY="3" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptLayoutDetail" Width="1.5" PointX="20" PointY="3" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptLink" Width="1.5" PointX="19.75" PointY="6.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptLookup" Width="1.5" PointX="5.75" PointY="19" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptLookupDetail" Width="1.5" PointX="8" PointY="19.375" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptMenu" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptObject" Width="1.5" PointX="0.75" PointY="19.125" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptObjectDetail" Width="1.5" PointX="3" PointY="19.375" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptProject" Width="1.5" PointX="3" PointY="3.25" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptProjectVariable" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptProjectWorkflow" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptQuestion" Width="1.5" PointX="13" PointY="14.25" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptQuestionare" Width="1.5" PointX="13" PointY="20.625" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptQuestionareDetail" Width="1.5" PointX="15.25" PointY="15.625" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptSection" Width="1.5" PointX="14.75" PointY="10.125" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptSectionLayout" Width="1.5" PointX="17" PointY="10.125" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptTextHTML" Width="1.5" PointX="19.75" PointY="10.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptValidator" Width="1.5" PointX="10.75" PointY="15.875" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptVariable" Width="1.5" PointX="5.75" PointY="11" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptVariableDetail" Width="1.5" PointX="8" PointY="11" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptWorkflow" Width="1.5" PointX="3" PointY="9.625" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptVariableDetail_ScriptClause" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptProject_ScriptImage" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptItemKey_ScriptItem" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptLayoutDetail_ScriptLayout" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptLookupDetail_ScriptLookup" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptProject_ScriptMenu" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptObjectDetail_ScriptObject" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptProjectVariable_ScriptProject" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptProject" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptWorkflow" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptQuestion_ScriptValidator" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestion" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestionare" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptSectionLayout_ScriptSection" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptVariableDetail_ScriptVariable" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptHTML" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ScreenPlayModel.WorkflowLayout" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptDash" Width="1.5" PointX="10" PointY="0.75" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptDash_ScriptImage" />
+        <AssociationConnector Association="ScreenPlayModel.FK_ScriptDash_ScriptMenu" />
+        <EntityTypeShape EntityType="ScreenPlayModel.ScriptTask" Width="1.5" PointX="20.375" PointY="18.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,73 @@
+﻿
+<div id="KSP_MainDisplay">
+</div>
+
+@*@Model ScriptSection*@
+<script>
+    async: false
+    var content;
+
+    @if (ViewBag.Layout != null)
+       {
+        @:$("#KSP_MainDisplay").html("@Html.Raw(ViewBag.Layout)");
+           }
+
+    @foreach (var vals in Model)
+       {
+        var putwhere = "KSP_MainDisplay";
+
+        if (vals.SectionLayout.ElementType == "Question")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@vals.QuestionLayout.QuestionLabelText</td></tr><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "Questionare")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "ScriptLayout")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.ScriptLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "TextHTML" || vals.SectionLayout.ElementType == "Html")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.TextHTMLLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "Link")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "LinkGroup")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkGroupLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "ItemSelector")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderItemLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "OrderCart")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderCartLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "DataView")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.DataViewLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "Image")
+        {
+            @:$("#@putwhere").append("<div>@Html.Raw(vals.ImageLayout)</div><br />");
+            }
+        else if (vals.SectionLayout.ElementType == "Action")
+        {
+            @:$("#@putwhere").append($("<button type=\"submit\" name=\"action:Action\" value=\"@vals.ActionLayout.actionName\" formnovalidate >@vals.ActionLayout.actionDisplay</button>"));
+            }
+        else
+        {
+            @:$("#@putwhere").append($("<div class=\"control\">").load("/@vals.SectionLayout.ElementType/Display/@vals.SectionLayout.ElementID/@vals.CriticalElement"));
+                @:$("#@putwhere").append("<br />")
+            }
+    }
+
+</script>
+<input type="hidden" name="SectionLayout" id="SectionLayout" value="@ViewBag.QuestionList" />
+
+

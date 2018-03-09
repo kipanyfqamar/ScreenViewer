@@ -1,0 +1,23 @@
+﻿<h3><u>@ViewBag.Title</u></h3>
+
+<table style="@ViewBag.Tablestyle">
+
+
+    @for (int i = 0; i < @ViewBag.QuestionLayout.Count; i += 2)
+    {
+        <tr>
+            <td align="center">
+                @ViewBag.QuestionLayout[i].QuestionLabelText<br />
+                @Html.Raw(@ViewBag.QuestionLayout[i].QuestionHTML)
+            </td>
+            <td align="center">
+                @( i < ViewBag.QuestionLayout.Count - 1 ? ViewBag.QuestionLayout[i + 1].QuestionLabelText : Html.Raw("&nbsp;"))<br />
+                @( i < ViewBag.QuestionLayout.Count - 1 ? Html.Raw(ViewBag.QuestionLayout[i + 1].QuestionHTML) : Html.Raw("&nbsp;"))
+            </td>
+
+        </tr>
+    }
+
+
+</table>
+<input type="hidden" name="SectionLayout_@ViewBag.QID" id="SectionLayout_@ViewBag.QID" value="@ViewBag.QuestionList" />

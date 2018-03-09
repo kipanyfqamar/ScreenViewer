@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SodexoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SodexoCalls">
+          <Key>
+            <PropertyRef Name="SodexoCallId" />
+          </Key>
+          <Property Name="SodexoCallId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactID" Type="int" Nullable="false" />
+          <Property Name="SiteNo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CustNo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="CustName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SiteAddress1" Type="varchar" MaxLength="100" />
+          <Property Name="SiteAddress2" Type="varchar" MaxLength="100" />
+          <Property Name="SiteCity" Type="varchar" MaxLength="50" />
+          <Property Name="SiteState" Type="varchar" MaxLength="2" />
+          <Property Name="SiteZip" Type="varchar" MaxLength="10" />
+          <Property Name="CallType" Type="char" MaxLength="1" />
+          <Property Name="NatureofCall" Type="varchar" MaxLength="4" />
+          <Property Name="Dept" Type="varchar" MaxLength="50" />
+          <Property Name="Division" Type="varchar" MaxLength="50" />
+          <Property Name="OvertimeApproved" Type="bit" />
+          <Property Name="PONumbrt" Type="varchar" MaxLength="15" />
+          <Property Name="NTX" Type="varchar" MaxLength="9" />
+          <Property Name="ScheduledDate" Type="datetime" />
+          <Property Name="VendorNumber" Type="varchar" MaxLength="6" />
+          <Property Name="Priority" Type="varchar" MaxLength="3" />
+          <Property Name="ProblemCode" Type="varchar" MaxLength="50" />
+          <Property Name="CallerPhone" Type="varchar" MaxLength="20" />
+          <Property Name="CallerEmail" Type="varchar" MaxLength="100" />
+          <Property Name="WorkOrderID" Type="varchar" MaxLength="25" />
+          <Property Name="CallerName" Type="varchar" MaxLength="100" />
+          <Property Name="CallerTitle" Type="varchar" MaxLength="100" />
+          <Property Name="SiteName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SodexoModelStoreContainer">
+          <EntitySet Name="SodexoCalls" EntityType="Self.SodexoCalls" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SodexoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SodexoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SodexoCalls" EntityType="SodexoModel.SodexoCall" />
+        </EntityContainer>
+        <EntityType Name="SodexoCall">
+          <Key>
+            <PropertyRef Name="SodexoCallId" />
+          </Key>
+          <Property Name="SodexoCallId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactID" Type="Int32" Nullable="false" />
+          <Property Name="SiteNo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CustNo" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CustName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SiteAddress1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SiteAddress2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SiteCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SiteState" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="SiteZip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CallType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NatureofCall" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Dept" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Division" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OvertimeApproved" Type="Boolean" />
+          <Property Name="PONumbrt" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="NTX" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ScheduledDate" Type="DateTime" Precision="3" />
+          <Property Name="VendorNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Priority" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ProblemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CallerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CallerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkOrderID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="CallerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CallerTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SodexoModelStoreContainer" CdmEntityContainer="SodexoEntities">
+          <EntitySetMapping Name="SodexoCalls">
+            <EntityTypeMapping TypeName="SodexoModel.SodexoCall">
+              <MappingFragment StoreEntitySet="SodexoCalls">
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="CallerTitle" ColumnName="CallerTitle" />
+                <ScalarProperty Name="CallerName" ColumnName="CallerName" />
+                <ScalarProperty Name="WorkOrderID" ColumnName="WorkOrderID" />
+                <ScalarProperty Name="CallerEmail" ColumnName="CallerEmail" />
+                <ScalarProperty Name="CallerPhone" ColumnName="CallerPhone" />
+                <ScalarProperty Name="ProblemCode" ColumnName="ProblemCode" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="VendorNumber" ColumnName="VendorNumber" />
+                <ScalarProperty Name="ScheduledDate" ColumnName="ScheduledDate" />
+                <ScalarProperty Name="NTX" ColumnName="NTX" />
+                <ScalarProperty Name="PONumbrt" ColumnName="PONumbrt" />
+                <ScalarProperty Name="OvertimeApproved" ColumnName="OvertimeApproved" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+                <ScalarProperty Name="NatureofCall" ColumnName="NatureofCall" />
+                <ScalarProperty Name="CallType" ColumnName="CallType" />
+                <ScalarProperty Name="SiteZip" ColumnName="SiteZip" />
+                <ScalarProperty Name="SiteState" ColumnName="SiteState" />
+                <ScalarProperty Name="SiteCity" ColumnName="SiteCity" />
+                <ScalarProperty Name="SiteAddress2" ColumnName="SiteAddress2" />
+                <ScalarProperty Name="SiteAddress1" ColumnName="SiteAddress1" />
+                <ScalarProperty Name="CustName" ColumnName="CustName" />
+                <ScalarProperty Name="CustNo" ColumnName="CustNo" />
+                <ScalarProperty Name="SiteNo" ColumnName="SiteNo" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="SodexoCallId" ColumnName="SodexoCallId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

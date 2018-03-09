@@ -1,0 +1,164 @@
+﻿
+<script id="customEditorTemplate" type="text/x-kendo-template">
+    <div class="k-edit-label"><label for="title">Title</label></div>
+    <div data-container-for="title" class="k-edit-field">
+        <input type="text" class="k-input k-textbox" name="title" required="required" data-bind="value:title">
+    </div>
+    <div class="k-edit-label">
+        <label for="start">Start</label>
+    </div>
+    <div data-container-for="start" class="k-edit-field">
+        <input type="text"
+               data-role="datetimepicker"
+               data-interval="15"
+               data-type="date"
+               data-bind="value:start,invisible:isAllDay"
+               name="start" />
+        <input type="text" data-type="date" data-role="datepicker" data-bind="value:start,visible:isAllDay" name="start" />
+        <span data-bind="text: startTimezone"></span>
+        <span data-for="start" class="k-invalid-msg" style="display: none;"></span>
+    </div>
+    <div class="k-edit-label"><label for="end">End</label></div>
+    <div data-container-for="end" class="k-edit-field">
+        <input type="text" data-type="date" data-role="datetimepicker" data-bind="value:end,invisible:isAllDay" name="end" data-datecompare-msg="End date should be greater than or equal to the start date" />
+        <input type="text" data-type="date" data-role="datepicker" data-bind="value:end,visible:isAllDay" name="end" data-datecompare-msg="End date should be greater than or equal to the start date" />
+        <span data-bind="text: endTimezone"></span>
+        <span data-bind="text: startTimezone, invisible: endTimezone"></span>
+        <span data-for="end" class="k-invalid-msg" style="display: none;"></span>
+    </div>
+    @*<div class="k-edit-label"><label for="isAllDay">All day event</label></div>
+        <div data-container-for="isAllDay" class="k-edit-field">
+            <input type="checkbox" name="isAllDay" data-type="boolean" data-bind="checked:isAllDay">
+        </div>
+        <div class="k-edit-label"><label for="recurrenceRule">Repeat</label></div>
+        <div data-container-for="recurrenceRule" class="k-edit-field">
+            <div data-bind="value:recurrenceRule" name="recurrenceRule" data-role="recurrenceeditor"></div>
+        </div>*@
+    <div class="k-edit-label"><label for="description">Description</label></div>
+    <div data-container-for="description" class="k-edit-field">
+        <textarea name="description" class="k-textbox" data-bind="value:description"></textarea>
+    </div>
+    <div class="k-edit-label"><label for="UserID">User</label></div>
+    <div data-container-for="UserID" class="k-edit-field">
+        <select id="UserID" data-bind="value:UserID" data-role="dropdownlist" data-value-field="Value" data-text-field="Name"></select>
+    </div>
+    <div data-container-for="LeadID" class="k-edit-field">
+        <input type="hidden" class="k-input k-textbox" id="LeadID" name="LeadID" data-bind="value:LeadID">
+    </div>
+    <div data-container-for="ClientID" class="k-edit-field">
+        <input type="hidden" class="k-input k-textbox" id="ClientID" name="ClientID" data-bind="value:ClientID">
+    </div>
+</script>
+
+<script id="event-template" type="text/x-kendo-template">
+
+    <div>Title: #: title #</div>
+    <div>
+        <span class="k-scheduler-mark" style="background-color:#=resources[0].color#"></span>Type:
+        # for (var i = 0; i < resources.length; i++) { #
+        #: resources[i].text #
+        # } #
+    </div>
+    <br />
+    <button class="edit-event" data-uid="#=uid#">View</button>
+</script>
+
+@(Html.Kendo().Scheduler<ScreenViewer.Models.ContactTaskViewModel>()
+    .Name("scheduler")
+    .Date(DateTime.Today)
+    .StartTime(DateTime.Today.AddHours(7))
+    .WorkDayStart(new DateTime(System.DateTime.Today.Year, System.DateTime.Today.Month, System.DateTime.Today.Day, 08, 00, 00))
+    .WorkDayEnd(new DateTime(System.DateTime.Today.Year, System.DateTime.Today.Month, System.DateTime.Today.Day, 18, 00, 00))
+    .Editable(editable =>
+    {
+        editable.TemplateId("customEditorTemplate");
+    })
+    .Events(e =>
+    {
+        e.Edit("scheduler_edit");
+    })
+    .Views(views =>
+    {
+        views.AgendaView(agendaView => { agendaView.EventTemplateId("event-template"); agendaView.Selected(true); });
+        views.DayView();
+        views.WorkWeekView(workWeekView => workWeekView.ShowWorkHours());
+        views.WeekView();
+        views.MonthView();
+
+    })
+    .Timezone("Etc/UTC")
+    .Resources(resource =>
+    {
+        resource.Add(m => m.UserID)
+                    //.Title("User")
+                    .DataTextField("Name")
+                    .DataValueField("Value")
+                    .DataColorField("Color")
+                    .DataSource(ds => ds.Read("GetUsers", "Task"))
+                    .Multiple(true);
+    })
+    .Resources(resource =>
+    {
+        resource.Add(m => m.TaskType)
+            .DataTextField("Name")
+            .DataValueField("Value")
+            .DataColorField("Color")
+            .DataSource(ds => ds.Read("GetTaskType", "Task"));
+    })
+    .DataSource(d => d
+        .Model(m =>
+        {
+            m.Id(f => f.TaskID);
+            m.Field(f => f.Title).DefaultValue("No title");
+            m.Field(f => f.UserID).DefaultValue(1);
+            m.Field(f => f.Title).DefaultValue("No title");
+            m.Field(f => f.LeadID);
+            m.RecurrenceId(f => f.RecurrenceID);
+        })
+        .ServerOperation(true)
+        .Read(read => read.Action("Read", "Task").Data("getAdditionalData"))
+        .Create("Create", "Task")
+        .Destroy("Destroy", "Task")
+        .Update("Update", "Task")
+    //.Filter(filters =>
+    //{
+    //    filters.Add(model => model.UserID).IsEqualTo("60E81023-9942-40AC-BCCB-8B17BABCAC7E").Or().IsEqualTo("2");
+    //})
+    )
+.Editable(z => z.Destroy(false))
+)
+
+<script>
+    function scheduler_edit(e) {
+        if (!e.event.isNew()) {
+            $(".k-edit-buttons.k-state-default").prepend('<a class="k-button" id="editasnew">Launch Call</a>');
+
+            addClickEvent();
+        }
+
+        var UserID = e.container.find("#UserID").data("kendoDropDownList");
+        UserID.dataSource.data(e.sender.resources[0].dataSource.data());
+        
+        $(".k-scheduler-update").hide();
+    }
+
+    function addClickEvent() {
+        $('#editasnew').click(function () {
+            var userId = $("#UserID").val();
+            var leadId = $("#LeadID").val();
+            var clientId = $("#ClientID").val();
+            var url = '@System.Web.HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/VTAgentContact/?CallID=101102&UserId=' + userId + '&ClientId=' + clientId + '&LeadID=' + leadId + '&Prospector=N';
+            window.location.href = url;
+        });
+    }
+
+
+</script>
+
+
+<script src="/Scripts/jquery-2.0.3.js"></script>
+<script src="/Scripts/kendo/kendo.all.min.js"></script>
+<script src="/Scripts/kendo/kendo.datepicker.min.js"></script>
+<script src="/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+
+

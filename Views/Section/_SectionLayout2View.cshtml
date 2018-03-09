@@ -1,0 +1,181 @@
+﻿
+<style>
+    #SP_MAIN {
+        width: 100%;
+    }
+
+    #SP_HEADER {
+        background-color: #526068;
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #FFFFFF;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+        border: thin solid #3F3F41;
+    }
+
+    #SP_BODY {
+        width: 100%;
+        border: thin solid #B3C1D0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        vertical-align: middle;
+        margin: 0 auto;
+        background-color: #AFBCC5;
+    }
+
+    #SP_TABLE {
+        width: 100%;
+        border-spacing: 10px;
+        border-collapse: separate;
+    }
+
+    .SP_TD {
+        /*background-color: #D3DFEF;*/
+        width: 100%;
+        padding: 2px;
+        border: 1px solid black;
+    }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    html, body, div {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    .control img {
+        display: block;
+        width: 100%;
+    }
+
+    #header, #footer {
+        background-color: #526068;
+        width: 1200px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #FFFFFF;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+    }
+
+    #wrapper {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1200px;
+        position: relative;
+        height: 800px;
+        background: #E2E8EB;
+    }
+
+    #left {
+        float: left;
+        width: 900px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #right {
+        margin-left: 900px;
+        width: 300px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    #UpdateProgress {
+        background-color: #DADADA;
+        left: 50%;
+        top: 40%;
+        width: 240px;
+        height: 60px;
+        margin-top: -30px; /* make this half your image/element height */
+        margin-left: -120px; /* make this half your image/element width */
+        position: absolute;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        color: #838383;
+        font-weight: bold;
+        line-height: 60px;
+        display: none;
+    }
+
+</style>
+
+<div id="dialog"></div>
+
+@foreach (var weburl in ViewBag.ExternalPages)
+{
+    <script>
+        $('#dialog').kendoWindow({
+            content: "http://www.microsoft.com",
+            iframe: true
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="SP_MAIN">
+    <div id="SP_BODY">
+        <table id="SP_TABLE">
+            @{
+                int i = 0;
+                foreach (var vals in Model)
+                {
+                    <tr style="background-color:#F4F4F4">
+                        <td class="SP_TD">
+                            <script>$(".SP_TD").append($("<div class=\"control\">").load("/@vals.SectionLayout.ElementType/Display/@vals.SectionLayout.ElementID"));</script>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+        </table>
+    </div>
+</div>

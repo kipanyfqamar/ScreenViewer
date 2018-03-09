@@ -1,0 +1,348 @@
+﻿<style>
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    html, body, div {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    .control {
+        background-color: #FFFFFF;
+    }
+
+    #header {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #footer {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #wrapper {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1225px;
+        position: relative;
+        height: 800px;
+        background-color: #F0F0F0;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #left {
+        float: left;
+        width: 1225px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #right {
+        margin-left: 925px;
+        width: 100px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:medium;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+
+    .k-menu .k-link {
+        color: #434E54;
+        font-size: small;
+        /*color: black;*/
+    }
+
+    k-panelbar {
+        height: 35px;
+    }
+</style>
+
+@*@model IEnumerable<ScreenViewer.DataClasses.ContactRecord>*@
+
+@using (Html.BeginForm("Invoke", "ApiExplorer", FormMethod.Post, new { id = "myForm" }))
+{
+    <div id="wrapper">
+
+        <div id="left">
+            <table id="grid_get">
+                <thead>
+                    <tr>
+                        <th class="Question"><b> Contact Api Explorer</b></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Get Contact By Contact ID: <input type="text" width="30" id="txtContactId" name="txtContactId" pattern="\d+" required /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" name="action:Invoke" value="Invoke" required /></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br />
+            <strong style="color:red">@ViewBag.Message</strong>
+
+            @if (ViewBag.Contact != null)
+            {
+                <div class="label">Contact Record:</div>
+                <table id="grid_contact">
+                    <thead>
+                        <tr>
+                            <th><b>Column Name</b></th>
+                            <th><b>Column Value</b></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>ContactID</td><td>@ViewBag.Contact.ContactID</td></tr>
+                        <tr><td>VendorCallID</td><td>@ViewBag.Contact.VendorCallID</td></tr>
+                        <tr><td>TNAbout</td><td>@ViewBag.Contact.TNAbout</td></tr>
+                        <tr><td>AgentID</td><td>@ViewBag.Contact.AgentID</td></tr>
+                        <tr><td>CallVendorCode</td><td>@ViewBag.Contact.CallVendorCode</td></tr>
+                        <tr><td>CallStartDateTime</td><td>@ViewBag.Contact.CallStartDateTime</td></tr>
+                        <tr><td>CallEndDateTime</td><td>@ViewBag.Contact.CallEndDateTime</td></tr>
+                        <tr><td>DispositionCode</td><td>@ViewBag.Contact.DispositionCode</td></tr>
+                    </tbody>
+                </table>
+                
+                <br />
+                
+                if (ViewBag.Contact.ContactRecordDetails != null)
+                {
+                    <div class="label">Contact Record Details:</div>
+                    <table id="grid_contactdetail">
+                        <thead>
+                            <tr>
+                                <th width="50%"><b>Question Text</b></th>
+                                <th width="50%"><b>Question Response Text</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in ViewBag.Contact.ContactRecordDetails as IEnumerable<ScreenViewer.DataClasses.ContactRecordDetail>)
+                            {
+                                <tr>
+                                    <td width="50%">@item.QuestionText</td>
+                                    <td width="50%">@item.QuestionResponseText</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                
+                <br />
+                
+                if (ViewBag.Orders != null)
+                {
+                    <div class="label">Order:</div>
+                    <table id="grid_order">
+                        <thead>
+                            <tr>
+                                <th width="50%"><b>Order ID</b></th>
+                                <th width="50%"><b>Order Date</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td width="50%">@ViewBag.Orders.OrderID</td>
+                                <td width="50%">@ViewBag.Orders.OrderDate</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <br />
+                
+                    if (ViewBag.Orders.OrderDetails != null)
+                    {
+                        <div class="label">Order Details:</div>
+                        <table id="grid_orderdetails">
+                            <thead>
+                                <tr>
+                                    <th width="30%"><b>Item Code</b></th>
+                                    <th width="30%"><b>Item Name</b></th>
+                                    <th width="20%"><b>Item Quantity</b></th>
+                                    <th width="20%"><b>Item Price</b></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in ViewBag.Orders.OrderDetails as IEnumerable<ScreenViewer.DataClasses.OrderDetail>)
+                                {
+                                    <tr>
+                                        <td width="30%">@item.ItemCode</td>
+                                        <td width="30%">@item.ItemName</td>
+                                        <td width="20%">@item.ItemQuantity</td>
+                                        <td width="20%">@item.ItemPrice</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+                
+                <br />
+                
+                if (ViewBag.Contact.ContactVariables != null && ViewBag.Contact.ContactVariables.Count > 0)
+                {
+                    <div class="label">Contact Variables:</div>
+                    <table id="grid_contactvariable">
+                        <thead>
+                            <tr>
+                                <th width="50%"><b>Variable Name</b></th>
+                                <th width="50%"><b>Variable Value</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in ViewBag.Contact.ContactVariables as IEnumerable<ScreenViewer.DataClasses.ContactVariable>)
+                            {
+                                <tr>
+                                    <td width="50%">@item.VariableName</td>
+                                    <td width="50%">@item.VariableValue</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                
+                <br />
+                
+                if (ViewBag.Contact.ContactNavigations != null && ViewBag.Contact.ContactNavigations.Count > 0)
+                {
+                    <div class="label">Contact Navigations:</div>
+                    <table id="grid_contactnavigation">
+                        <thead>
+                            <tr>
+                                <th width="10%"><b>Sequence</b></th>
+                                <th width="40%"><b>Section</b></th>
+                                <th width="40%"><b>WorkFlow</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in ViewBag.Contact.ContactNavigations as IEnumerable<ScreenViewer.DataClasses.ContactNavigation>)
+                            {
+                                <tr>
+                                    <td width="10%">@item.Sequence</td>
+                                    <td width="40%">@item.Section</td>
+                                    <td width="40%">@item.WorkFlow</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                
+                <br />
+            }
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            $("form").change(function (e) {
+                var controlName = $(e.target).attr('name');
+            });
+
+            $("#grid_get").kendoGrid({
+                sortable: true,
+                scrollable:false
+            });
+
+            $("#grid_contact").kendoGrid({
+                sortable: false,
+                scrollable: false
+            });
+
+            $("#grid_contactdetail").kendoGrid({
+                sortable: false,
+                scrollable: false
+            });
+
+            $("#grid_order").kendoGrid({
+                sortable: false,
+                scrollable: false
+            });
+
+            $("#grid_orderdetails").kendoGrid({
+                sortable: false,
+                scrollable: false
+            });
+
+            $("#grid_contactvariable").kendoGrid({
+                sortable: false,
+                scrollable: false
+            });
+
+            $("#grid_contactnavigation").kendoGrid({
+                sortable: false,
+                scrollable: false
+            });
+
+            $("#wrapper").css("height", $(document).height() - 85 + "px");
+
+            
+        });
+
+    </script>
+}
+
+
+
+

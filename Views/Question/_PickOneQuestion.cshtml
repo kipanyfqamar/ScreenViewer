@@ -1,0 +1,40 @@
+﻿
+@if (ViewBag.DisplayLabel == true)
+{
+    <label class="Question form-control">@ViewBag.QuestionDisplay</label><br />
+}
+
+
+@if (ViewBag.AnswerRequired == "required")
+{
+    if (ViewBag.QuestionType == "O")
+    {
+        @Html.DropDownList((string)@ViewBag.ControlName, new SelectList(ViewBag.PickList, "Value", "Text", ViewBag.CurrentResponse), "-Select One-", new { @class = "form-control", required = ViewBag.AnswerRequired });
+    }
+    else
+    {
+        @Html.DropDownList((string)@ViewBag.ControlName, new SelectList(ViewBag.PickList, "Value", "Text", ViewBag.CurrentResponse), "-Select One-", new { size = ViewBag.PickList.Count + 1, @class = "form-control", required = ViewBag.AnswerRequired });
+    }
+}
+else
+{
+    if (ViewBag.QuestionType == "O")
+    {
+        @Html.DropDownList((string)@ViewBag.ControlName, new SelectList(ViewBag.PickList, "Value", "Text", ViewBag.CurrentResponse), "-Select One-", new { @class = "form-control" });
+    }
+    else
+    {
+        @Html.DropDownList((string)@ViewBag.ControlName, new SelectList(ViewBag.PickList, "Value", "Text", ViewBag.CurrentResponse), "-Select One-", new { size = ViewBag.PickList.Count + 1, @class = "form-control" });
+    }
+}
+
+<input type="hidden" name="@string.Format("{0}_ddl", ViewBag.ControlName)" id="@string.Format("{0}_ddl", ViewBag.ControlName)" />
+
+<script>
+
+    @if (ViewBag.MaxLength != null && ViewBag.MaxLength > 0)
+    {
+        @:$('#@ViewBag.ControlName').togglebutton(@ViewBag.MaxLength);
+    }
+</script>
+

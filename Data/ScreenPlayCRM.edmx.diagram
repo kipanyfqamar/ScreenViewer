@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="894f65da36ad4670aef2f98fcf9bce25" Name="Diagram1" ZoomLevel="89">
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.Activity" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ActivityAttribute" Width="1.5" PointX="5.25" PointY="11.625" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ContactAttribute" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ContactNavigation" Width="1.5" PointX="3" PointY="1.75" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ContactRecord" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ContactRecordDetail" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ContactVariable" Width="1.5" PointX="3" PointY="14.75" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.OrderDetail" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.Order" Width="1.5" PointX="3" PointY="17.875" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_Activity_ContactRecord" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_ActivityAttribute_Activity" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_ContactAttribute_ContactRecord" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_ContactNavigation_ContactRecord" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_ContactRecordDetail_ContactRecord" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_ContactVariables_ContactRecord" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_Orders_ContactRecord" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_OrderDetails_Orders" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.IDRServiceQueue" Width="1.5" PointX="3" PointY="21.875" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_IDRServiceQueue_ContactRecord" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.ContactTask" Width="1.5" PointX="3" PointY="26" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_ContactTask_ContactRecord" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.Log" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.LeadRecord" Width="1.5" PointX="9.375" PointY="1.25" />
+        <EntityTypeShape EntityType="ScreenPlayCRMModel.LeadRecordAttribute" Width="1.5" PointX="11.625" PointY="3.875" />
+        <AssociationConnector Association="ScreenPlayCRMModel.FK_LeadRecordAttribute_LeadRecord" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

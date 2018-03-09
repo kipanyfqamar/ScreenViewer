@@ -1,0 +1,298 @@
+﻿
+<style>
+    #KSP_MainDisplay {
+        width: 900px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        /*font-weight: bold;*/
+        vertical-align: middle;
+        margin: 0 auto;
+        padding: 4px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    html, body, div {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    .control {
+        font-family: Arial;
+        font-size: 14px;
+    }
+
+    .s-heading {
+        font-family: "Myriad Pro";
+        font-size: 20px;
+    }
+
+    .s-content {
+        font-family: Arial;
+        font-size: 14px;
+    }
+
+    .heartland-logo {
+        width:135px;
+        height:auto;
+    }
+
+    .heartland-tooltip{
+
+    }
+
+    #header {
+        background-color: #E21A22;
+        width: 1225px;
+        font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 75px;
+        line-height: 75px;
+        vertical-align: middle;
+        margin: 0 auto;
+        /*box-shadow: 5px 0px 5px #888888;*/
+        box-shadow: 6px 0 15px -4px #888888, -6px 0 8px -4px #888888;
+    }
+
+    #footer {
+        background-color: #53585A;
+        width: 1225px;
+        font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+        font-weight: 300;
+        font-size: 13px;
+        /*font-weight: bold;*/
+        color: #CCCCCC;
+        /*text-align: center;*/
+        /*height: 55px;*/
+        line-height: 25px;
+        vertical-align: middle;
+        text-indent: 10px;
+        margin: 0 auto;
+        /*box-shadow: 5px 0px 5px #888888;*/
+        box-shadow: 6px 0 15px -4px #888888, -6px 0 8px -4px #888888;
+    }
+
+    #wrapper {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1225px;
+        position: relative;
+        height: 800px;
+        font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+        font-size: 16px;
+        /*background-color: #F0F0F0;*/
+        /*box-shadow: 5px 0px 5px #888888;*/
+        box-shadow: 6px 0 15px -4px #888888, -6px 0 8px -4px #888888;
+    }
+
+    #left {
+        float: left;
+        width: 925px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #right {
+        margin-left: 925px;
+        width: 300px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: "Open Sans","Helvetica Neue",Arial,sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #F5F5F5;
+    }
+
+    .btn {
+        background-color: #3989e3;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        background-position: 95px 10px;
+        color: #FFFFFF !important;
+        padding: 10px 20px;
+        border: 0px;
+        line-height: 1.33;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-image: none;
+            background-color: #286090;
+        }
+
+    .label {
+        font-family: Arial Regular;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial Regular;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+
+    .k-menu .k-link {
+        color: #ffffff;
+        font-size: small;
+        /*color: black;*/
+    }
+
+    k-panelbar {
+        height: 35px;
+    }
+
+    .k-menu .k-item {
+        color: #ffffff;
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+
+    .k-menu.k-header {
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+
+    .k-menu .k-item > .k-state-active {
+        color: #ffffff !important;
+        background-color: transparent !important;
+    }
+
+
+</style>
+<div id="dialog"></div>
+<div id="dialog2"></div>
+<div id="dialog3"></div>
+
+
+@{
+    var x = 1;
+    foreach (var weburl in ViewBag.ExternalPages)
+    {
+        if (x == 1)
+        {
+            <script>
+            $('#dialog').kendoWindow({
+                content: "@weburl",
+                iframe: true
+            });
+            </script>
+        }
+        else if (x == 2)
+        {
+            <script>
+                $('#dialog2').kendoWindow({
+                    content: "@weburl",
+                    iframe: true
+                });
+            </script>
+        }
+        else if (x == 3)
+        {
+            <script>
+                $('#dialog3').kendoWindow({
+                    content: "@weburl",
+                    iframe: true
+                });
+            </script>
+        }
+        x++;
+
+    }
+}
+
+<div id="KSP_MainDisplay">
+</div>
+
+@*@Model ScriptSection*@
+<script>
+    async: false
+    var content;
+
+    @if (ViewBag.Layout != null)
+    {
+        @:$("#KSP_MainDisplay").html("@Html.Raw(ViewBag.Layout)");
+                                }
+
+    @foreach (var vals in Model)
+    {
+        var putwhere = "";
+        if (vals.SectionLayout.OwnerControl == "" || vals.SectionLayout.OwnerControl == null)
+        {
+            putwhere = "KSP_MainDisplay";
+        }
+        else
+        {
+            putwhere = "IMPDIV_" + vals.SectionLayout.OwnerControl;
+        }
+
+        if (vals.SectionLayout.ElementType == "Question")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@vals.QuestionLayout.QuestionLabelText</td></tr><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+                    }
+        else if (vals.SectionLayout.ElementType == "Questionare")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+                }
+        else if (vals.SectionLayout.ElementType == "TextHTML")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.TextHTMLLayout)</div><br />");
+
+        }
+        else if (vals.SectionLayout.ElementType == "Link")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkLayout)</div><br />");
+        }
+        else if (vals.SectionLayout.ElementType == "LinkGroup")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkGroupLayout)</div><br />");
+        }
+        else if (vals.SectionLayout.ElementType == "OrderItem")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderItemLayout)</div><br />");
+                            }
+        else if (vals.SectionLayout.ElementType == "OrderCart")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderCartLayout)</div><br />");
+        }
+        else if (vals.SectionLayout.ElementType == "DataView")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.DataViewLayout)</div><br />");
+        }
+        else if (vals.SectionLayout.ElementType == "Action")
+        {
+            @:$("#@putwhere").append($("<button type=\"submit\" name=\"action:Action\" value=\"@vals.ActionLayout.actionName\" formnovalidate >@vals.ActionLayout.actionDisplay</button>"));
+        }
+        else
+        {
+            @:$("#@putwhere").append($("<div class=\"control\">").load("/@vals.SectionLayout.ElementType/Display/@vals.SectionLayout.ElementID/@vals.CriticalElement"));
+                                        @:$("#@putwhere").append("<br />")
+                    }
+    }
+
+</script>
+<input type="hidden" name="SectionLayout" id="SectionLayout" value="@ViewBag.QuestionList" />
+
+

@@ -1,0 +1,19 @@
+﻿@if (ViewBag.DisplayLabel == true)
+{
+    <label class="Question form-control">@ViewBag.QuestionDisplay</label><br />
+}
+@if (ViewBag.MaxLength > 100)
+{
+    <textarea class="form-control" cols="100" rows="@Math.Ceiling(ViewBag.MaxLength/100.0)" id="@ViewBag.ControlName" name="@ViewBag.ControlName" spellcheck="true" @ViewBag.AnswerRequired>@ViewBag.CurrentResponse</textarea>
+}
+else
+{
+    if (ViewBag.ValidatorRegex != null)
+    {
+        <input type="@ViewBag.Type" class="form-control" width="@ViewBag.MaxLength" id="@ViewBag.ControlName" name="@ViewBag.ControlName" value="@ViewBag.CurrentResponse" pattern="@ViewBag.ValidatorRegex" title="@ViewBag.ValidatorDesc" spellcheck="true" @ViewBag.AnswerRequired />
+    }
+    else
+    {
+        <input type="@ViewBag.Type" class="form-control" width="@ViewBag.MaxLength" id="@ViewBag.ControlName" name="@ViewBag.ControlName" value="@ViewBag.CurrentResponse" spellcheck="true" @ViewBag.AnswerRequired />
+    }
+}

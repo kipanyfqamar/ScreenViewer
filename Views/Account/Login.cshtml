@@ -1,0 +1,80 @@
+﻿@model ScreenViewer.Models.Login
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ScreenPlay - Login</title>
+    <link rel="shortcut icon" href="/Includes/Images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/Includes/CSS/bootstrapcombined.min.css" rel="stylesheet" />
+
+    <style>
+        /* styles for validation helpers */
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+</head>
+<body style="background-color: #DAE6EF">
+    <div class="container">
+        <div class="row">
+            <div class="modal" id="myModal">
+                <div class="modal-header">
+                    <h1><small>Sign In to ScreenPlay Viewer:</small></h1>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <center>@Html.ValidationSummary(true)</center>
+
+                        <div style="float:right;padding-right:15px"><img src="/Includes/Images/homelogo.png" /></div>
+                        <p>@Html.TextBoxFor(m => m.UserName, new { @class = "span3", style = "width:250px;", placeholder = "Username", tabindex = "1" })
+                            <br />
+                           @Html.ValidationMessageFor(m => m.UserName)
+                        </p>
+                        <p>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", style = "width:250px;", placeholder = "Password", tabindex = "2" })
+                            <br />
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </p>
+                        <br />
+                        <p><input type="image" src="/Includes/Images/btnlogin.png" value="Login" runat="server" tabindex="3" id="btnLogin" /></p>
+                        @*<p><input type="text" runat="server" class="span3" id="txtusername" tabindex="1" placeholder="Username" required /></p>
+                        <p><input type="password" runat="server" class="span3" id="txtpassword" tabindex="2" placeholder="Password" required /></p>*@
+                        <a href=@string.Format("http://builder.screenplaycloud.com/Account/Manage.aspx?action=ForgotPassword&returnURL=https%3a%2f%2fabbvie.screenplaycloud.com{0}", ViewBag.ReturnUrl)>Forgot Password?</a>
+
+                    }
+                </div>
+                <div class="modal-footer">
+                    Copyright &copy; 2016-2017 ScreenPlay - All Rights Reserved. @System.Configuration.ConfigurationManager.AppSettings["serverName"]
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

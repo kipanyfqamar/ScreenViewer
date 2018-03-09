@@ -1,0 +1,88 @@
+﻿@model List<ScreenViewer.Data.KBSearch_Result>
+
+<h2>KB Search Results</h2>
+
+@using (Html.BeginForm("KBSearch", "TextHTML", FormMethod.Post))
+{
+
+    <br />
+    <br/>
+    @*<table class="table table-striped">
+        @foreach (ScreenViewer.Data.KBSearch_Result item in @Model)
+        {
+            <tr>
+                <td width="50px">
+                    <a class="tooltip_@item.ScriptTextHTMLID" id="tooltip_@item.ScriptTextHTMLID" href="#" style="text-decoration: none !important; color: #009CA7;">
+                        <img src="~/images/previewsmall.png" />
+                    </a>
+                </td>
+                <td>
+                    <a href="~/TextHTML/Display/@item.ScriptTextHTMLID">@item.TextHTMLDesc</a>
+                </td>
+
+            </tr>
+        }
+    </table>*@
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        @foreach (ScreenViewer.Data.KBSearch_Result item in @Model)
+        {
+            <div class="panel">
+                <div class="panel-heading" role="tab" id="heading_@item.ScriptTextHTMLID">
+
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@item.ScriptTextHTMLID" aria-expanded="false" aria-controls="collapse_@item.ScriptTextHTMLID">
+                            <span class="glyphicon glyphicon-collapse-down" aria-hidden="true" />  @item.TextHTMLDesc
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse_@item.ScriptTextHTMLID" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    @Html.Raw(item.TextHTMLContent)
+                </div>
+            </div>
+        }
+    </div>
+
+}
+
+            @foreach (ScreenViewer.Data.KBSearch_Result item in @Model)
+            {
+                <script>
+                    $("#tooltip_@item.ScriptTextHTMLID").kendoTooltip({
+                        autoHide: true,
+                        content: '@Html.Raw(item.TextHTMLContent)',
+                        position: "right",
+                        width: 800,
+                    });
+                </script>
+            }
+
+            <style>
+                .k-tooltip {
+                    background: white !important;
+                    color: black !important;
+                    text-align: left;
+                }
+
+                .k-tooltip-content {
+                    text-align: left;
+                }
+
+                .k-tooltip-content {
+                    text-align: left !important;
+                    color: black !important;
+                    overflow: hidden;
+                }
+
+                .k-chart div {
+                    z-index: 1000;
+                }
+
+                .panel-heading {
+                    border: none;
+                    box-shadow: none;
+                    padding:1px;
+                }      
+
+ 
+            </style>
+

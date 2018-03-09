@@ -1,0 +1,91 @@
+﻿
+<div><h2><u>@ViewBag.Title</u></h2></div>
+
+<script type="text/javascript">
+
+    function gridChange2(arg) {
+
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        var selectedValues = "";
+
+        
+        var isCrit = '@(ViewBag.Critical)';
+
+
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedValues = selectedValues + "~~" + dataItem.ItemCode;
+            selectedDataItems.push(dataItem);
+        }
+        
+        var gridname = arg.sender.element[0].id.substring(5, arg.sender.element[0].id.length);
+
+        var isCrit = gridname.substring(0, 1);
+
+      
+        document.getElementById('selectItemValues_'+ gridname).value = selectedValues;
+        if (isCrit == 'Y') {
+            ReloadSection();
+
+        }
+
+    }
+    function gridDataBound() {
+        var grid = this;
+        $.each(grid.tbody.find('tr'), function () {
+            var model = grid.dataItem(this);
+            if (model.quantity > 0) {
+                $('[data-uid=' + model.uid + ']').addClass('k-state-selected');
+            }
+        });
+   }
+
+</script>
+
+@(Html.Kendo().Grid<dynamic>()
+    .Name("Grid_" + (String)ViewBag.OID)
+    .Columns(columns =>
+    {
+        //Define the columns
+        foreach (var c in Model.Bind)
+        {
+            if (c.Key != "quantity" && c.Key != "filterKey" && c.Key != "ItemMaxQuantity" && c.Key != "Code")
+            {
+                if (c.Key == "ItemPrice" || c.Key == "ItemShippingPrice" || c.Key == "ItemHandlingPrice")
+                    columns.Bound(c.Value, c.Key).Format("{0:c2}");
+                else
+                    columns.Bound(c.Value, c.Key);
+            }
+        }
+    })
+    .Sortable(s => s.AllowUnsort(true))
+    .Selectable(selectable => selectable
+        .Mode(GridSelectionMode.Single)
+        .Type(GridSelectionType.Row)
+        )
+    .Events(events => events.Change("gridChange2").DataBound("gridDataBound"))
+    .DataSource(dataSource => dataSource
+       .Ajax()
+       .Model(model =>
+       {
+           //Define the model
+           foreach (System.Data.DataColumn column in Model.Data.Columns)
+           {
+               model.Field(column.ColumnName, column.DataType);
+           }
+       })
+       .Read(read => read.Action("Grid_Read", "OrderItem", new { id = ViewBag.OID }))
+   )
+)
+
+<script>
+    $(document).ready(function () {
+        $('.k-grid-header .k-header').css('font-weight', 'bold');
+        $('.k-grid-header .k-header').css('background', '#b9babb');
+    });
+</script>
+
+<input type="hidden" name="SPselectItemValues_@ViewBag.OID" value="~NoActivity~" id="selectItemValues_@ViewBag.OID" />
+<input type="hidden" name="SPselectItemCollection_@ViewBag.OID" value="@ViewBag.ItemCollection" id="selectItemCollection_@ViewBag.OID" />
+<input type="hidden" name="SPsetKey_@ViewBag.OID" value="@ViewBag.SetKeys" id="setKey_@ViewBag.OID" />

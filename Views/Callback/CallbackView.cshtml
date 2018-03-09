@@ -1,0 +1,14 @@
+﻿<div style="padding: 5px;">
+    <div>
+        <p><b>Callback Date and Time:</b></p>
+        <p>
+            @(Html.Kendo().DateTimePicker()
+                                                                                 .Name("datetimepicker")
+                                                                                 .Value(DateTime.Now)
+                                                                                 .Min(DateTime.Today)
+            )
+        </p>
+        <p><input type="submit" name="action:Callback" value="Schedule Callback" formnovalidate /></p>
+        <p class="labelText" style="text-indent:5px">@ViewBag.Callback</p>
+    </div>
+</div>

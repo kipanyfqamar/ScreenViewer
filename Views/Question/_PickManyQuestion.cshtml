@@ -1,0 +1,26 @@
+﻿@if (ViewBag.DisplayLabel == true)
+{
+    <label class="Question">@ViewBag.QuestionDisplay</label><br />
+}
+
+<div class="form-group">
+
+    @if (ViewBag.AnswerRequired == "required")
+    {
+        @Html.DropDownList((string)@ViewBag.ControlName, new MultiSelectList(ViewBag.PickList, "Value", "Text", ViewBag.CurrentResponse), new { size = ViewBag.PickList.Count, multiple = "multiple", @class = "selectpicker show-tick form-control", required = ViewBag.AnswerRequired });
+    }
+    else
+    {
+        @Html.DropDownList((string)@ViewBag.ControlName, new MultiSelectList(ViewBag.PickList, "Value", "Text", ViewBag.CurrentResponse), new { size = ViewBag.PickList.Count, multiple = "multiple", @class = "selectpicker show-tick form-control" });
+    }
+
+    <input type="hidden" name="@string.Format("{0}_mddl", ViewBag.ControlName)" id="@string.Format("{0}_mddl", ViewBag.ControlName)" />
+</div>
+
+<script>
+
+    @if (ViewBag.MaxLength != null && ViewBag.MaxLength > 0)
+    { 
+        @:$('#@ViewBag.ControlName').togglebutton(@ViewBag.MaxLength);
+    }
+</script>

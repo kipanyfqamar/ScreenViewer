@@ -1,0 +1,2161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ScreenPlayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptAction">
+          <Key>
+            <PropertyRef Name="ScriptActionID" />
+          </Key>
+          <Property Name="ScriptActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ActionType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ActionXML" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptCalculation">
+          <Key>
+            <PropertyRef Name="ScriptCalculationID" />
+          </Key>
+          <Property Name="ScriptCalculationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CalculationDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CalculationExpression" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptClause">
+          <Key>
+            <PropertyRef Name="ScriptClauseID" />
+          </Key>
+          <Property Name="ScriptClauseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClauseDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClauseXML" Type="xml" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptDash">
+          <Key>
+            <PropertyRef Name="ScriptDashID" />
+          </Key>
+          <Property Name="ScriptDashID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RequireKey" Type="bit" />
+          <Property Name="KeyText" Type="uniqueidentifier" />
+          <Property Name="LogoImageID" Type="int" />
+          <Property Name="ScriptMenuID" Type="int" />
+          <Property Name="ScreenSize" Type="varchar" MaxLength="50" />
+          <Property Name="ScreenLayout" Type="varchar" MaxLength="50" />
+          <Property Name="ScriptSectionID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptDataView">
+          <Key>
+            <PropertyRef Name="ScriptDataViewID" />
+          </Key>
+          <Property Name="ScriptDataViewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataViewDesc" Type="varchar" MaxLength="100" />
+          <Property Name="DataViewType" Type="char" MaxLength="1" />
+          <Property Name="DataViewSource" Type="varchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptHTML">
+          <Key>
+            <PropertyRef Name="ScriptHTMLID" />
+          </Key>
+          <Property Name="ScriptHTMLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HTMLDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="HTMLContent" Type="nvarchar(max)" />
+          <Property Name="HTMLAltContent" Type="nvarchar(max)" />
+          <Property Name="ShowDescTooltip" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptImage">
+          <Key>
+            <PropertyRef Name="ScriptImageID" />
+          </Key>
+          <Property Name="ScriptImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varbinary(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptItem">
+          <Key>
+            <PropertyRef Name="ScriptItemID" />
+          </Key>
+          <Property Name="ScriptItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ItemDesc" Type="varchar(max)" />
+          <Property Name="ItemCategory" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ItemSubCategory" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ItemPrice" Type="money" />
+          <Property Name="ItemShippingPrice" Type="money" />
+          <Property Name="ItemHandlingPrice" Type="money" />
+          <Property Name="ItemMaxQuantity" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptItemKey">
+          <Key>
+            <PropertyRef Name="ScriptItemKeyID" />
+          </Key>
+          <Property Name="ScriptItemKeyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptItemID" Type="int" Nullable="false" />
+          <Property Name="ItemKey" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ItemValue" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ScriptItemSelector">
+          <Key>
+            <PropertyRef Name="ScriptItemSelectorID" />
+          </Key>
+          <Property Name="ScriptItemSelectorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SelectorDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SelectorTitle" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ItemList" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LayoutType" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FilterKeys" Type="varchar(max)" />
+          <Property Name="SetKeys" Type="varchar(max)" />
+          <Property Name="DisplayColumns" Type="varchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptLayout">
+          <Key>
+            <PropertyRef Name="ScriptLayoutID" />
+          </Key>
+          <Property Name="ScriptLayoutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LayoutDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LayoutWidth" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptLayoutDetail">
+          <Key>
+            <PropertyRef Name="ScriptLayoutDetailID" />
+          </Key>
+          <Property Name="ScriptLayoutDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptLayoutID" Type="int" Nullable="false" />
+          <Property Name="RowNumber" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="ElementID" Type="int" Nullable="false" />
+          <Property Name="ElementType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ElementWidth" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ElementAlignment" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptLink">
+          <Key>
+            <PropertyRef Name="ScriptLinkID" />
+          </Key>
+          <Property Name="ScriptLinkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LinkDisplay" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="LinkType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LinkURL" Type="varchar" MaxLength="500" />
+          <Property Name="LinkTypeID" Type="int" />
+          <Property Name="LinkNewWindow" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptLookup">
+          <Key>
+            <PropertyRef Name="ScriptLookupID" />
+          </Key>
+          <Property Name="ScriptLookupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LookupDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptLookupDetail">
+          <Key>
+            <PropertyRef Name="ScriptLookupDetailID" />
+          </Key>
+          <Property Name="ScriptLookupDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptLookupID" Type="int" Nullable="false" />
+          <Property Name="LookupText" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LookupValue" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptMenu">
+          <Key>
+            <PropertyRef Name="ScriptMenuID" />
+          </Key>
+          <Property Name="ScriptMenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MenuXML" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MenuOrientation" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptObject">
+          <Key>
+            <PropertyRef Name="ScriptObjectID" />
+          </Key>
+          <Property Name="ScriptObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ObjectType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsCollection" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptObjectDetail">
+          <Key>
+            <PropertyRef Name="ScriptObjectDetailID" />
+          </Key>
+          <Property Name="ScriptObjectDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptObjectID" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="ObjectDetailName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ObjectDetailDataType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptProject">
+          <Key>
+            <PropertyRef Name="ScriptProjectID" />
+          </Key>
+          <Property Name="ScriptProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectType" Type="varchar" MaxLength="100" />
+          <Property Name="RequireKey" Type="bit" />
+          <Property Name="KeyText" Type="uniqueidentifier" />
+          <Property Name="LogoImageID" Type="int" />
+          <Property Name="ScriptMenuID" Type="int" />
+          <Property Name="ScreenSize" Type="varchar" MaxLength="50" />
+          <Property Name="ScreenLayout" Type="varchar" MaxLength="50" />
+          <Property Name="ShowWorkflowSection" Type="bit" />
+          <Property Name="ShowLead" Type="bit" />
+          <Property Name="ShowNotes" Type="bit" />
+          <Property Name="ShowCallback" Type="bit" />
+          <Property Name="ShowLanguage" Type="bit" />
+          <Property Name="ShowNotification" Type="bit" />
+          <Property Name="NotificationText" Type="varchar(max)" />
+          <Property Name="Parameter" Type="varchar" MaxLength="500" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptProjectVariable">
+          <Key>
+            <PropertyRef Name="ScriptProjectVariableID" />
+          </Key>
+          <Property Name="ScriptProjectVariableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptProjectID" Type="int" Nullable="false" />
+          <Property Name="ScriptVariableID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptProjectWorkflow">
+          <Key>
+            <PropertyRef Name="ScriptProjectWorkflowID" />
+          </Key>
+          <Property Name="ScriptProjectWorkflowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptProjectID" Type="int" Nullable="false" />
+          <Property Name="ScriptWorkflowID" Type="int" Nullable="false" />
+          <Property Name="ScriptWorkflowActiveDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptQuestion">
+          <Key>
+            <PropertyRef Name="ScriptQuestionID" />
+          </Key>
+          <Property Name="ScriptQuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="QuestionText" Type="varchar(max)" Nullable="false" />
+          <Property Name="QuestionType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ResponseType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Choices" Type="varchar(max)" />
+          <Property Name="MaxLength" Type="int" />
+          <Property Name="MinimumValue" Type="int" />
+          <Property Name="MaximumValue" Type="int" />
+          <Property Name="PastDatesOK" Type="bit" />
+          <Property Name="AnswerRequired" Type="bit" />
+          <Property Name="ScriptValidatorID" Type="int" />
+          <Property Name="KeyCodes" Type="varchar" MaxLength="1000" />
+          <Property Name="ScriptLookupID" Type="int" />
+          <Property Name="DataObjectField" Type="varchar" MaxLength="1000" />
+          <Property Name="DOValueColumn" Type="varchar" MaxLength="200" />
+          <Property Name="DODisplayColumns" Type="varchar" MaxLength="2000" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptQuestionare">
+          <Key>
+            <PropertyRef Name="ScriptQuestionareID" />
+          </Key>
+          <Property Name="ScriptQuestionareID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionareDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LayoutType" Type="char" MaxLength="3" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptQuestionareDetail">
+          <Key>
+            <PropertyRef Name="ScriptQuestionareDetailID" />
+          </Key>
+          <Property Name="ScriptQuestionareDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptQuestionareID" Type="int" Nullable="false" />
+          <Property Name="SequenceNumber" Type="int" Nullable="false" />
+          <Property Name="ScriptQuestionID" Type="int" />
+          <Property Name="ShowWhen" Type="int" />
+          <Property Name="Showif" Type="int" />
+        </EntityType>
+        <EntityType Name="ScriptSection">
+          <Key>
+            <PropertyRef Name="ScriptSectionID" />
+          </Key>
+          <Property Name="ScriptSectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectionName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SectionDesc" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptSectionLayout">
+          <Key>
+            <PropertyRef Name="ScriptSectionLayoutID" />
+          </Key>
+          <Property Name="ScriptSectionLayoutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptSectionID" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="ElementID" Type="int" Nullable="false" />
+          <Property Name="ElementType" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ShowWhen" Type="int" />
+          <Property Name="ShowIf" Type="int" />
+          <Property Name="ContainerWidth" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ScriptTask">
+          <Key>
+            <PropertyRef Name="ScriptTaskID" />
+          </Key>
+          <Property Name="ScriptTaskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TaskType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskColor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WorkStartTime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WorkEndTime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefaultView" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Timezone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShowStartDate" Type="bit" Nullable="false" />
+          <Property Name="ShowEndDate" Type="bit" Nullable="false" />
+          <Property Name="ShowAllDay" Type="bit" Nullable="false" />
+          <Property Name="ShowRepeatRule" Type="bit" Nullable="false" />
+          <Property Name="IsMultiUserTask" Type="bit" Nullable="false" />
+          <Property Name="DeleteEnabled" Type="bit" Nullable="false" />
+          <Property Name="UpdateEnabled" Type="bit" Nullable="false" />
+          <Property Name="EndTimeMinute" Type="int" />
+          <Property Name="Width" Type="varchar" MaxLength="100" />
+          <Property Name="FilterTask" Type="varchar" MaxLength="100" />
+          <Property Name="AddCustomButton" Type="bit" />
+          <Property Name="CustomButtonText" Type="varchar" MaxLength="50" />
+          <Property Name="CustomButtonURL" Type="varchar" MaxLength="1000" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptTextHTML">
+          <Key>
+            <PropertyRef Name="ScriptTextHTMLID" />
+          </Key>
+          <Property Name="ScriptTextHTMLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TextContent" Type="nvarchar(max)" />
+          <Property Name="TextHTMLDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TextHTMLContent" Type="nvarchar(max)" />
+          <Property Name="TextHTMLAltContent" Type="nvarchar(max)" />
+          <Property Name="Searchable" Type="bit" />
+          <Property Name="ShowDescTooltip" Type="bit" />
+          <Property Name="KeyWords" Type="varchar" MaxLength="2000" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptValidator">
+          <Key>
+            <PropertyRef Name="ScriptValidatorID" />
+          </Key>
+          <Property Name="ScriptValidatorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValidatorDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ValidatorRegex" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptVariable">
+          <Key>
+            <PropertyRef Name="ScriptVariableID" />
+          </Key>
+          <Property Name="ScriptVariableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VariableDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptVariableDetail">
+          <Key>
+            <PropertyRef Name="ScriptVariableDetailID" />
+          </Key>
+          <Property Name="ScriptVariableDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptVariableID" Type="int" Nullable="false" />
+          <Property Name="ScriptClauseID" Type="int" Nullable="false" />
+          <Property Name="ShowIf" Type="int" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScriptWorkflow">
+          <Key>
+            <PropertyRef Name="ScriptWorkflowID" />
+          </Key>
+          <Property Name="ScriptWorkflowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WorkflowDesc" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="WorkflowXML" Type="xml" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkflowLayouts">
+          <Key>
+            <PropertyRef Name="WorkflowHTMLID" />
+          </Key>
+          <Property Name="WorkflowHTMLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HTMLDesc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="HTMLContent" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateLastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserLastModified" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ScriptDash_ScriptImage">
+          <End Role="ScriptImage" Type="Self.ScriptImage" Multiplicity="0..1" />
+          <End Role="ScriptDash" Type="Self.ScriptDash" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptImage">
+              <PropertyRef Name="ScriptImageID" />
+            </Principal>
+            <Dependent Role="ScriptDash">
+              <PropertyRef Name="LogoImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptDash_ScriptMenu">
+          <End Role="ScriptMenu" Type="Self.ScriptMenu" Multiplicity="0..1" />
+          <End Role="ScriptDash" Type="Self.ScriptDash" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptMenu">
+              <PropertyRef Name="ScriptMenuID" />
+            </Principal>
+            <Dependent Role="ScriptDash">
+              <PropertyRef Name="ScriptMenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptItemKey_ScriptItem">
+          <End Role="ScriptItem" Type="Self.ScriptItem" Multiplicity="1" />
+          <End Role="ScriptItemKey" Type="Self.ScriptItemKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptItem">
+              <PropertyRef Name="ScriptItemID" />
+            </Principal>
+            <Dependent Role="ScriptItemKey">
+              <PropertyRef Name="ScriptItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptLayoutDetail_ScriptLayout">
+          <End Role="ScriptLayout" Type="Self.ScriptLayout" Multiplicity="1" />
+          <End Role="ScriptLayoutDetail" Type="Self.ScriptLayoutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptLayout">
+              <PropertyRef Name="ScriptLayoutID" />
+            </Principal>
+            <Dependent Role="ScriptLayoutDetail">
+              <PropertyRef Name="ScriptLayoutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptLookupDetail_ScriptLookup">
+          <End Role="ScriptLookup" Type="Self.ScriptLookup" Multiplicity="1" />
+          <End Role="ScriptLookupDetail" Type="Self.ScriptLookupDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptLookup">
+              <PropertyRef Name="ScriptLookupID" />
+            </Principal>
+            <Dependent Role="ScriptLookupDetail">
+              <PropertyRef Name="ScriptLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptObjectDetail_ScriptObject1">
+          <End Role="ScriptObject" Type="Self.ScriptObject" Multiplicity="1" />
+          <End Role="ScriptObjectDetail" Type="Self.ScriptObjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptObject">
+              <PropertyRef Name="ScriptObjectID" />
+            </Principal>
+            <Dependent Role="ScriptObjectDetail">
+              <PropertyRef Name="ScriptObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProject_ScriptImage">
+          <End Role="ScriptImage" Type="Self.ScriptImage" Multiplicity="0..1" />
+          <End Role="ScriptProject" Type="Self.ScriptProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptImage">
+              <PropertyRef Name="ScriptImageID" />
+            </Principal>
+            <Dependent Role="ScriptProject">
+              <PropertyRef Name="LogoImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProject_ScriptMenu">
+          <End Role="ScriptMenu" Type="Self.ScriptMenu" Multiplicity="0..1" />
+          <End Role="ScriptProject" Type="Self.ScriptProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptMenu">
+              <PropertyRef Name="ScriptMenuID" />
+            </Principal>
+            <Dependent Role="ScriptProject">
+              <PropertyRef Name="ScriptMenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProjectVariable_ScriptProject">
+          <End Role="ScriptProject" Type="Self.ScriptProject" Multiplicity="1" />
+          <End Role="ScriptProjectVariable" Type="Self.ScriptProjectVariable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptProject">
+              <PropertyRef Name="ScriptProjectID" />
+            </Principal>
+            <Dependent Role="ScriptProjectVariable">
+              <PropertyRef Name="ScriptProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProjectWorkflow_ScriptProject">
+          <End Role="ScriptProject" Type="Self.ScriptProject" Multiplicity="1" />
+          <End Role="ScriptProjectWorkflow" Type="Self.ScriptProjectWorkflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptProject">
+              <PropertyRef Name="ScriptProjectID" />
+            </Principal>
+            <Dependent Role="ScriptProjectWorkflow">
+              <PropertyRef Name="ScriptProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProjectWorkflow_ScriptWorkflow">
+          <End Role="ScriptWorkflow" Type="Self.ScriptWorkflow" Multiplicity="1" />
+          <End Role="ScriptProjectWorkflow" Type="Self.ScriptProjectWorkflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptWorkflow">
+              <PropertyRef Name="ScriptWorkflowID" />
+            </Principal>
+            <Dependent Role="ScriptProjectWorkflow">
+              <PropertyRef Name="ScriptWorkflowID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptQuestion_ScriptValidator">
+          <End Role="ScriptValidator" Type="Self.ScriptValidator" Multiplicity="0..1" />
+          <End Role="ScriptQuestion" Type="Self.ScriptQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptValidator">
+              <PropertyRef Name="ScriptValidatorID" />
+            </Principal>
+            <Dependent Role="ScriptQuestion">
+              <PropertyRef Name="ScriptValidatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptQuestionareDetail_ScriptQuestion">
+          <End Role="ScriptQuestion" Type="Self.ScriptQuestion" Multiplicity="0..1" />
+          <End Role="ScriptQuestionareDetail" Type="Self.ScriptQuestionareDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptQuestion">
+              <PropertyRef Name="ScriptQuestionID" />
+            </Principal>
+            <Dependent Role="ScriptQuestionareDetail">
+              <PropertyRef Name="ScriptQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptQuestionareDetail_ScriptQuestionare">
+          <End Role="ScriptQuestionare" Type="Self.ScriptQuestionare" Multiplicity="1" />
+          <End Role="ScriptQuestionareDetail" Type="Self.ScriptQuestionareDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptQuestionare">
+              <PropertyRef Name="ScriptQuestionareID" />
+            </Principal>
+            <Dependent Role="ScriptQuestionareDetail">
+              <PropertyRef Name="ScriptQuestionareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptSectionLayout_ScriptSection">
+          <End Role="ScriptSection" Type="Self.ScriptSection" Multiplicity="1" />
+          <End Role="ScriptSectionLayout" Type="Self.ScriptSectionLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptSection">
+              <PropertyRef Name="ScriptSectionID" />
+            </Principal>
+            <Dependent Role="ScriptSectionLayout">
+              <PropertyRef Name="ScriptSectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptVariableDetail_ScriptClause">
+          <End Role="ScriptClause" Type="Self.ScriptClause" Multiplicity="1" />
+          <End Role="ScriptVariableDetail" Type="Self.ScriptVariableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptClause">
+              <PropertyRef Name="ScriptClauseID" />
+            </Principal>
+            <Dependent Role="ScriptVariableDetail">
+              <PropertyRef Name="ScriptClauseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptVariableDetail_ScriptVariable">
+          <End Role="ScriptVariable" Type="Self.ScriptVariable" Multiplicity="1" />
+          <End Role="ScriptVariableDetail" Type="Self.ScriptVariableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptVariable">
+              <PropertyRef Name="ScriptVariableID" />
+            </Principal>
+            <Dependent Role="ScriptVariableDetail">
+              <PropertyRef Name="ScriptVariableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="KBSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchList" Type="varchar" Mode="In" />
+          <Parameter Name="ClientID" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ScreenPlayModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptAction" EntityType="Self.ScriptAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptCalculation" EntityType="Self.ScriptCalculation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptClause" EntityType="Self.ScriptClause" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptDash" EntityType="Self.ScriptDash" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptDataView" EntityType="Self.ScriptDataView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptHTML" EntityType="Self.ScriptHTML" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptImage" EntityType="Self.ScriptImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptItem" EntityType="Self.ScriptItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptItemKey" EntityType="Self.ScriptItemKey" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptItemSelector" EntityType="Self.ScriptItemSelector" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptLayout" EntityType="Self.ScriptLayout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptLayoutDetail" EntityType="Self.ScriptLayoutDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptLink" EntityType="Self.ScriptLink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptLookup" EntityType="Self.ScriptLookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptLookupDetail" EntityType="Self.ScriptLookupDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptMenu" EntityType="Self.ScriptMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptObject" EntityType="Self.ScriptObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptObjectDetail" EntityType="Self.ScriptObjectDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptProject" EntityType="Self.ScriptProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptProjectVariable" EntityType="Self.ScriptProjectVariable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptProjectWorkflow" EntityType="Self.ScriptProjectWorkflow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptQuestion" EntityType="Self.ScriptQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptQuestionare" EntityType="Self.ScriptQuestionare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptQuestionareDetail" EntityType="Self.ScriptQuestionareDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptSection" EntityType="Self.ScriptSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptSectionLayout" EntityType="Self.ScriptSectionLayout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptTask" EntityType="Self.ScriptTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptTextHTML" EntityType="Self.ScriptTextHTML" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptValidator" EntityType="Self.ScriptValidator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptVariable" EntityType="Self.ScriptVariable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptVariableDetail" EntityType="Self.ScriptVariableDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScriptWorkflow" EntityType="Self.ScriptWorkflow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkflowLayouts" EntityType="Self.WorkflowLayouts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ScriptDash_ScriptImage" Association="Self.FK_ScriptDash_ScriptImage">
+            <End Role="ScriptImage" EntitySet="ScriptImage" />
+            <End Role="ScriptDash" EntitySet="ScriptDash" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptDash_ScriptMenu" Association="Self.FK_ScriptDash_ScriptMenu">
+            <End Role="ScriptMenu" EntitySet="ScriptMenu" />
+            <End Role="ScriptDash" EntitySet="ScriptDash" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptItemKey_ScriptItem" Association="Self.FK_ScriptItemKey_ScriptItem">
+            <End Role="ScriptItem" EntitySet="ScriptItem" />
+            <End Role="ScriptItemKey" EntitySet="ScriptItemKey" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptLayoutDetail_ScriptLayout" Association="Self.FK_ScriptLayoutDetail_ScriptLayout">
+            <End Role="ScriptLayout" EntitySet="ScriptLayout" />
+            <End Role="ScriptLayoutDetail" EntitySet="ScriptLayoutDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptLookupDetail_ScriptLookup" Association="Self.FK_ScriptLookupDetail_ScriptLookup">
+            <End Role="ScriptLookup" EntitySet="ScriptLookup" />
+            <End Role="ScriptLookupDetail" EntitySet="ScriptLookupDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptObjectDetail_ScriptObject1" Association="Self.FK_ScriptObjectDetail_ScriptObject1">
+            <End Role="ScriptObject" EntitySet="ScriptObject" />
+            <End Role="ScriptObjectDetail" EntitySet="ScriptObjectDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProject_ScriptImage" Association="Self.FK_ScriptProject_ScriptImage">
+            <End Role="ScriptImage" EntitySet="ScriptImage" />
+            <End Role="ScriptProject" EntitySet="ScriptProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProject_ScriptMenu" Association="Self.FK_ScriptProject_ScriptMenu">
+            <End Role="ScriptMenu" EntitySet="ScriptMenu" />
+            <End Role="ScriptProject" EntitySet="ScriptProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProjectVariable_ScriptProject" Association="Self.FK_ScriptProjectVariable_ScriptProject">
+            <End Role="ScriptProject" EntitySet="ScriptProject" />
+            <End Role="ScriptProjectVariable" EntitySet="ScriptProjectVariable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProjectWorkflow_ScriptProject" Association="Self.FK_ScriptProjectWorkflow_ScriptProject">
+            <End Role="ScriptProject" EntitySet="ScriptProject" />
+            <End Role="ScriptProjectWorkflow" EntitySet="ScriptProjectWorkflow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProjectWorkflow_ScriptWorkflow" Association="Self.FK_ScriptProjectWorkflow_ScriptWorkflow">
+            <End Role="ScriptWorkflow" EntitySet="ScriptWorkflow" />
+            <End Role="ScriptProjectWorkflow" EntitySet="ScriptProjectWorkflow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptQuestion_ScriptValidator" Association="Self.FK_ScriptQuestion_ScriptValidator">
+            <End Role="ScriptValidator" EntitySet="ScriptValidator" />
+            <End Role="ScriptQuestion" EntitySet="ScriptQuestion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptQuestionareDetail_ScriptQuestion" Association="Self.FK_ScriptQuestionareDetail_ScriptQuestion">
+            <End Role="ScriptQuestion" EntitySet="ScriptQuestion" />
+            <End Role="ScriptQuestionareDetail" EntitySet="ScriptQuestionareDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptQuestionareDetail_ScriptQuestionare" Association="Self.FK_ScriptQuestionareDetail_ScriptQuestionare">
+            <End Role="ScriptQuestionare" EntitySet="ScriptQuestionare" />
+            <End Role="ScriptQuestionareDetail" EntitySet="ScriptQuestionareDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptSectionLayout_ScriptSection" Association="Self.FK_ScriptSectionLayout_ScriptSection">
+            <End Role="ScriptSection" EntitySet="ScriptSection" />
+            <End Role="ScriptSectionLayout" EntitySet="ScriptSectionLayout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptVariableDetail_ScriptClause" Association="Self.FK_ScriptVariableDetail_ScriptClause">
+            <End Role="ScriptClause" EntitySet="ScriptClause" />
+            <End Role="ScriptVariableDetail" EntitySet="ScriptVariableDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptVariableDetail_ScriptVariable" Association="Self.FK_ScriptVariableDetail_ScriptVariable">
+            <End Role="ScriptVariable" EntitySet="ScriptVariable" />
+            <End Role="ScriptVariableDetail" EntitySet="ScriptVariableDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScreenPlayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ScreenPlayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="ScreenPlayModel.C__MigrationHistory" />
+          <EntitySet Name="ScriptActions" EntityType="ScreenPlayModel.ScriptAction" />
+          <EntitySet Name="ScriptCalculations" EntityType="ScreenPlayModel.ScriptCalculation" />
+          <EntitySet Name="ScriptClauses" EntityType="ScreenPlayModel.ScriptClause" />
+          <EntitySet Name="ScriptDataViews" EntityType="ScreenPlayModel.ScriptDataView" />
+          <EntitySet Name="ScriptImages" EntityType="ScreenPlayModel.ScriptImage" />
+          <EntitySet Name="ScriptItems" EntityType="ScreenPlayModel.ScriptItem" />
+          <EntitySet Name="ScriptItemKeys" EntityType="ScreenPlayModel.ScriptItemKey" />
+          <EntitySet Name="ScriptItemSelectors" EntityType="ScreenPlayModel.ScriptItemSelector" />
+          <EntitySet Name="ScriptLayouts" EntityType="ScreenPlayModel.ScriptLayout" />
+          <EntitySet Name="ScriptLayoutDetails" EntityType="ScreenPlayModel.ScriptLayoutDetail" />
+          <EntitySet Name="ScriptLinks" EntityType="ScreenPlayModel.ScriptLink" />
+          <EntitySet Name="ScriptLookups" EntityType="ScreenPlayModel.ScriptLookup" />
+          <EntitySet Name="ScriptLookupDetails" EntityType="ScreenPlayModel.ScriptLookupDetail" />
+          <EntitySet Name="ScriptMenus" EntityType="ScreenPlayModel.ScriptMenu" />
+          <EntitySet Name="ScriptObjects" EntityType="ScreenPlayModel.ScriptObject" />
+          <EntitySet Name="ScriptObjectDetails" EntityType="ScreenPlayModel.ScriptObjectDetail" />
+          <EntitySet Name="ScriptProjects" EntityType="ScreenPlayModel.ScriptProject" />
+          <EntitySet Name="ScriptProjectVariables" EntityType="ScreenPlayModel.ScriptProjectVariable" />
+          <EntitySet Name="ScriptProjectWorkflows" EntityType="ScreenPlayModel.ScriptProjectWorkflow" />
+          <EntitySet Name="ScriptQuestions" EntityType="ScreenPlayModel.ScriptQuestion" />
+          <EntitySet Name="ScriptQuestionares" EntityType="ScreenPlayModel.ScriptQuestionare" />
+          <EntitySet Name="ScriptQuestionareDetails" EntityType="ScreenPlayModel.ScriptQuestionareDetail" />
+          <EntitySet Name="ScriptSections" EntityType="ScreenPlayModel.ScriptSection" />
+          <EntitySet Name="ScriptSectionLayouts" EntityType="ScreenPlayModel.ScriptSectionLayout" />
+          <EntitySet Name="ScriptTextHTMLs" EntityType="ScreenPlayModel.ScriptTextHTML" />
+          <EntitySet Name="ScriptValidators" EntityType="ScreenPlayModel.ScriptValidator" />
+          <EntitySet Name="ScriptVariables" EntityType="ScreenPlayModel.ScriptVariable" />
+          <EntitySet Name="ScriptVariableDetails" EntityType="ScreenPlayModel.ScriptVariableDetail" />
+          <EntitySet Name="ScriptWorkflows" EntityType="ScreenPlayModel.ScriptWorkflow" />
+          <AssociationSet Name="FK_ScriptVariableDetail_ScriptClause" Association="ScreenPlayModel.FK_ScriptVariableDetail_ScriptClause">
+            <End Role="ScriptClause" EntitySet="ScriptClauses" />
+            <End Role="ScriptVariableDetail" EntitySet="ScriptVariableDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProject_ScriptImage" Association="ScreenPlayModel.FK_ScriptProject_ScriptImage">
+            <End Role="ScriptImage" EntitySet="ScriptImages" />
+            <End Role="ScriptProject" EntitySet="ScriptProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptItemKey_ScriptItem" Association="ScreenPlayModel.FK_ScriptItemKey_ScriptItem">
+            <End Role="ScriptItem" EntitySet="ScriptItems" />
+            <End Role="ScriptItemKey" EntitySet="ScriptItemKeys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptLayoutDetail_ScriptLayout" Association="ScreenPlayModel.FK_ScriptLayoutDetail_ScriptLayout">
+            <End Role="ScriptLayout" EntitySet="ScriptLayouts" />
+            <End Role="ScriptLayoutDetail" EntitySet="ScriptLayoutDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptLookupDetail_ScriptLookup" Association="ScreenPlayModel.FK_ScriptLookupDetail_ScriptLookup">
+            <End Role="ScriptLookup" EntitySet="ScriptLookups" />
+            <End Role="ScriptLookupDetail" EntitySet="ScriptLookupDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProject_ScriptMenu" Association="ScreenPlayModel.FK_ScriptProject_ScriptMenu">
+            <End Role="ScriptMenu" EntitySet="ScriptMenus" />
+            <End Role="ScriptProject" EntitySet="ScriptProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptObjectDetail_ScriptObject" Association="ScreenPlayModel.FK_ScriptObjectDetail_ScriptObject">
+            <End Role="ScriptObject" EntitySet="ScriptObjects" />
+            <End Role="ScriptObjectDetail" EntitySet="ScriptObjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProjectVariable_ScriptProject" Association="ScreenPlayModel.FK_ScriptProjectVariable_ScriptProject">
+            <End Role="ScriptProject" EntitySet="ScriptProjects" />
+            <End Role="ScriptProjectVariable" EntitySet="ScriptProjectVariables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProjectWorkflow_ScriptProject" Association="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptProject">
+            <End Role="ScriptProject" EntitySet="ScriptProjects" />
+            <End Role="ScriptProjectWorkflow" EntitySet="ScriptProjectWorkflows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptProjectWorkflow_ScriptWorkflow" Association="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptWorkflow">
+            <End Role="ScriptWorkflow" EntitySet="ScriptWorkflows" />
+            <End Role="ScriptProjectWorkflow" EntitySet="ScriptProjectWorkflows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptQuestion_ScriptValidator" Association="ScreenPlayModel.FK_ScriptQuestion_ScriptValidator">
+            <End Role="ScriptValidator" EntitySet="ScriptValidators" />
+            <End Role="ScriptQuestion" EntitySet="ScriptQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptQuestionareDetail_ScriptQuestion" Association="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestion">
+            <End Role="ScriptQuestion" EntitySet="ScriptQuestions" />
+            <End Role="ScriptQuestionareDetail" EntitySet="ScriptQuestionareDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptQuestionareDetail_ScriptQuestionare" Association="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestionare">
+            <End Role="ScriptQuestionare" EntitySet="ScriptQuestionares" />
+            <End Role="ScriptQuestionareDetail" EntitySet="ScriptQuestionareDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptSectionLayout_ScriptSection" Association="ScreenPlayModel.FK_ScriptSectionLayout_ScriptSection">
+            <End Role="ScriptSection" EntitySet="ScriptSections" />
+            <End Role="ScriptSectionLayout" EntitySet="ScriptSectionLayouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptVariableDetail_ScriptVariable" Association="ScreenPlayModel.FK_ScriptVariableDetail_ScriptVariable">
+            <End Role="ScriptVariable" EntitySet="ScriptVariables" />
+            <End Role="ScriptVariableDetail" EntitySet="ScriptVariableDetails" />
+          </AssociationSet>
+          <EntitySet Name="ScriptHTMLs" EntityType="ScreenPlayModel.ScriptHTML" />
+          <EntitySet Name="WorkflowLayouts" EntityType="ScreenPlayModel.WorkflowLayout" />
+          <EntitySet Name="ScriptDashes" EntityType="ScreenPlayModel.ScriptDash" />
+          <AssociationSet Name="FK_ScriptDash_ScriptImage" Association="ScreenPlayModel.FK_ScriptDash_ScriptImage">
+            <End Role="ScriptImage" EntitySet="ScriptImages" />
+            <End Role="ScriptDash" EntitySet="ScriptDashes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ScriptDash_ScriptMenu" Association="ScreenPlayModel.FK_ScriptDash_ScriptMenu">
+            <End Role="ScriptMenu" EntitySet="ScriptMenus" />
+            <End Role="ScriptDash" EntitySet="ScriptDashes" />
+          </AssociationSet>
+          <FunctionImport Name="KBSearch" ReturnType="Collection(ScreenPlayModel.KBSearch_Result)">
+            <Parameter Name="SearchList" Mode="In" Type="String" />
+            <Parameter Name="ClientID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="ScriptTasks" EntityType="ScreenPlayModel.ScriptTask" />
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptAction">
+          <Key>
+            <PropertyRef Name="ScriptActionID" />
+          </Key>
+          <Property Name="ScriptActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ActionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ActionXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptCalculation">
+          <Key>
+            <PropertyRef Name="ScriptCalculationID" />
+          </Key>
+          <Property Name="ScriptCalculationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CalculationDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CalculationExpression" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptClause">
+          <Key>
+            <PropertyRef Name="ScriptClauseID" />
+          </Key>
+          <Property Name="ScriptClauseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClauseDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClauseXML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptVariableDetails" Relationship="ScreenPlayModel.FK_ScriptVariableDetail_ScriptClause" FromRole="ScriptClause" ToRole="ScriptVariableDetail" />
+        </EntityType>
+        <EntityType Name="ScriptDataView">
+          <Key>
+            <PropertyRef Name="ScriptDataViewID" />
+          </Key>
+          <Property Name="ScriptDataViewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataViewDesc" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DataViewType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DataViewSource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptImage">
+          <Key>
+            <PropertyRef Name="ScriptImageID" />
+          </Key>
+          <Property Name="ScriptImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ImageType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptProjects" Relationship="ScreenPlayModel.FK_ScriptProject_ScriptImage" FromRole="ScriptImage" ToRole="ScriptProject" />
+          <NavigationProperty Name="ScriptDashes" Relationship="ScreenPlayModel.FK_ScriptDash_ScriptImage" FromRole="ScriptImage" ToRole="ScriptDash" />
+        </EntityType>
+        <EntityType Name="ScriptItem">
+          <Key>
+            <PropertyRef Name="ScriptItemID" />
+          </Key>
+          <Property Name="ScriptItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ItemDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ItemCategory" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ItemSubCategory" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ItemPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ItemShippingPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ItemHandlingPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ItemMaxQuantity" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptItemKeys" Relationship="ScreenPlayModel.FK_ScriptItemKey_ScriptItem" FromRole="ScriptItem" ToRole="ScriptItemKey" />
+        </EntityType>
+        <EntityType Name="ScriptItemKey">
+          <Key>
+            <PropertyRef Name="ScriptItemKeyID" />
+          </Key>
+          <Property Name="ScriptItemKeyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptItemID" Type="Int32" Nullable="false" />
+          <Property Name="ItemKey" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ItemValue" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptItem" Relationship="ScreenPlayModel.FK_ScriptItemKey_ScriptItem" FromRole="ScriptItemKey" ToRole="ScriptItem" />
+        </EntityType>
+        <EntityType Name="ScriptItemSelector">
+          <Key>
+            <PropertyRef Name="ScriptItemSelectorID" />
+          </Key>
+          <Property Name="ScriptItemSelectorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SelectorDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SelectorTitle" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ItemList" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LayoutType" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FilterKeys" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SetKeys" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayColumns" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptLayout">
+          <Key>
+            <PropertyRef Name="ScriptLayoutID" />
+          </Key>
+          <Property Name="ScriptLayoutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LayoutDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LayoutWidth" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptLayoutDetails" Relationship="ScreenPlayModel.FK_ScriptLayoutDetail_ScriptLayout" FromRole="ScriptLayout" ToRole="ScriptLayoutDetail" />
+        </EntityType>
+        <EntityType Name="ScriptLayoutDetail">
+          <Key>
+            <PropertyRef Name="ScriptLayoutDetailID" />
+          </Key>
+          <Property Name="ScriptLayoutDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptLayoutID" Type="Int32" Nullable="false" />
+          <Property Name="RowNumber" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="ElementID" Type="Int32" Nullable="false" />
+          <Property Name="ElementType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ElementWidth" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ScriptLayout" Relationship="ScreenPlayModel.FK_ScriptLayoutDetail_ScriptLayout" FromRole="ScriptLayoutDetail" ToRole="ScriptLayout" />
+          <Property Name="ElementAlignment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ScriptLink">
+          <Key>
+            <PropertyRef Name="ScriptLinkID" />
+          </Key>
+          <Property Name="ScriptLinkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LinkDisplay" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LinkType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LinkURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LinkTypeID" Type="Int32" />
+          <Property Name="LinkNewWindow" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptLookup">
+          <Key>
+            <PropertyRef Name="ScriptLookupID" />
+          </Key>
+          <Property Name="ScriptLookupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LookupDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptLookupDetails" Relationship="ScreenPlayModel.FK_ScriptLookupDetail_ScriptLookup" FromRole="ScriptLookup" ToRole="ScriptLookupDetail" />
+        </EntityType>
+        <EntityType Name="ScriptLookupDetail">
+          <Key>
+            <PropertyRef Name="ScriptLookupDetailID" />
+          </Key>
+          <Property Name="ScriptLookupDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptLookupID" Type="Int32" Nullable="false" />
+          <Property Name="LookupText" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LookupValue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ScriptLookup" Relationship="ScreenPlayModel.FK_ScriptLookupDetail_ScriptLookup" FromRole="ScriptLookupDetail" ToRole="ScriptLookup" />
+        </EntityType>
+        <EntityType Name="ScriptMenu">
+          <Key>
+            <PropertyRef Name="ScriptMenuID" />
+          </Key>
+          <Property Name="ScriptMenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MenuXML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuOrientation" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptProjects" Relationship="ScreenPlayModel.FK_ScriptProject_ScriptMenu" FromRole="ScriptMenu" ToRole="ScriptProject" />
+          <NavigationProperty Name="ScriptDashes" Relationship="ScreenPlayModel.FK_ScriptDash_ScriptMenu" FromRole="ScriptMenu" ToRole="ScriptDash" />
+        </EntityType>
+        <EntityType Name="ScriptObject">
+          <Key>
+            <PropertyRef Name="ScriptObjectID" />
+          </Key>
+          <Property Name="ScriptObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsCollection" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptObjectDetails" Relationship="ScreenPlayModel.FK_ScriptObjectDetail_ScriptObject" FromRole="ScriptObject" ToRole="ScriptObjectDetail" />
+        </EntityType>
+        <EntityType Name="ScriptObjectDetail">
+          <Key>
+            <PropertyRef Name="ScriptObjectDetailID" />
+          </Key>
+          <Property Name="ScriptObjectDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptObjectID" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="ObjectDetailName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ObjectDetailDataType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ScriptObject" Relationship="ScreenPlayModel.FK_ScriptObjectDetail_ScriptObject" FromRole="ScriptObjectDetail" ToRole="ScriptObject" />
+        </EntityType>
+        <EntityType Name="ScriptProject">
+          <Key>
+            <PropertyRef Name="ScriptProjectID" />
+          </Key>
+          <Property Name="ScriptProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RequireKey" Type="Boolean" />
+          <Property Name="KeyText" Type="Guid" />
+          <Property Name="LogoImageID" Type="Int32" />
+          <Property Name="ScriptMenuID" Type="Int32" />
+          <Property Name="ShowWorkflowSection" Type="Boolean" />
+          <Property Name="ShowLead" Type="Boolean" />
+          <Property Name="ShowNotes" Type="Boolean" />
+          <Property Name="ShowCallback" Type="Boolean" />
+          <Property Name="ShowLanguage" Type="Boolean" />
+          <Property Name="ShowNotification" Type="Boolean" />
+          <Property Name="NotificationText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Parameter" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptImage" Relationship="ScreenPlayModel.FK_ScriptProject_ScriptImage" FromRole="ScriptProject" ToRole="ScriptImage" />
+          <NavigationProperty Name="ScriptMenu" Relationship="ScreenPlayModel.FK_ScriptProject_ScriptMenu" FromRole="ScriptProject" ToRole="ScriptMenu" />
+          <NavigationProperty Name="ScriptProjectVariables" Relationship="ScreenPlayModel.FK_ScriptProjectVariable_ScriptProject" FromRole="ScriptProject" ToRole="ScriptProjectVariable" />
+          <NavigationProperty Name="ScriptProjectWorkflows" Relationship="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptProject" FromRole="ScriptProject" ToRole="ScriptProjectWorkflow" />
+          <Property Name="ScreenSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScreenLayout" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ScriptProjectVariable">
+          <Key>
+            <PropertyRef Name="ScriptProjectVariableID" />
+          </Key>
+          <Property Name="ScriptProjectVariableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptProjectID" Type="Int32" Nullable="false" />
+          <Property Name="ScriptVariableID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ScriptProject" Relationship="ScreenPlayModel.FK_ScriptProjectVariable_ScriptProject" FromRole="ScriptProjectVariable" ToRole="ScriptProject" />
+        </EntityType>
+        <EntityType Name="ScriptProjectWorkflow">
+          <Key>
+            <PropertyRef Name="ScriptProjectWorkflowID" />
+          </Key>
+          <Property Name="ScriptProjectWorkflowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptProjectID" Type="Int32" Nullable="false" />
+          <Property Name="ScriptWorkflowID" Type="Int32" Nullable="false" />
+          <Property Name="ScriptWorkflowActiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ScriptProject" Relationship="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptProject" FromRole="ScriptProjectWorkflow" ToRole="ScriptProject" />
+          <NavigationProperty Name="ScriptWorkflow" Relationship="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptWorkflow" FromRole="ScriptProjectWorkflow" ToRole="ScriptWorkflow" />
+        </EntityType>
+        <EntityType Name="ScriptQuestion">
+          <Key>
+            <PropertyRef Name="ScriptQuestionID" />
+          </Key>
+          <Property Name="ScriptQuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ResponseType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Choices" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MaxLength" Type="Int32" />
+          <Property Name="MinimumValue" Type="Int32" />
+          <Property Name="MaximumValue" Type="Int32" />
+          <Property Name="PastDatesOK" Type="Boolean" />
+          <Property Name="AnswerRequired" Type="Boolean" />
+          <Property Name="ScriptValidatorID" Type="Int32" />
+          <Property Name="KeyCodes" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ScriptLookupID" Type="Int32" />
+          <Property Name="DataObjectField" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="DOValueColumn" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DODisplayColumns" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptValidator" Relationship="ScreenPlayModel.FK_ScriptQuestion_ScriptValidator" FromRole="ScriptQuestion" ToRole="ScriptValidator" />
+          <NavigationProperty Name="ScriptQuestionareDetails" Relationship="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestion" FromRole="ScriptQuestion" ToRole="ScriptQuestionareDetail" />
+        </EntityType>
+        <EntityType Name="ScriptQuestionare">
+          <Key>
+            <PropertyRef Name="ScriptQuestionareID" />
+          </Key>
+          <Property Name="ScriptQuestionareID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionareDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LayoutType" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptQuestionareDetails" Relationship="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestionare" FromRole="ScriptQuestionare" ToRole="ScriptQuestionareDetail" />
+        </EntityType>
+        <EntityType Name="ScriptQuestionareDetail">
+          <Key>
+            <PropertyRef Name="ScriptQuestionareDetailID" />
+          </Key>
+          <Property Name="ScriptQuestionareDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptQuestionareID" Type="Int32" Nullable="false" />
+          <Property Name="SequenceNumber" Type="Int32" Nullable="false" />
+          <Property Name="ScriptQuestionID" Type="Int32" />
+          <Property Name="ShowWhen" Type="Int32" />
+          <Property Name="Showif" Type="Int32" />
+          <NavigationProperty Name="ScriptQuestion" Relationship="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestion" FromRole="ScriptQuestionareDetail" ToRole="ScriptQuestion" />
+          <NavigationProperty Name="ScriptQuestionare" Relationship="ScreenPlayModel.FK_ScriptQuestionareDetail_ScriptQuestionare" FromRole="ScriptQuestionareDetail" ToRole="ScriptQuestionare" />
+        </EntityType>
+        <EntityType Name="ScriptSection">
+          <Key>
+            <PropertyRef Name="ScriptSectionID" />
+          </Key>
+          <Property Name="ScriptSectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SectionDesc" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptSectionLayouts" Relationship="ScreenPlayModel.FK_ScriptSectionLayout_ScriptSection" FromRole="ScriptSection" ToRole="ScriptSectionLayout" />
+        </EntityType>
+        <EntityType Name="ScriptSectionLayout">
+          <Key>
+            <PropertyRef Name="ScriptSectionLayoutID" />
+          </Key>
+          <Property Name="ScriptSectionLayoutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptSectionID" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="ElementID" Type="Int32" Nullable="false" />
+          <Property Name="ElementType" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ShowWhen" Type="Int32" />
+          <Property Name="ShowIf" Type="Int32" />
+          <Property Name="ContainerWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ScriptSection" Relationship="ScreenPlayModel.FK_ScriptSectionLayout_ScriptSection" FromRole="ScriptSectionLayout" ToRole="ScriptSection" />
+        </EntityType>
+        <EntityType Name="ScriptTextHTML">
+          <Key>
+            <PropertyRef Name="ScriptTextHTMLID" />
+          </Key>
+          <Property Name="ScriptTextHTMLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextHTMLDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TextHTMLContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TextHTMLAltContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShowDescTooltip" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TextContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Searchable" Type="Boolean" />
+          <Property Name="KeyWords" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ScriptValidator">
+          <Key>
+            <PropertyRef Name="ScriptValidatorID" />
+          </Key>
+          <Property Name="ScriptValidatorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValidatorDesc" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ValidatorRegex" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ScriptQuestions" Relationship="ScreenPlayModel.FK_ScriptQuestion_ScriptValidator" FromRole="ScriptValidator" ToRole="ScriptQuestion" />
+        </EntityType>
+        <EntityType Name="ScriptVariable">
+          <Key>
+            <PropertyRef Name="ScriptVariableID" />
+          </Key>
+          <Property Name="ScriptVariableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VariableDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptVariableDetails" Relationship="ScreenPlayModel.FK_ScriptVariableDetail_ScriptVariable" FromRole="ScriptVariable" ToRole="ScriptVariableDetail" />
+        </EntityType>
+        <EntityType Name="ScriptVariableDetail">
+          <Key>
+            <PropertyRef Name="ScriptVariableDetailID" />
+          </Key>
+          <Property Name="ScriptVariableDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScriptVariableID" Type="Int32" Nullable="false" />
+          <Property Name="ScriptClauseID" Type="Int32" Nullable="false" />
+          <Property Name="ShowIf" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ScriptClause" Relationship="ScreenPlayModel.FK_ScriptVariableDetail_ScriptClause" FromRole="ScriptVariableDetail" ToRole="ScriptClause" />
+          <NavigationProperty Name="ScriptVariable" Relationship="ScreenPlayModel.FK_ScriptVariableDetail_ScriptVariable" FromRole="ScriptVariableDetail" ToRole="ScriptVariable" />
+        </EntityType>
+        <EntityType Name="ScriptWorkflow">
+          <Key>
+            <PropertyRef Name="ScriptWorkflowID" />
+          </Key>
+          <Property Name="ScriptWorkflowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkflowDesc" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="WorkflowXML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptProjectWorkflows" Relationship="ScreenPlayModel.FK_ScriptProjectWorkflow_ScriptWorkflow" FromRole="ScriptWorkflow" ToRole="ScriptProjectWorkflow" />
+        </EntityType>
+        <Association Name="FK_ScriptVariableDetail_ScriptClause">
+          <End Type="ScreenPlayModel.ScriptClause" Role="ScriptClause" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptVariableDetail" Role="ScriptVariableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptClause">
+              <PropertyRef Name="ScriptClauseID" />
+            </Principal>
+            <Dependent Role="ScriptVariableDetail">
+              <PropertyRef Name="ScriptClauseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProject_ScriptImage">
+          <End Type="ScreenPlayModel.ScriptImage" Role="ScriptImage" Multiplicity="0..1" />
+          <End Type="ScreenPlayModel.ScriptProject" Role="ScriptProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptImage">
+              <PropertyRef Name="ScriptImageID" />
+            </Principal>
+            <Dependent Role="ScriptProject">
+              <PropertyRef Name="LogoImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptItemKey_ScriptItem">
+          <End Type="ScreenPlayModel.ScriptItem" Role="ScriptItem" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptItemKey" Role="ScriptItemKey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptItem">
+              <PropertyRef Name="ScriptItemID" />
+            </Principal>
+            <Dependent Role="ScriptItemKey">
+              <PropertyRef Name="ScriptItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptLayoutDetail_ScriptLayout">
+          <End Type="ScreenPlayModel.ScriptLayout" Role="ScriptLayout" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptLayoutDetail" Role="ScriptLayoutDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptLayout">
+              <PropertyRef Name="ScriptLayoutID" />
+            </Principal>
+            <Dependent Role="ScriptLayoutDetail">
+              <PropertyRef Name="ScriptLayoutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptLookupDetail_ScriptLookup">
+          <End Type="ScreenPlayModel.ScriptLookup" Role="ScriptLookup" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptLookupDetail" Role="ScriptLookupDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptLookup">
+              <PropertyRef Name="ScriptLookupID" />
+            </Principal>
+            <Dependent Role="ScriptLookupDetail">
+              <PropertyRef Name="ScriptLookupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProject_ScriptMenu">
+          <End Type="ScreenPlayModel.ScriptMenu" Role="ScriptMenu" Multiplicity="0..1" />
+          <End Type="ScreenPlayModel.ScriptProject" Role="ScriptProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptMenu">
+              <PropertyRef Name="ScriptMenuID" />
+            </Principal>
+            <Dependent Role="ScriptProject">
+              <PropertyRef Name="ScriptMenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptObjectDetail_ScriptObject">
+          <End Type="ScreenPlayModel.ScriptObject" Role="ScriptObject" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptObjectDetail" Role="ScriptObjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptObject">
+              <PropertyRef Name="ScriptObjectID" />
+            </Principal>
+            <Dependent Role="ScriptObjectDetail">
+              <PropertyRef Name="ScriptObjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProjectVariable_ScriptProject">
+          <End Type="ScreenPlayModel.ScriptProject" Role="ScriptProject" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptProjectVariable" Role="ScriptProjectVariable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptProject">
+              <PropertyRef Name="ScriptProjectID" />
+            </Principal>
+            <Dependent Role="ScriptProjectVariable">
+              <PropertyRef Name="ScriptProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProjectWorkflow_ScriptProject">
+          <End Type="ScreenPlayModel.ScriptProject" Role="ScriptProject" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptProjectWorkflow" Role="ScriptProjectWorkflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptProject">
+              <PropertyRef Name="ScriptProjectID" />
+            </Principal>
+            <Dependent Role="ScriptProjectWorkflow">
+              <PropertyRef Name="ScriptProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptProjectWorkflow_ScriptWorkflow">
+          <End Type="ScreenPlayModel.ScriptWorkflow" Role="ScriptWorkflow" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptProjectWorkflow" Role="ScriptProjectWorkflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptWorkflow">
+              <PropertyRef Name="ScriptWorkflowID" />
+            </Principal>
+            <Dependent Role="ScriptProjectWorkflow">
+              <PropertyRef Name="ScriptWorkflowID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptQuestion_ScriptValidator">
+          <End Type="ScreenPlayModel.ScriptValidator" Role="ScriptValidator" Multiplicity="0..1" />
+          <End Type="ScreenPlayModel.ScriptQuestion" Role="ScriptQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptValidator">
+              <PropertyRef Name="ScriptValidatorID" />
+            </Principal>
+            <Dependent Role="ScriptQuestion">
+              <PropertyRef Name="ScriptValidatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptQuestionareDetail_ScriptQuestion">
+          <End Type="ScreenPlayModel.ScriptQuestion" Role="ScriptQuestion" Multiplicity="0..1" />
+          <End Type="ScreenPlayModel.ScriptQuestionareDetail" Role="ScriptQuestionareDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptQuestion">
+              <PropertyRef Name="ScriptQuestionID" />
+            </Principal>
+            <Dependent Role="ScriptQuestionareDetail">
+              <PropertyRef Name="ScriptQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptQuestionareDetail_ScriptQuestionare">
+          <End Type="ScreenPlayModel.ScriptQuestionare" Role="ScriptQuestionare" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptQuestionareDetail" Role="ScriptQuestionareDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptQuestionare">
+              <PropertyRef Name="ScriptQuestionareID" />
+            </Principal>
+            <Dependent Role="ScriptQuestionareDetail">
+              <PropertyRef Name="ScriptQuestionareID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptSectionLayout_ScriptSection">
+          <End Type="ScreenPlayModel.ScriptSection" Role="ScriptSection" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptSectionLayout" Role="ScriptSectionLayout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptSection">
+              <PropertyRef Name="ScriptSectionID" />
+            </Principal>
+            <Dependent Role="ScriptSectionLayout">
+              <PropertyRef Name="ScriptSectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptVariableDetail_ScriptVariable">
+          <End Type="ScreenPlayModel.ScriptVariable" Role="ScriptVariable" Multiplicity="1" />
+          <End Type="ScreenPlayModel.ScriptVariableDetail" Role="ScriptVariableDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptVariable">
+              <PropertyRef Name="ScriptVariableID" />
+            </Principal>
+            <Dependent Role="ScriptVariableDetail">
+              <PropertyRef Name="ScriptVariableID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ScriptHTML">
+          <Key>
+            <PropertyRef Name="ScriptHTMLID" />
+          </Key>
+          <Property Name="ScriptHTMLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HTMLDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HTMLContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HTMLAltContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShowDescTooltip" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WorkflowLayout">
+          <Key>
+            <PropertyRef Name="WorkflowHTMLID" />
+          </Key>
+          <Property Name="WorkflowHTMLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HTMLDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HTMLContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ScriptDash">
+          <Key>
+            <PropertyRef Name="ScriptDashID" />
+          </Key>
+          <Property Name="ScriptDashID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RequireKey" Type="Boolean" />
+          <Property Name="KeyText" Type="Guid" />
+          <Property Name="LogoImageID" Type="Int32" />
+          <Property Name="ScriptMenuID" Type="Int32" />
+          <Property Name="ScreenSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScreenLayout" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ScriptSectionID" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ScriptImage" Relationship="ScreenPlayModel.FK_ScriptDash_ScriptImage" FromRole="ScriptDash" ToRole="ScriptImage" />
+          <NavigationProperty Name="ScriptMenu" Relationship="ScreenPlayModel.FK_ScriptDash_ScriptMenu" FromRole="ScriptDash" ToRole="ScriptMenu" />
+        </EntityType>
+        <Association Name="FK_ScriptDash_ScriptImage">
+          <End Type="ScreenPlayModel.ScriptImage" Role="ScriptImage" Multiplicity="0..1" />
+          <End Type="ScreenPlayModel.ScriptDash" Role="ScriptDash" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptImage">
+              <PropertyRef Name="ScriptImageID" />
+            </Principal>
+            <Dependent Role="ScriptDash">
+              <PropertyRef Name="LogoImageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ScriptDash_ScriptMenu">
+          <End Type="ScreenPlayModel.ScriptMenu" Role="ScriptMenu" Multiplicity="0..1" />
+          <End Type="ScreenPlayModel.ScriptDash" Role="ScriptDash" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScriptMenu">
+              <PropertyRef Name="ScriptMenuID" />
+            </Principal>
+            <Dependent Role="ScriptDash">
+              <PropertyRef Name="ScriptMenuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="KBSearch_Result">
+          <Property Type="Int32" Name="RANK" Nullable="true" />
+          <Property Type="String" Name="TextHTMLDesc" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="ScriptTextHTMLID" Nullable="false" />
+          <Property Type="String" Name="TextHTMLContent" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="ScriptTask">
+          <Key>
+            <PropertyRef Name="ScriptTaskID" />
+          </Key>
+          <Property Name="ScriptTaskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskDesc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TaskType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaskColor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkStartTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WorkEndTime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultView" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Timezone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShowStartDate" Type="Boolean" Nullable="false" />
+          <Property Name="ShowEndDate" Type="Boolean" Nullable="false" />
+          <Property Name="ShowAllDay" Type="Boolean" Nullable="false" />
+          <Property Name="ShowRepeatRule" Type="Boolean" Nullable="false" />
+          <Property Name="IsMultiUserTask" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="UpdateEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="Width" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateLastModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserLastModified" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FilterTask" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AddCustomButton" Type="Boolean" />
+          <Property Name="CustomButtonText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomButtonURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="EndTimeMinute" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScreenPlayModelStoreContainer" CdmEntityContainer="ScreenPlayEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="ScreenPlayModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptActions">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptAction">
+              <MappingFragment StoreEntitySet="ScriptAction">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ActionXML" ColumnName="ActionXML" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="ActionDesc" ColumnName="ActionDesc" />
+                <ScalarProperty Name="ScriptActionID" ColumnName="ScriptActionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptCalculations">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptCalculation">
+              <MappingFragment StoreEntitySet="ScriptCalculation">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CalculationExpression" ColumnName="CalculationExpression" />
+                <ScalarProperty Name="CalculationDesc" ColumnName="CalculationDesc" />
+                <ScalarProperty Name="ScriptCalculationID" ColumnName="ScriptCalculationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptClauses">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptClause">
+              <MappingFragment StoreEntitySet="ScriptClause">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ClauseXML" ColumnName="ClauseXML" />
+                <ScalarProperty Name="ClauseDesc" ColumnName="ClauseDesc" />
+                <ScalarProperty Name="ScriptClauseID" ColumnName="ScriptClauseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptDataViews">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptDataView">
+              <MappingFragment StoreEntitySet="ScriptDataView">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DataViewSource" ColumnName="DataViewSource" />
+                <ScalarProperty Name="DataViewType" ColumnName="DataViewType" />
+                <ScalarProperty Name="DataViewDesc" ColumnName="DataViewDesc" />
+                <ScalarProperty Name="ScriptDataViewID" ColumnName="ScriptDataViewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptImages">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptImage">
+              <MappingFragment StoreEntitySet="ScriptImage">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+                <ScalarProperty Name="ImageDesc" ColumnName="ImageDesc" />
+                <ScalarProperty Name="ScriptImageID" ColumnName="ScriptImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptItems">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptItem">
+              <MappingFragment StoreEntitySet="ScriptItem">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ItemMaxQuantity" ColumnName="ItemMaxQuantity" />
+                <ScalarProperty Name="ItemHandlingPrice" ColumnName="ItemHandlingPrice" />
+                <ScalarProperty Name="ItemShippingPrice" ColumnName="ItemShippingPrice" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="ItemSubCategory" ColumnName="ItemSubCategory" />
+                <ScalarProperty Name="ItemCategory" ColumnName="ItemCategory" />
+                <ScalarProperty Name="ItemDesc" ColumnName="ItemDesc" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ScriptItemID" ColumnName="ScriptItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptItemKeys">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptItemKey">
+              <MappingFragment StoreEntitySet="ScriptItemKey">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ItemValue" ColumnName="ItemValue" />
+                <ScalarProperty Name="ItemKey" ColumnName="ItemKey" />
+                <ScalarProperty Name="ScriptItemID" ColumnName="ScriptItemID" />
+                <ScalarProperty Name="ScriptItemKeyID" ColumnName="ScriptItemKeyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptItemSelectors">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptItemSelector">
+              <MappingFragment StoreEntitySet="ScriptItemSelector">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DisplayColumns" ColumnName="DisplayColumns" />
+                <ScalarProperty Name="SetKeys" ColumnName="SetKeys" />
+                <ScalarProperty Name="FilterKeys" ColumnName="FilterKeys" />
+                <ScalarProperty Name="LayoutType" ColumnName="LayoutType" />
+                <ScalarProperty Name="ItemList" ColumnName="ItemList" />
+                <ScalarProperty Name="SelectorTitle" ColumnName="SelectorTitle" />
+                <ScalarProperty Name="SelectorDesc" ColumnName="SelectorDesc" />
+                <ScalarProperty Name="ScriptItemSelectorID" ColumnName="ScriptItemSelectorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptLayouts">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptLayout">
+              <MappingFragment StoreEntitySet="ScriptLayout">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LayoutWidth" ColumnName="LayoutWidth" />
+                <ScalarProperty Name="LayoutDesc" ColumnName="LayoutDesc" />
+                <ScalarProperty Name="ScriptLayoutID" ColumnName="ScriptLayoutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptLayoutDetails">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptLayoutDetail">
+              <MappingFragment StoreEntitySet="ScriptLayoutDetail">
+                <ScalarProperty Name="ElementAlignment" ColumnName="ElementAlignment" />
+                <ScalarProperty Name="ElementWidth" ColumnName="ElementWidth" />
+                <ScalarProperty Name="ElementType" ColumnName="ElementType" />
+                <ScalarProperty Name="ElementID" ColumnName="ElementID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ScriptLayoutID" ColumnName="ScriptLayoutID" />
+                <ScalarProperty Name="ScriptLayoutDetailID" ColumnName="ScriptLayoutDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptLinks">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptLink">
+              <MappingFragment StoreEntitySet="ScriptLink">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LinkNewWindow" ColumnName="LinkNewWindow" />
+                <ScalarProperty Name="LinkTypeID" ColumnName="LinkTypeID" />
+                <ScalarProperty Name="LinkURL" ColumnName="LinkURL" />
+                <ScalarProperty Name="LinkType" ColumnName="LinkType" />
+                <ScalarProperty Name="LinkDisplay" ColumnName="LinkDisplay" />
+                <ScalarProperty Name="LinkDesc" ColumnName="LinkDesc" />
+                <ScalarProperty Name="ScriptLinkID" ColumnName="ScriptLinkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptLookups">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptLookup">
+              <MappingFragment StoreEntitySet="ScriptLookup">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="LookupDesc" ColumnName="LookupDesc" />
+                <ScalarProperty Name="ScriptLookupID" ColumnName="ScriptLookupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptLookupDetails">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptLookupDetail">
+              <MappingFragment StoreEntitySet="ScriptLookupDetail">
+                <ScalarProperty Name="LookupValue" ColumnName="LookupValue" />
+                <ScalarProperty Name="LookupText" ColumnName="LookupText" />
+                <ScalarProperty Name="ScriptLookupID" ColumnName="ScriptLookupID" />
+                <ScalarProperty Name="ScriptLookupDetailID" ColumnName="ScriptLookupDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptMenus">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptMenu">
+              <MappingFragment StoreEntitySet="ScriptMenu">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="MenuOrientation" ColumnName="MenuOrientation" />
+                <ScalarProperty Name="MenuXML" ColumnName="MenuXML" />
+                <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+                <ScalarProperty Name="ScriptMenuID" ColumnName="ScriptMenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptObjects">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptObject">
+              <MappingFragment StoreEntitySet="ScriptObject">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="IsCollection" ColumnName="IsCollection" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
+                <ScalarProperty Name="ScriptObjectID" ColumnName="ScriptObjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptObjectDetails">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptObjectDetail">
+              <MappingFragment StoreEntitySet="ScriptObjectDetail">
+                <ScalarProperty Name="ObjectDetailDataType" ColumnName="ObjectDetailDataType" />
+                <ScalarProperty Name="ObjectDetailName" ColumnName="ObjectDetailName" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ScriptObjectID" ColumnName="ScriptObjectID" />
+                <ScalarProperty Name="ScriptObjectDetailID" ColumnName="ScriptObjectDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptProjects">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptProject">
+              <MappingFragment StoreEntitySet="ScriptProject">
+                <ScalarProperty Name="ScreenLayout" ColumnName="ScreenLayout" />
+                <ScalarProperty Name="ScreenSize" ColumnName="ScreenSize" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+                <ScalarProperty Name="NotificationText" ColumnName="NotificationText" />
+                <ScalarProperty Name="ShowNotification" ColumnName="ShowNotification" />
+                <ScalarProperty Name="ShowLanguage" ColumnName="ShowLanguage" />
+                <ScalarProperty Name="ShowCallback" ColumnName="ShowCallback" />
+                <ScalarProperty Name="ShowNotes" ColumnName="ShowNotes" />
+                <ScalarProperty Name="ShowLead" ColumnName="ShowLead" />
+                <ScalarProperty Name="ShowWorkflowSection" ColumnName="ShowWorkflowSection" />
+                <ScalarProperty Name="ScriptMenuID" ColumnName="ScriptMenuID" />
+                <ScalarProperty Name="LogoImageID" ColumnName="LogoImageID" />
+                <ScalarProperty Name="KeyText" ColumnName="KeyText" />
+                <ScalarProperty Name="RequireKey" ColumnName="RequireKey" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
+                <ScalarProperty Name="ScriptProjectID" ColumnName="ScriptProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptProjectVariables">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptProjectVariable">
+              <MappingFragment StoreEntitySet="ScriptProjectVariable">
+                <ScalarProperty Name="ScriptVariableID" ColumnName="ScriptVariableID" />
+                <ScalarProperty Name="ScriptProjectID" ColumnName="ScriptProjectID" />
+                <ScalarProperty Name="ScriptProjectVariableID" ColumnName="ScriptProjectVariableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptProjectWorkflows">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptProjectWorkflow">
+              <MappingFragment StoreEntitySet="ScriptProjectWorkflow">
+                <ScalarProperty Name="ScriptWorkflowActiveDate" ColumnName="ScriptWorkflowActiveDate" />
+                <ScalarProperty Name="ScriptWorkflowID" ColumnName="ScriptWorkflowID" />
+                <ScalarProperty Name="ScriptProjectID" ColumnName="ScriptProjectID" />
+                <ScalarProperty Name="ScriptProjectWorkflowID" ColumnName="ScriptProjectWorkflowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptQuestions">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptQuestion">
+              <MappingFragment StoreEntitySet="ScriptQuestion">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DODisplayColumns" ColumnName="DODisplayColumns" />
+                <ScalarProperty Name="DOValueColumn" ColumnName="DOValueColumn" />
+                <ScalarProperty Name="DataObjectField" ColumnName="DataObjectField" />
+                <ScalarProperty Name="ScriptLookupID" ColumnName="ScriptLookupID" />
+                <ScalarProperty Name="KeyCodes" ColumnName="KeyCodes" />
+                <ScalarProperty Name="ScriptValidatorID" ColumnName="ScriptValidatorID" />
+                <ScalarProperty Name="AnswerRequired" ColumnName="AnswerRequired" />
+                <ScalarProperty Name="PastDatesOK" ColumnName="PastDatesOK" />
+                <ScalarProperty Name="MaximumValue" ColumnName="MaximumValue" />
+                <ScalarProperty Name="MinimumValue" ColumnName="MinimumValue" />
+                <ScalarProperty Name="MaxLength" ColumnName="MaxLength" />
+                <ScalarProperty Name="Choices" ColumnName="Choices" />
+                <ScalarProperty Name="ResponseType" ColumnName="ResponseType" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionDesc" ColumnName="QuestionDesc" />
+                <ScalarProperty Name="ScriptQuestionID" ColumnName="ScriptQuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptQuestionares">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptQuestionare">
+              <MappingFragment StoreEntitySet="ScriptQuestionare">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="LayoutType" ColumnName="LayoutType" />
+                <ScalarProperty Name="QuestionareDesc" ColumnName="QuestionareDesc" />
+                <ScalarProperty Name="ScriptQuestionareID" ColumnName="ScriptQuestionareID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptQuestionareDetails">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptQuestionareDetail">
+              <MappingFragment StoreEntitySet="ScriptQuestionareDetail">
+                <ScalarProperty Name="Showif" ColumnName="Showif" />
+                <ScalarProperty Name="ShowWhen" ColumnName="ShowWhen" />
+                <ScalarProperty Name="ScriptQuestionID" ColumnName="ScriptQuestionID" />
+                <ScalarProperty Name="SequenceNumber" ColumnName="SequenceNumber" />
+                <ScalarProperty Name="ScriptQuestionareID" ColumnName="ScriptQuestionareID" />
+                <ScalarProperty Name="ScriptQuestionareDetailID" ColumnName="ScriptQuestionareDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptSections">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptSection">
+              <MappingFragment StoreEntitySet="ScriptSection">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="SectionDesc" ColumnName="SectionDesc" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="ScriptSectionID" ColumnName="ScriptSectionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptSectionLayouts">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptSectionLayout">
+              <MappingFragment StoreEntitySet="ScriptSectionLayout">
+                <ScalarProperty Name="ContainerWidth" ColumnName="ContainerWidth" />
+                <ScalarProperty Name="ShowIf" ColumnName="ShowIf" />
+                <ScalarProperty Name="ShowWhen" ColumnName="ShowWhen" />
+                <ScalarProperty Name="ElementType" ColumnName="ElementType" />
+                <ScalarProperty Name="ElementID" ColumnName="ElementID" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ScriptSectionID" ColumnName="ScriptSectionID" />
+                <ScalarProperty Name="ScriptSectionLayoutID" ColumnName="ScriptSectionLayoutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptTextHTMLs">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptTextHTML">
+              <MappingFragment StoreEntitySet="ScriptTextHTML">
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="Searchable" ColumnName="Searchable" />
+                <ScalarProperty Name="TextContent" ColumnName="TextContent" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ShowDescTooltip" ColumnName="ShowDescTooltip" />
+                <ScalarProperty Name="TextHTMLAltContent" ColumnName="TextHTMLAltContent" />
+                <ScalarProperty Name="TextHTMLContent" ColumnName="TextHTMLContent" />
+                <ScalarProperty Name="TextHTMLDesc" ColumnName="TextHTMLDesc" />
+                <ScalarProperty Name="ScriptTextHTMLID" ColumnName="ScriptTextHTMLID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptValidators">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptValidator">
+              <MappingFragment StoreEntitySet="ScriptValidator">
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ValidatorRegex" ColumnName="ValidatorRegex" />
+                <ScalarProperty Name="ValidatorDesc" ColumnName="ValidatorDesc" />
+                <ScalarProperty Name="ScriptValidatorID" ColumnName="ScriptValidatorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptVariables">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptVariable">
+              <MappingFragment StoreEntitySet="ScriptVariable">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="VariableDesc" ColumnName="VariableDesc" />
+                <ScalarProperty Name="ScriptVariableID" ColumnName="ScriptVariableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptVariableDetails">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptVariableDetail">
+              <MappingFragment StoreEntitySet="ScriptVariableDetail">
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ShowIf" ColumnName="ShowIf" />
+                <ScalarProperty Name="ScriptClauseID" ColumnName="ScriptClauseID" />
+                <ScalarProperty Name="ScriptVariableID" ColumnName="ScriptVariableID" />
+                <ScalarProperty Name="ScriptVariableDetailID" ColumnName="ScriptVariableDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptWorkflows">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptWorkflow">
+              <MappingFragment StoreEntitySet="ScriptWorkflow">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="WorkflowXML" ColumnName="WorkflowXML" />
+                <ScalarProperty Name="WorkflowDesc" ColumnName="WorkflowDesc" />
+                <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
+                <ScalarProperty Name="ScriptWorkflowID" ColumnName="ScriptWorkflowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptHTMLs">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptHTML">
+              <MappingFragment StoreEntitySet="ScriptHTML">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ShowDescTooltip" ColumnName="ShowDescTooltip" />
+                <ScalarProperty Name="HTMLAltContent" ColumnName="HTMLAltContent" />
+                <ScalarProperty Name="HTMLContent" ColumnName="HTMLContent" />
+                <ScalarProperty Name="HTMLDesc" ColumnName="HTMLDesc" />
+                <ScalarProperty Name="ScriptHTMLID" ColumnName="ScriptHTMLID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkflowLayouts">
+            <EntityTypeMapping TypeName="ScreenPlayModel.WorkflowLayout">
+              <MappingFragment StoreEntitySet="WorkflowLayouts">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="HTMLContent" ColumnName="HTMLContent" />
+                <ScalarProperty Name="HTMLDesc" ColumnName="HTMLDesc" />
+                <ScalarProperty Name="WorkflowHTMLID" ColumnName="WorkflowHTMLID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptDashes">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptDash">
+              <MappingFragment StoreEntitySet="ScriptDash">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ScriptSectionID" ColumnName="ScriptSectionID" />
+                <ScalarProperty Name="ScreenLayout" ColumnName="ScreenLayout" />
+                <ScalarProperty Name="ScreenSize" ColumnName="ScreenSize" />
+                <ScalarProperty Name="ScriptMenuID" ColumnName="ScriptMenuID" />
+                <ScalarProperty Name="LogoImageID" ColumnName="LogoImageID" />
+                <ScalarProperty Name="KeyText" ColumnName="KeyText" />
+                <ScalarProperty Name="RequireKey" ColumnName="RequireKey" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ScriptDashID" ColumnName="ScriptDashID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScriptTasks">
+            <EntityTypeMapping TypeName="ScreenPlayModel.ScriptTask">
+              <MappingFragment StoreEntitySet="ScriptTask">
+                <ScalarProperty Name="EndTimeMinute" ColumnName="EndTimeMinute" />
+                <ScalarProperty Name="CustomButtonURL" ColumnName="CustomButtonURL" />
+                <ScalarProperty Name="CustomButtonText" ColumnName="CustomButtonText" />
+                <ScalarProperty Name="AddCustomButton" ColumnName="AddCustomButton" />
+                <ScalarProperty Name="FilterTask" ColumnName="FilterTask" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="UserLastModified" ColumnName="UserLastModified" />
+                <ScalarProperty Name="DateLastModified" ColumnName="DateLastModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="UpdateEnabled" ColumnName="UpdateEnabled" />
+                <ScalarProperty Name="DeleteEnabled" ColumnName="DeleteEnabled" />
+                <ScalarProperty Name="IsMultiUserTask" ColumnName="IsMultiUserTask" />
+                <ScalarProperty Name="ShowRepeatRule" ColumnName="ShowRepeatRule" />
+                <ScalarProperty Name="ShowAllDay" ColumnName="ShowAllDay" />
+                <ScalarProperty Name="ShowEndDate" ColumnName="ShowEndDate" />
+                <ScalarProperty Name="ShowStartDate" ColumnName="ShowStartDate" />
+                <ScalarProperty Name="Timezone" ColumnName="Timezone" />
+                <ScalarProperty Name="DefaultView" ColumnName="DefaultView" />
+                <ScalarProperty Name="WorkEndTime" ColumnName="WorkEndTime" />
+                <ScalarProperty Name="WorkStartTime" ColumnName="WorkStartTime" />
+                <ScalarProperty Name="TaskColor" ColumnName="TaskColor" />
+                <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+                <ScalarProperty Name="TaskDesc" ColumnName="TaskDesc" />
+                <ScalarProperty Name="ScriptTaskID" ColumnName="ScriptTaskID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="KBSearch" FunctionName="ScreenPlayModel.Store.KBSearch" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

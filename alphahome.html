@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/jquery-2.0.3.js"></script>
+
+</head>
+<body>
+
+    <style>
+        .nopad {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .row-eq-height {
+            display: flex;
+        }
+
+            .row-eq-height [class*="col-"] {
+                padding: 0;
+            }
+
+            .row-eq-height img {
+                width: 100%;
+            }
+
+        .col-md-4 {
+            padding-left: 0px !important;
+            background-color: transparent;
+            border: none;
+            min-height: 20px !important;
+        }
+
+        #Contentx {
+            overflow: auto !important;
+        }
+
+        .fill {
+            min-height: 100%;
+            height: 100%;
+        }
+    </style>
+    <div id="FullContainer" class="container fill">
+        <div class="row" style="height:auto">
+            <div id="Header">
+                <div class="row">
+                    <div class="col-md-12" style="text-align:right;background-color:#5BB7DF">
+                        <span>Contact us: 1-800-555-4321</span>
+                    </div>
+                </div>
+                <div class="row" style="background-color:#2077BD">
+                    <div id="iconspot" class="col-md-4">
+                        <img src="/images/_0003_Vector-Smart-Object.png" />
+                    </div>
+                    <div id="Menu" class="col-md-6">
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div style="background-color:darkslategray">
+                        <div id="Workflow" style="float:left;color:white;margin-right:20px">Workflow</div>
+                        <div id="Section" style="color:white">Section</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row row-eq-height" style="padding:0px;background-color:#2077BD">
+
+
+
+
+                <div class="col-md-9" id="Content" style="background-color:white;margin-left:3px;margin-right:3px;overflow-y:auto;padding-left:5px">
+
+
+                </div>
+
+
+
+                <div class="col-md-3" style="margin-right:3px;background-color:#2077BD">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Notifications</h3>
+                        </div>
+                        <div id="Notifications" class="panel-body">
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Call Notes</h3>
+                        </div>
+                        <div id="Notes" class="panel-body">
+                            Panel content
+                        </div>
+
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Schedule Callback</h3>
+                        </div>
+                        <div id="Callback" class="panel-body">
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="row" style="background-color:#5BB7DF">
+                <div id="Footer" class="col-md-12">Alpha Broadband Corporation</div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    
+</body>
+</html>
+

@@ -1,0 +1,183 @@
+﻿
+@model ScreenViewer.Models.WorkflowDisplay
+
+<style>
+    
+    #progress {
+        background-color: #DADADA;
+        left: 50%;
+        top: 40%;
+        width: 240px;
+        height: 60px;
+        margin-top: -30px; /* make this half your image/element height */
+        margin-left: -120px; /* make this half your image/element width */
+        position: absolute;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        color: #838383;
+        font-weight: bold;
+        line-height: 60px;
+        z-index: 100002 !important;
+    }
+
+    div#progress {
+        display: none;
+    }
+
+
+</style>
+
+@using (Ajax.BeginForm("myForm", new AjaxOptions { UpdateTargetId = "Content", LoadingElementId = "progress", OnBegin = "myFormBegin", OnSuccess="maintainScroll", OnFailure = "myFormFailure", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
+{
+    <div id="LayoutTemplate">
+        @Html.Raw(Model.Layout)
+    </div>
+}
+<div id="Workflow_Sections" style="display:none">
+
+    @if (ViewBag.Search != null && ViewBag.Search)
+    {
+        @Html.Action("SearchKnowledgeBase", "TextHTML", new { SearchPhrase = ViewBag.SearchTerm })
+    }
+    else if (ViewBag.Section != null && ViewBag.Section)
+    {
+        @Html.Action("DisplayByUniqueName", "Section", new { id = ViewBag.SectionName })
+    }
+    else
+    {
+        @Html.Action("DisplayByUniqueName", "Section", new { id = Model.nextNode.nodeName })
+    }
+
+    <input type="hidden" name="hdnSectionName" value="@Model.nextNode.nodeName" />
+    <input type="hidden" name="hdnWorkflowId" value="@Model.workflowID" />
+    <input type="hidden" name="hdnCurrentNodeId" value="@Model.nextNode.NodeUniqueID" />
+    @*<input type="hidden" name="hdnExternalPages" value="@ViewBag.ExternalPages" />*@
+    <input type="hidden" name="hdnSiteURL" value="@if (Session["ScriptURL"] != null)
+    { @Session["ScriptURL"].ToString();
+    }" />
+    <input type="hidden" id="div_position" name="div_position" value="@ViewBag.ScrollPosition" />
+    <table>
+        <tr>
+            <td>
+                @if (Model.showPrevious && ViewBag.Search != true && ViewBag.Section != true)
+                {
+                    <input type="submit" class="bttn" name="ButtonType" value="Previous" formnovalidate />
+                }
+                @if (Model.showNext && ViewBag.Search != true && ViewBag.Section != true)
+                {
+                    <input type="submit" class="bttn" name="ButtonType" value="@ViewBag.NextButtonLabel" onclick="return SetListBoxText();" />
+                }
+                @if ((ViewBag.Search != null && ViewBag.Search) || (ViewBag.Section != null && ViewBag.Section))
+                {
+                    <input type="submit" class="bttn" name="ButtonType" value="Return" onclick="return SetListBoxText();" formnovalidate />
+                    <input type="hidden" name="hdnSectionOnlyId" id="hdnSectionOnlyId" value="@ViewBag.SectionId" />
+                }
+                <input id="btnReload" type="submit" name="ButtonType" value="Current" style="display:none" onclick="return SetListBoxText();" formnovalidate />
+                <input id="btnSection" type="submit" name="ButtonType" value="Section" style="display:none" formnovalidate />
+                <input type="hidden" name="hdnSectionId" id="hdnSectionId" />
+
+                <br /><br />
+                <p class="labelText" style="text-indent:5px">@ViewBag.Callback</p>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+<script>
+    var divString = $("#Workflow_Sections").html();
+
+    var html = $(divString.bold());
+    html.find("div[class*='container']").empty();
+
+    $("#Workflow").html('Workflow: @Model.workflowName');
+    $("#Section").html('Section: @Model.nextNode.nodeName');
+    $("#Content").html(html.html());
+    $("#Workflow_Sections").empty();
+
+</script>
+
+<div id="progress">
+    <img src="/Includes/images/loading.gif" /> Loading Please Wait...
+</div>
+
+<script> var sec = -1;function pad(val) { return val > 9 ? val : "0" + val; }setInterval(function () {$("#seconds").html(pad(++sec % 60));$("#minutes").html(pad(parseInt(sec / 60, 10) % 60));$("#hours").html(pad(parseInt(sec / 3600, 10)));}, 1000);</script>
+<script>
+    //$(document).ready(function () {
+    //    var height = $("#Footer").height() + $("#Header").height();
+    //    $("#Content").css("height", $(document).height() - height + "px");
+
+    //    $("form").change(function (e) {
+    //             var controlName = $(e.target).attr('name');
+
+    //             if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPQuestion") > -1)
+    //                 ReloadSection();
+    //             else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemquant") > -1)
+    //                 ReloadSection();
+    //             else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemcheck") > -1)
+    //                 ReloadSection();
+    //         });
+
+    //});
+
+    //var divp = document.getElementById('Content');
+    //divp.onscroll = function () {
+    //    $('#div_position').val(divp.scrollTop);
+    //}
+
+
+    $('form').submit(function () {
+        $("input[name*='action:Next']").hide();
+        $("input[name*='action:Previous']").hide();
+    });
+
+    function ReloadSection()
+    {
+        $('#btnReload').click();
+    }
+
+    function SetListBoxText()
+    {
+        $("[id$='_ddl']").each(function () {
+            var dropdown = this.id.replace("_ddl", "");
+            $('#' + this.id).val($('#' + dropdown).find('option:selected').text());
+        });
+
+        var selectedText = ''
+        $("[id$='_mddl']").each(function () {
+            var dropdown = this.id.replace("_mddl", "");
+            $('#' + dropdown + '_taglist li').each(function () {
+                selectedText += $(this).find('span').first().html() + ',';
+            })
+            $('#' + this.id).val(selectedText);
+        });
+        return true;
+    }
+
+    function myFormBegin() {
+        $("#progress").hide();
+    }
+
+    function maintainScroll() {
+        var position = parseInt($('#div_position').val());
+        $("#Content").scrollTop(position);
+        $("#Site").load("/SiteInfo/Index");
+
+    }
+
+    function myFormFailure(ajaxContext) {
+        var response = ajaxContext.responseText;
+        alert("Error Code [" + ajaxContext.ErrorCode + "] " + response);
+        //alert("Sorry, the request is failed");
+    }
+
+    function clickSection(id)
+    {
+        $('#hdnSectionId').val(id);
+        $('#btnSection').click();
+    }
+
+
+</script>

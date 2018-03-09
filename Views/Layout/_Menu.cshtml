@@ -1,0 +1,14 @@
+﻿
+<table>
+    <tr>
+        <td style="height:40px">
+            @if (Session["Menu"] != null)
+            {
+                @(Html.Kendo().Menu()
+    .Name("Menu")
+    .BindTo((IEnumerable<MenuItem>)Session["Menu"])
+                )
+            }
+        </td>
+    </tr>
+</table>

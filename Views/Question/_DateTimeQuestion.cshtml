@@ -1,0 +1,38 @@
+﻿@if (ViewBag.DisplayLabel == true)
+{
+    <label class="Question">@ViewBag.QuestionDisplay</label><br />
+}
+@if (ViewBag.ReturnType == "DateTime")
+{
+    if (ViewBag.AnswerRequired == "required")
+    {
+        @(Html.Kendo().DateTimePicker().Name(@ViewBag.ControlName).Value((ViewBag.CurrentResponse != null && ViewBag.CurrentResponse != "") ? Convert.ToDateTime(ViewBag.CurrentResponse) : DateTime.Now).HtmlAttributes(new { required = ViewBag.AnswerRequired }))
+    }
+    else
+     {
+        @(Html.Kendo().DateTimePicker().Name(@ViewBag.ControlName).Value((ViewBag.CurrentResponse != null && ViewBag.CurrentResponse != "") ? Convert.ToDateTime(ViewBag.CurrentResponse) : DateTime.Now))   
+     }
+}
+else if (ViewBag.ReturnType == "Date")
+{
+    if (ViewBag.AnswerRequired == "required")
+    { 
+        @(Html.Kendo().DatePicker().Name(@ViewBag.ControlName).Value((ViewBag.CurrentResponse != null && ViewBag.CurrentResponse != "") ? Convert.ToDateTime(ViewBag.CurrentResponse) : DateTime.Today).HtmlAttributes(new { style = "width:150px", required = ViewBag.AnswerRequired }))
+    }
+    else
+    {
+        @(Html.Kendo().DatePicker().Name(@ViewBag.ControlName).Value((ViewBag.CurrentResponse != null && ViewBag.CurrentResponse != "") ? Convert.ToDateTime(ViewBag.CurrentResponse) : DateTime.Today).HtmlAttributes(new { style = "width:150px" }))
+    }
+}
+else if (ViewBag.ReturnType == "Time")
+{
+    if (ViewBag.AnswerRequired == "required")
+    { 
+        @(Html.Kendo().TimePicker().Name(@ViewBag.ControlName).Value((ViewBag.CurrentResponse != null && ViewBag.CurrentResponse != "") != null ? Convert.ToDateTime(ViewBag.CurrentResponse) : DateTime.Now).HtmlAttributes(new { required = ViewBag.AnswerRequired })) 
+    } 
+    else
+    {
+        @(Html.Kendo().TimePicker().Name(@ViewBag.ControlName).Value((ViewBag.CurrentResponse != null && ViewBag.CurrentResponse != "") != null ? Convert.ToDateTime(ViewBag.CurrentResponse) : DateTime.Now))    
+    }
+}     
+

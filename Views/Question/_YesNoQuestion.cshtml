@@ -1,0 +1,6 @@
+﻿@if (ViewBag.DisplayLabel == true)
+{
+    <label class="Question">@ViewBag.QuestionDisplay</label><br />
+}
+<label class="radio-inline"><input type="radio" name="@ViewBag.ControlName" value="Yes" @ViewBag.AnswerRequired @ViewBag.YesCheck>Yes</label>
+<label class="radio-inline"><input type="radio" name="@ViewBag.ControlName" value="No" @ViewBag.NoCheck>No</label>

@@ -1,0 +1,5 @@
+﻿@if(ViewBag.DisplayLabel==true)
+{ 
+<label class="Question">@ViewBag.QuestionDisplay</label><br />
+}
+<label class="checkbox-inline"><input type="checkbox" name="@ViewBag.ControlName" value="True" @ViewBag.Checked @ViewBag.AnswerRequired></label> Confirm <br />

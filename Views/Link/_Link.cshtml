@@ -1,0 +1,16 @@
+﻿
+@if (ViewBag.LinkType == "Web" || ViewBag.LinkType == "Document")
+{
+    <a href="@ViewBag.LinkURL" title="@ViewBag.LinkDisplay" target="@ViewBag.Target">@ViewBag.LinkDisplay</a>;
+}                                                                                                            
+
+@if (ViewBag.LinkType == "Section")
+{
+    <a href="#" id="section_@ViewBag.LinkTypeID" onclick="clickSection('@ViewBag.LinkTypeID')" title="@ViewBag.LinkDisplay">@ViewBag.LinkDisplay</a>;
+}
+
+@if (ViewBag.LinkType == "Workflow")
+{
+    <a href="/@ViewBag.LinkType/Display/@ViewBag.LinkTypeID" title="@ViewBag.LinkDisplay">@ViewBag.LinkDisplay</a>;
+}
+

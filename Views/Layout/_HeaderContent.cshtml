@@ -1,0 +1,6 @@
+﻿
+
+@if (Session["ProjectDescription"] != null && !string.IsNullOrEmpty(Session["ProjectDescription"].ToString()))
+{
+    <strong>@Session["ProjectDescription"].ToString()</strong>
+}

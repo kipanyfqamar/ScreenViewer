@@ -1,0 +1,74 @@
+﻿@model List<ScreenViewer.Data.KBSearch_Result>
+
+<h3>Knowledgebase Search Results</h3>
+
+
+@if(Model.Count == 0)
+{
+    <span>No results found for the keyword you entered.</span>
+}
+
+@using (Html.BeginForm("KBSearch", "TextHTML", FormMethod.Post))
+{
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        @foreach (ScreenViewer.Data.KBSearch_Result item in @Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading_@item.ScriptTextHTMLID">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_@item.ScriptTextHTMLID" aria-expanded="false" aria-controls="collapse_@item.ScriptTextHTMLID">
+                            @item.TextHTMLDesc
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse_@item.ScriptTextHTMLID" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    @Html.Raw(item.TextHTMLContent)
+                </div>
+            </div>
+        }
+    </div>
+
+  
+@Html.ActionLink("Back To Script", "myForm1", "Workflow", new { cNode = ViewBag.currentnode, wfid = ViewBag.WFID }, new AjaxOptions { HttpMethod = "POST" })
+
+}
+
+@foreach (ScreenViewer.Data.KBSearch_Result item in @Model)
+            {
+    <script>
+                    $("#tooltip_@item.ScriptTextHTMLID").kendoTooltip({
+                        autoHide: true,
+                        content: '@Html.Raw(item.TextHTMLContent)',
+                        position: "right",
+                        width: 800,
+                    });
+    </script>
+}
+
+<style>
+    .k-tooltip {
+        background: white !important;
+        color: black !important;
+        text-align: left;
+    }
+
+    .k-tooltip-content {
+        text-align: left;
+    }
+
+    .k-tooltip-content {
+        text-align: left !important;
+        color: black !important;
+        overflow: hidden;
+    }
+
+    .k-chart div {
+        z-index: 1000;
+    }
+
+    .panel-heading {
+        border: none;
+        box-shadow: none;
+    }
+</style>
+

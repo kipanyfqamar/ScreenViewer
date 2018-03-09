@@ -1,0 +1,241 @@
+﻿
+<style>
+    #KSP_MainDisplay {
+        width: 900px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        /*font-weight: bold;*/
+        vertical-align: middle;
+        margin: 0 auto;
+        padding: 4px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    html, body, div {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    .control {
+        background-color: #FFFFFF;
+    }
+
+    #header {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #footer {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #wrapper {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1225px;
+        position: relative;
+        height: 800px;
+        background-color: #F0F0F0;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #left {
+        float: left;
+        width: 925px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #right {
+        margin-left: 925px;
+        width: 300px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+
+    .k-menu .k-link {
+        color: #434E54;
+        font-size: small;
+        /*color: black;*/
+    }
+
+    k-panelbar {
+        height: 35px;
+    }
+</style>
+<div id="dialog"></div>
+<div id="dialog2"></div>
+<div id="dialog3"></div>
+
+
+@{
+    var x = 1;
+    foreach (var weburl in ViewBag.ExternalPages)
+    {
+        if (x == 1)
+        {
+            <script>
+            $('#dialog').kendoWindow({
+                content: "@weburl",
+                iframe: true
+            });
+            </script>
+        }
+        else if (x == 2)
+        {
+            <script>
+                $('#dialog2').kendoWindow({
+                    content: "@weburl",
+                    iframe: true
+                });
+            </script>
+        }
+        else if (x == 3)
+        {
+            <script>
+                $('#dialog3').kendoWindow({
+                    content: "@weburl",
+                    iframe: true
+                });
+            </script>
+        }
+        x++;
+
+    }
+}
+
+<div id="KSP_MainDisplay">
+</div>
+
+@*@Model ScriptSection*@
+<script>
+    async: false
+    var content;
+
+    @if (ViewBag.Layout != null)
+    {
+        @:$("#KSP_MainDisplay").html("@Html.Raw(ViewBag.Layout)");
+                                }
+
+    @foreach (var vals in Model)
+    {
+        var putwhere = "";
+        if (vals.SectionLayout.OwnerControl == "" || vals.SectionLayout.OwnerControl == null)
+        {
+            putwhere = "KSP_MainDisplay";
+        }
+        else
+        {
+            putwhere = "IMPDIV_" + vals.SectionLayout.OwnerControl;
+        }
+
+        if (vals.SectionLayout.ElementType == "Question")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@vals.QuestionLayout.QuestionLabelText</td></tr><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+                    }
+        else if (vals.SectionLayout.ElementType == "Questionare")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+                }
+        else if (vals.SectionLayout.ElementType == "TextHTML")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.TextHTMLLayout)</div><br />");
+
+        }
+        else if (vals.SectionLayout.ElementType == "Link")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkLayout)</div><br />");
+        }
+        else if (vals.SectionLayout.ElementType == "LinkGroup")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkGroupLayout)</div><br />");
+        }
+        else if (vals.SectionLayout.ElementType == "OrderItem")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderItemLayout)</div><br />");
+                            }
+        else if (vals.SectionLayout.ElementType == "OrderCart")
+       {
+                           @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderCartLayout)</div><br />");
+
+            @*@:$("#KSP_MainDisplay").append($("<div class=\"control\">").load("/OrderCart/Display"));
+                    @:$("#KSP_MainDisplay").append("<br />")*@
+        }
+        else if (vals.SectionLayout.ElementType == "Action")
+        {
+            @:$("#@putwhere").append($("<button type=\"submit\" name=\"action:Action\" value=\"@vals.ActionLayout.actionName\">@vals.ActionLayout.actionDisplay</button>"));
+                   }
+        else
+        {
+            @:$("#@putwhere").append($("<div class=\"control\">").load("/@vals.SectionLayout.ElementType/Display/@vals.SectionLayout.ElementID/@vals.CriticalElement"));
+                                        @:$("#@putwhere").append("<br />")
+                    }
+    }
+    var $div = $('<div/>').css({
+        position: 'absolute',
+        background: 'white',
+        border: '1px solid black',
+        padding: '10px',
+        zIndex: 999,
+        display: 'none'
+    }).appendTo('body');
+</script>
+<input type="hidden" name="SectionLayout" id="SectionLayout" value="@ViewBag.QuestionList" />
+
+

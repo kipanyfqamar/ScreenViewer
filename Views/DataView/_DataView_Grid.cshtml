@@ -1,0 +1,12 @@
+﻿<table id="grid_@ViewBag.OID">
+    @Html.Raw(@ViewBag.Table)
+</table>
+
+<script>
+    $(document).ready(function () {
+        $("#grid_@ViewBag.OID").kendoGrid({
+            sortable: true     
+        });
+    });
+</script>
+       

@@ -1,0 +1,18 @@
+﻿
+@if (ViewBag.Orientation == "H")
+{
+    @(Html.Kendo().Menu()
+        .Name("LinkGroup")
+        .BindTo((IEnumerable<MenuItem>)ViewBag.LinkGroup)
+        .Orientation(MenuOrientation.Horizontal)
+    )
+}
+
+@if (ViewBag.Orientation == "V")
+{
+    @(Html.Kendo().Menu()
+        .Name("LinkGroup")
+        .BindTo((IEnumerable<MenuItem>)ViewBag.LinkGroup)
+        .Orientation(MenuOrientation.Vertical)
+    )
+}

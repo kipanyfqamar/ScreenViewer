@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ScreenViewer.Models.ItemOrdered>
+<div><h2>Order Cart</h2></div>
+<table>
+    <tr>
+        <td>
+            @(Html.Kendo().Grid(Model)
+            .Name("Grid_vv")
+            .Columns(columns =>
+            {
+                columns.Bound(p => p.ItemCode).Title("Item Code").Width(150);
+                columns.Bound(p => p.ItemName).Title("ItemName").Width(200);
+                columns.Bound(p => p.SubCategory).Title("Sub Category").Width(140);
+                columns.Bound(p => p.ItemQuantity).Title("Quantity").Width(75);
+                columns.Bound(p => p.ItemPrice).Title("Price").Width(75).Format("{0:c2}");
+                columns.Bound(p => p.ItemShipping).Title("S&H").Width(75).Format("{0:c2}");
+                columns.Bound(p => p.LineTotal).Title("Line Total").Width(75).Format("{0:c2}");
+
+
+            })
+            .Scrollable()
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .ServerOperation(false)
+                .Model(m => m.Id(p => p.ItemCode))
+             )
+            )
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="margin-right:50px">
+            <table border="1">
+                <tr>
+                    <td width="175px" align="right">Item Total:</td>
+                    <td width="100px" align="right">@String.Format("{0:0.00}", ViewBag.ItemTotal)</td>
+                </tr>
+                <tr>
+                    <td width="175px" align="right">Shipping:</td>
+                    <td width="100px" align="right">@String.Format("{0:0.00}", ViewBag.ShippingTotal)</td>
+                </tr>
+                @if(ViewBag.PriorityDesc != "")
+                { 
+                <tr>
+                    <td width="175px" align="right">@ViewBag.PriorityDesc:</td>
+                    <td width="100px" align="right">@String.Format("{0:0.00}", ViewBag.PriorityAmount)</td>
+                </tr>
+                }
+                <tr>
+                    <td width="175px" align="right">Sales Tax:</td>
+                    <td width="100px" align="right">@String.Format("{0:0.00}", ViewBag.TaxTotal)</td>
+                </tr>
+                <tr>
+                    <td width="175px" align="right">Order Total:</td>
+                    <td width="100px" align="right">@String.Format("{0:0.00}", ViewBag.TotalTotal)</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+

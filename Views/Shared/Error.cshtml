@@ -1,0 +1,51 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Error";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!
+                </h1>
+                <h2>
+                    An error occured while loading the project.
+                </h2>
+                <div class="error-details">
+                    <div>
+                        <p>
+                            <div class="alert alert-danger">
+                                <b>Error Message:</b> @Model.Exception.Message<br />
+                            </div>
+                        </p>
+                        <div class="alert alert-warning">
+                            <b>Controller:</b> @Model.ControllerName<br />
+                            <b>Action:</b> @Model.ActionName
+                            <pre>
+                                @Model.Exception.StackTrace
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="error-actions">
+                    <h3>Please contact your administrator and reload the script.</h3>
+                    <hr />
+
+                    @*@if (ViewBag.URL != null)
+                    {
+                        <a href="@ViewBag.URL">Click here to reload the project</a> 
+                    }
+                    
+                    @if (Session["ReturnURL"] != null && !string.IsNullOrEmpty(Session["ReturnURL"].ToString()))
+                    {
+                        <a href="/Account/LogOut?returnUrl=@Session["ReturnURL"].ToString()">Click here to SignOut.</a>
+                    }*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

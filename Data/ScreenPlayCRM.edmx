@@ -1,0 +1,1136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ScreenPlayCRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="ActivityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActivityAttribute">
+          <Key>
+            <PropertyRef Name="ActivityAttributeId" />
+          </Key>
+          <Property Name="ActivityAttributeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActivityId" Type="int" Nullable="false" />
+          <Property Name="ActivityAttributeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActivityAttributeValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactAttribute">
+          <Key>
+            <PropertyRef Name="ContactAttributeId" />
+          </Key>
+          <Property Name="ContactAttributeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="ContactAttributeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactAttributeValue" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactNavigation">
+          <Key>
+            <PropertyRef Name="ContactNavigationId" />
+          </Key>
+          <Property Name="ContactNavigationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="Section" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="WorkFlow" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactRecord">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientCallId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ANI" Type="varchar" MaxLength="50" />
+          <Property Name="CallStartDateTime" Type="datetime" />
+          <Property Name="CallEndDateTime" Type="datetime" />
+          <Property Name="CallState" Type="varchar" MaxLength="50" />
+          <Property Name="DispositionCode" Type="varchar" MaxLength="100" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" />
+          <Property Name="LeadRecordId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="ContactRecordDetail">
+          <Key>
+            <PropertyRef Name="ContactRecordDetailId" />
+          </Key>
+          <Property Name="ContactRecordDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="QuestionText" Type="varchar" MaxLength="1000" />
+          <Property Name="QuestionResponseText" Type="varchar(max)" />
+          <Property Name="QuestionResponseValue" Type="varchar(max)" />
+          <Property Name="QuestionKeys" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="ContactTask">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="TaskType" Type="varchar" MaxLength="50" />
+          <Property Name="TaskColor" Type="varchar" MaxLength="50" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="End" Type="datetime" />
+          <Property Name="Title" Type="varchar" MaxLength="200" />
+          <Property Name="StartTimezone" Type="varchar" MaxLength="50" />
+          <Property Name="EndTimezone" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="RecurrenceID" Type="int" />
+          <Property Name="RecurrenceRule" Type="varchar" MaxLength="500" />
+          <Property Name="RecurrenceException" Type="varchar" MaxLength="500" />
+          <Property Name="IsAllDay" Type="bit" />
+          <Property Name="LeadId" Type="nvarchar" MaxLength="128" />
+          <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactVariables">
+          <Key>
+            <PropertyRef Name="ContactVariableId" />
+          </Key>
+          <Property Name="ContactVariableId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="VariableName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="VariableValue" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IDRServiceQueue">
+          <Key>
+            <PropertyRef Name="IDRServiceQueueId" />
+          </Key>
+          <Property Name="IDRServiceQueueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="ClientCallId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ServiceQueue" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeadRecord">
+          <Key>
+            <PropertyRef Name="LeadRecordId" />
+          </Key>
+          <Property Name="LeadRecordId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CustomId" Type="nvarchar" MaxLength="128" />
+          <Property Name="LeadOwner" Type="nvarchar" MaxLength="128" />
+          <Property Name="LeadStatus" Type="varchar" MaxLength="100" />
+          <Property Name="LeadSource" Type="varchar" MaxLength="255" />
+          <Property Name="LeadRating" Type="varchar" MaxLength="100" />
+          <Property Name="LeadType" Type="varchar" MaxLength="100" />
+          <Property Name="Company" Type="varchar" MaxLength="255" />
+          <Property Name="Industry" Type="varchar" MaxLength="255" />
+          <Property Name="Title" Type="varchar" MaxLength="128" />
+          <Property Name="FirstName" Type="varchar" MaxLength="40" />
+          <Property Name="LastName" Type="varchar" MaxLength="80" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="40" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="AltEmail" Type="varchar" MaxLength="100" />
+          <Property Name="Address1" Type="varchar" MaxLength="100" />
+          <Property Name="Address2" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="25" />
+          <Property Name="Country" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="25" />
+          <Property Name="Mobile" Type="varchar" MaxLength="25" />
+          <Property Name="Fax" Type="varchar" MaxLength="25" />
+          <Property Name="Gender" Type="varchar" MaxLength="25" />
+          <Property Name="PotRevenue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InterestIn" Type="varchar" MaxLength="255" />
+          <Property Name="DNS" Type="bit" />
+          <Property Name="DNC" Type="bit" />
+          <Property Name="DNM" Type="bit" />
+          <Property Name="TimeZone" Type="varchar" MaxLength="25" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeadRecordAttribute">
+          <Key>
+            <PropertyRef Name="LeadRecordAttributeId" />
+          </Key>
+          <Property Name="LeadRecordAttributeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeadRecordId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LeadAttributeName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LeadAttributeValue" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" />
+          <Property Name="ErrorDate" Type="datetime" Nullable="false" />
+          <Property Name="ErrorShortDescription" Type="varchar" MaxLength="1000" />
+          <Property Name="ExceptionType" Type="varchar" MaxLength="255" />
+          <Property Name="FileName" Type="varchar" MaxLength="1000" />
+          <Property Name="LineNumber" Type="int" />
+          <Property Name="MethodName" Type="varchar" MaxLength="255" />
+          <Property Name="ClassName" Type="varchar" MaxLength="150" />
+          <Property Name="ImpactLevel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApplicationName" Type="varchar" MaxLength="255" />
+          <Property Name="ErrorMessage" Type="varchar" MaxLength="4000" />
+          <Property Name="StackTrace" Type="varchar(max)" />
+          <Property Name="InnerException" Type="varchar" MaxLength="2000" />
+          <Property Name="InnerExceptionMessage" Type="varchar" MaxLength="2000" />
+          <Property Name="IpAddress" Type="varchar" MaxLength="150" />
+          <Property Name="CallDetail" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="ItemCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ItemQuantity" Type="int" Nullable="false" />
+          <Property Name="ItemPrice" Type="money" />
+          <Property Name="ItemShippingPrice" Type="money" />
+          <Property Name="ItemHandlingPrice" Type="money" />
+          <Property Name="ItemKeys" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_Activity_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityAttribute_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="ActivityAttribute" Type="Self.ActivityAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityId" />
+            </Principal>
+            <Dependent Role="ActivityAttribute">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactAttribute_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="ContactAttribute" Type="Self.ContactAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactAttribute">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactNavigation_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="ContactNavigation" Type="Self.ContactNavigation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactNavigation">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactRecordDetail_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="ContactRecordDetail" Type="Self.ContactRecordDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactRecordDetail">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactTask_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="ContactTask" Type="Self.ContactTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactTask">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactVariables_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="ContactVariables" Type="Self.ContactVariables" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactVariables">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDRServiceQueue_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="IDRServiceQueue" Type="Self.IDRServiceQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="IDRServiceQueue">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeadRecordAttribute_LeadRecord">
+          <End Role="LeadRecord" Type="Self.LeadRecord" Multiplicity="1" />
+          <End Role="LeadRecordAttribute" Type="Self.LeadRecordAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeadRecord">
+              <PropertyRef Name="LeadRecordId" />
+            </Principal>
+            <Dependent Role="LeadRecordAttribute">
+              <PropertyRef Name="LeadRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ContactRecord">
+          <End Role="ContactRecord" Type="Self.ContactRecord" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScreenPlayCRMModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivityAttribute" EntityType="Self.ActivityAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactAttribute" EntityType="Self.ContactAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactNavigation" EntityType="Self.ContactNavigation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactRecord" EntityType="Self.ContactRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactRecordDetail" EntityType="Self.ContactRecordDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactTask" EntityType="Self.ContactTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactVariables" EntityType="Self.ContactVariables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IDRServiceQueue" EntityType="Self.IDRServiceQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeadRecord" EntityType="Self.LeadRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeadRecordAttribute" EntityType="Self.LeadRecordAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Activity_ContactRecord" Association="Self.FK_Activity_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityAttribute_Activity" Association="Self.FK_ActivityAttribute_Activity">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="ActivityAttribute" EntitySet="ActivityAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactAttribute_ContactRecord" Association="Self.FK_ContactAttribute_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="ContactAttribute" EntitySet="ContactAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactNavigation_ContactRecord" Association="Self.FK_ContactNavigation_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="ContactNavigation" EntitySet="ContactNavigation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactRecordDetail_ContactRecord" Association="Self.FK_ContactRecordDetail_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="ContactRecordDetail" EntitySet="ContactRecordDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactTask_ContactRecord" Association="Self.FK_ContactTask_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="ContactTask" EntitySet="ContactTask" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactVariables_ContactRecord" Association="Self.FK_ContactVariables_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="ContactVariables" EntitySet="ContactVariables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDRServiceQueue_ContactRecord" Association="Self.FK_IDRServiceQueue_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="IDRServiceQueue" EntitySet="IDRServiceQueue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeadRecordAttribute_LeadRecord" Association="Self.FK_LeadRecordAttribute_LeadRecord">
+            <End Role="LeadRecord" EntitySet="LeadRecord" />
+            <End Role="LeadRecordAttribute" EntitySet="LeadRecordAttribute" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ContactRecord" Association="Self.FK_Orders_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecord" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScreenPlayCRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ScreenPlayCRMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="ScreenPlayCRMModel.Activity" />
+          <EntitySet Name="ActivityAttributes" EntityType="ScreenPlayCRMModel.ActivityAttribute" />
+          <EntitySet Name="ContactAttributes" EntityType="ScreenPlayCRMModel.ContactAttribute" />
+          <EntitySet Name="ContactNavigations" EntityType="ScreenPlayCRMModel.ContactNavigation" />
+          <EntitySet Name="ContactRecords" EntityType="ScreenPlayCRMModel.ContactRecord" />
+          <EntitySet Name="ContactRecordDetails" EntityType="ScreenPlayCRMModel.ContactRecordDetail" />
+          <EntitySet Name="ContactVariables" EntityType="ScreenPlayCRMModel.ContactVariable" />
+          <EntitySet Name="OrderDetails" EntityType="ScreenPlayCRMModel.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="ScreenPlayCRMModel.Order" />
+          <AssociationSet Name="FK_Activity_ContactRecord" Association="ScreenPlayCRMModel.FK_Activity_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActivityAttribute_Activity" Association="ScreenPlayCRMModel.FK_ActivityAttribute_Activity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="ActivityAttribute" EntitySet="ActivityAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactAttribute_ContactRecord" Association="ScreenPlayCRMModel.FK_ContactAttribute_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="ContactAttribute" EntitySet="ContactAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactNavigation_ContactRecord" Association="ScreenPlayCRMModel.FK_ContactNavigation_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="ContactNavigation" EntitySet="ContactNavigations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactRecordDetail_ContactRecord" Association="ScreenPlayCRMModel.FK_ContactRecordDetail_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="ContactRecordDetail" EntitySet="ContactRecordDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContactVariables_ContactRecord" Association="ScreenPlayCRMModel.FK_ContactVariables_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="ContactVariable" EntitySet="ContactVariables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_ContactRecord" Association="ScreenPlayCRMModel.FK_Orders_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="ScreenPlayCRMModel.FK_OrderDetails_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <EntitySet Name="IDRServiceQueues" EntityType="ScreenPlayCRMModel.IDRServiceQueue" />
+          <AssociationSet Name="FK_IDRServiceQueue_ContactRecord" Association="ScreenPlayCRMModel.FK_IDRServiceQueue_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="IDRServiceQueue" EntitySet="IDRServiceQueues" />
+          </AssociationSet>
+          <EntitySet Name="ContactTasks" EntityType="ScreenPlayCRMModel.ContactTask" />
+          <AssociationSet Name="FK_ContactTask_ContactRecord" Association="ScreenPlayCRMModel.FK_ContactTask_ContactRecord">
+            <End Role="ContactRecord" EntitySet="ContactRecords" />
+            <End Role="ContactTask" EntitySet="ContactTasks" />
+          </AssociationSet>
+          <EntitySet Name="Logs" EntityType="ScreenPlayCRMModel.Log" />
+          <EntitySet Name="LeadRecords" EntityType="ScreenPlayCRMModel.LeadRecord" />
+          <EntitySet Name="LeadRecordAttributes" EntityType="ScreenPlayCRMModel.LeadRecordAttribute" />
+          <AssociationSet Name="FK_LeadRecordAttribute_LeadRecord" Association="ScreenPlayCRMModel.FK_LeadRecordAttribute_LeadRecord">
+            <End Role="LeadRecord" EntitySet="LeadRecords" />
+            <End Role="LeadRecordAttribute" EntitySet="LeadRecordAttributes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="ActivityId" />
+          </Key>
+          <Property Name="ActivityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_Activity_ContactRecord" FromRole="Activity" ToRole="ContactRecord" />
+          <NavigationProperty Name="ActivityAttributes" Relationship="ScreenPlayCRMModel.FK_ActivityAttribute_Activity" FromRole="Activity" ToRole="ActivityAttribute" />
+        </EntityType>
+        <EntityType Name="ActivityAttribute">
+          <Key>
+            <PropertyRef Name="ActivityAttributeId" />
+          </Key>
+          <Property Name="ActivityAttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActivityId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityAttributeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityAttributeValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activity" Relationship="ScreenPlayCRMModel.FK_ActivityAttribute_Activity" FromRole="ActivityAttribute" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="ContactAttribute">
+          <Key>
+            <PropertyRef Name="ContactAttributeId" />
+          </Key>
+          <Property Name="ContactAttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="ContactAttributeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactAttributeValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_ContactAttribute_ContactRecord" FromRole="ContactAttribute" ToRole="ContactRecord" />
+        </EntityType>
+        <EntityType Name="ContactNavigation">
+          <Key>
+            <PropertyRef Name="ContactNavigationId" />
+          </Key>
+          <Property Name="ContactNavigationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" Nullable="false" />
+          <Property Name="Section" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WorkFlow" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_ContactNavigation_ContactRecord" FromRole="ContactNavigation" ToRole="ContactRecord" />
+        </EntityType>
+        <EntityType Name="ContactRecord">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientCallId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ANI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CallStartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CallEndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CallState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DispositionCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LeadRecordId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Activities" Relationship="ScreenPlayCRMModel.FK_Activity_ContactRecord" FromRole="ContactRecord" ToRole="Activity" />
+          <NavigationProperty Name="ContactAttributes" Relationship="ScreenPlayCRMModel.FK_ContactAttribute_ContactRecord" FromRole="ContactRecord" ToRole="ContactAttribute" />
+          <NavigationProperty Name="ContactNavigations" Relationship="ScreenPlayCRMModel.FK_ContactNavigation_ContactRecord" FromRole="ContactRecord" ToRole="ContactNavigation" />
+          <NavigationProperty Name="ContactRecordDetails" Relationship="ScreenPlayCRMModel.FK_ContactRecordDetail_ContactRecord" FromRole="ContactRecord" ToRole="ContactRecordDetail" />
+          <NavigationProperty Name="ContactVariables" Relationship="ScreenPlayCRMModel.FK_ContactVariables_ContactRecord" FromRole="ContactRecord" ToRole="ContactVariable" />
+          <NavigationProperty Name="Orders" Relationship="ScreenPlayCRMModel.FK_Orders_ContactRecord" FromRole="ContactRecord" ToRole="Order" />
+          <NavigationProperty Name="IDRServiceQueues" Relationship="ScreenPlayCRMModel.FK_IDRServiceQueue_ContactRecord" FromRole="ContactRecord" ToRole="IDRServiceQueue" />
+          <NavigationProperty Name="ContactTasks" Relationship="ScreenPlayCRMModel.FK_ContactTask_ContactRecord" FromRole="ContactRecord" ToRole="ContactTask" />
+        </EntityType>
+        <EntityType Name="ContactRecordDetail">
+          <Key>
+            <PropertyRef Name="ContactRecordDetailId" />
+          </Key>
+          <Property Name="ContactRecordDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="QuestionText" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionResponseText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionResponseValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuestionKeys" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_ContactRecordDetail_ContactRecord" FromRole="ContactRecordDetail" ToRole="ContactRecord" />
+        </EntityType>
+        <EntityType Name="ContactVariable">
+          <Key>
+            <PropertyRef Name="ContactVariableId" />
+          </Key>
+          <Property Name="ContactVariableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="VariableName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VariableValue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_ContactVariables_ContactRecord" FromRole="ContactVariable" ToRole="ContactRecord" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailsId" />
+          </Key>
+          <Property Name="OrderDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ItemQuantity" Type="Int32" Nullable="false" />
+          <Property Name="ItemPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ItemShippingPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ItemHandlingPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ItemKeys" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order" Relationship="ScreenPlayCRMModel.FK_OrderDetails_Orders" FromRole="OrderDetail" ToRole="Order" />
+          <Property Name="ItemCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_Orders_ContactRecord" FromRole="Order" ToRole="ContactRecord" />
+          <NavigationProperty Name="OrderDetails" Relationship="ScreenPlayCRMModel.FK_OrderDetails_Orders" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <Association Name="FK_Activity_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActivityAttribute_Activity">
+          <End Type="ScreenPlayCRMModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.ActivityAttribute" Role="ActivityAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="ActivityId" />
+            </Principal>
+            <Dependent Role="ActivityAttribute">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactAttribute_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.ContactAttribute" Role="ContactAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactAttribute">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactNavigation_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.ContactNavigation" Role="ContactNavigation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactNavigation">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactRecordDetail_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.ContactRecordDetail" Role="ContactRecordDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactRecordDetail">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContactVariables_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.ContactVariable" Role="ContactVariable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactVariable">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Type="ScreenPlayCRMModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IDRServiceQueue">
+          <Key>
+            <PropertyRef Name="IDRServiceQueueId" />
+          </Key>
+          <Property Name="IDRServiceQueueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="ClientCallId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceQueue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_IDRServiceQueue_ContactRecord" FromRole="IDRServiceQueue" ToRole="ContactRecord" />
+        </EntityType>
+        <Association Name="FK_IDRServiceQueue_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.IDRServiceQueue" Role="IDRServiceQueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="IDRServiceQueue">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ContactTask">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" Nullable="false" />
+          <Property Name="TaskType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaskColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="End" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="StartTimezone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndTimezone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RecurrenceID" Type="Int32" />
+          <Property Name="RecurrenceRule" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RecurrenceException" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsAllDay" Type="Boolean" />
+          <Property Name="LeadId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ContactRecord" Relationship="ScreenPlayCRMModel.FK_ContactTask_ContactRecord" FromRole="ContactTask" ToRole="ContactRecord" />
+        </EntityType>
+        <Association Name="FK_ContactTask_ContactRecord">
+          <End Type="ScreenPlayCRMModel.ContactRecord" Role="ContactRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.ContactTask" Role="ContactTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ContactRecord">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="ContactTask">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactId" Type="Int32" />
+          <Property Name="ErrorDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ErrorShortDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ExceptionType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="LineNumber" Type="Int32" />
+          <Property Name="MethodName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClassName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ImpactLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicationName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InnerException" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="InnerExceptionMessage" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="IpAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CallDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="LeadRecord">
+          <Key>
+            <PropertyRef Name="LeadRecordId" />
+          </Key>
+          <Property Name="LeadRecordId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CustomId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LeadOwner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LeadStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LeadSource" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LeadRating" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LeadType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Industry" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AltEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PotRevenue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InterestIn" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DNS" Type="Boolean" />
+          <Property Name="DNC" Type="Boolean" />
+          <Property Name="DNM" Type="Boolean" />
+          <Property Name="TimeZone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LeadRecordAttributes" Relationship="ScreenPlayCRMModel.FK_LeadRecordAttribute_LeadRecord" FromRole="LeadRecord" ToRole="LeadRecordAttribute" />
+        </EntityType>
+        <EntityType Name="LeadRecordAttribute">
+          <Key>
+            <PropertyRef Name="LeadRecordAttributeId" />
+          </Key>
+          <Property Name="LeadRecordAttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeadRecordId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="LeadAttributeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LeadAttributeValue" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LeadRecord" Relationship="ScreenPlayCRMModel.FK_LeadRecordAttribute_LeadRecord" FromRole="LeadRecordAttribute" ToRole="LeadRecord" />
+        </EntityType>
+        <Association Name="FK_LeadRecordAttribute_LeadRecord">
+          <End Type="ScreenPlayCRMModel.LeadRecord" Role="LeadRecord" Multiplicity="1" />
+          <End Type="ScreenPlayCRMModel.LeadRecordAttribute" Role="LeadRecordAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeadRecord">
+              <PropertyRef Name="LeadRecordId" />
+            </Principal>
+            <Dependent Role="LeadRecordAttribute">
+              <PropertyRef Name="LeadRecordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScreenPlayCRMModelStoreContainer" CdmEntityContainer="ScreenPlayCRMEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivityAttributes">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ActivityAttribute">
+              <MappingFragment StoreEntitySet="ActivityAttribute">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ActivityAttributeValue" ColumnName="ActivityAttributeValue" />
+                <ScalarProperty Name="ActivityAttributeName" ColumnName="ActivityAttributeName" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="ActivityAttributeId" ColumnName="ActivityAttributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactAttributes">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ContactAttribute">
+              <MappingFragment StoreEntitySet="ContactAttribute">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ContactAttributeValue" ColumnName="ContactAttributeValue" />
+                <ScalarProperty Name="ContactAttributeName" ColumnName="ContactAttributeName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="ContactAttributeId" ColumnName="ContactAttributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactNavigations">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ContactNavigation">
+              <MappingFragment StoreEntitySet="ContactNavigation">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="WorkFlow" ColumnName="WorkFlow" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="ContactNavigationId" ColumnName="ContactNavigationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactRecords">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ContactRecord">
+              <MappingFragment StoreEntitySet="ContactRecord">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="LeadRecordId" ColumnName="LeadRecordId" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="DispositionCode" ColumnName="DispositionCode" />
+                <ScalarProperty Name="CallState" ColumnName="CallState" />
+                <ScalarProperty Name="CallEndDateTime" ColumnName="CallEndDateTime" />
+                <ScalarProperty Name="CallStartDateTime" ColumnName="CallStartDateTime" />
+                <ScalarProperty Name="ANI" ColumnName="ANI" />
+                <ScalarProperty Name="ClientCallId" ColumnName="ClientCallId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactRecordDetails">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ContactRecordDetail">
+              <MappingFragment StoreEntitySet="ContactRecordDetail">
+                <ScalarProperty Name="QuestionKeys" ColumnName="QuestionKeys" />
+                <ScalarProperty Name="QuestionResponseValue" ColumnName="QuestionResponseValue" />
+                <ScalarProperty Name="QuestionResponseText" ColumnName="QuestionResponseText" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="ContactRecordDetailId" ColumnName="ContactRecordDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactVariables">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ContactVariable">
+              <MappingFragment StoreEntitySet="ContactVariables">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="VariableValue" ColumnName="VariableValue" />
+                <ScalarProperty Name="VariableName" ColumnName="VariableName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="ContactVariableId" ColumnName="ContactVariableId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemKeys" ColumnName="ItemKeys" />
+                <ScalarProperty Name="ItemHandlingPrice" ColumnName="ItemHandlingPrice" />
+                <ScalarProperty Name="ItemShippingPrice" ColumnName="ItemShippingPrice" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="ItemQuantity" ColumnName="ItemQuantity" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailsId" ColumnName="OrderDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IDRServiceQueues">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.IDRServiceQueue">
+              <MappingFragment StoreEntitySet="IDRServiceQueue">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ServiceQueue" ColumnName="ServiceQueue" />
+                <ScalarProperty Name="ClientCallId" ColumnName="ClientCallId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="IDRServiceQueueId" ColumnName="IDRServiceQueueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactTasks">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.ContactTask">
+              <MappingFragment StoreEntitySet="ContactTask">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LeadId" ColumnName="LeadId" />
+                <ScalarProperty Name="IsAllDay" ColumnName="IsAllDay" />
+                <ScalarProperty Name="RecurrenceException" ColumnName="RecurrenceException" />
+                <ScalarProperty Name="RecurrenceRule" ColumnName="RecurrenceRule" />
+                <ScalarProperty Name="RecurrenceID" ColumnName="RecurrenceID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EndTimezone" ColumnName="EndTimezone" />
+                <ScalarProperty Name="StartTimezone" ColumnName="StartTimezone" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="End" ColumnName="End" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="TaskColor" ColumnName="TaskColor" />
+                <ScalarProperty Name="TaskType" ColumnName="TaskType" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CallDetail" ColumnName="CallDetail" />
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="InnerExceptionMessage" ColumnName="InnerExceptionMessage" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="ImpactLevel" ColumnName="ImpactLevel" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+                <ScalarProperty Name="ErrorShortDescription" ColumnName="ErrorShortDescription" />
+                <ScalarProperty Name="ErrorDate" ColumnName="ErrorDate" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeadRecords">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.LeadRecord">
+              <MappingFragment StoreEntitySet="LeadRecord">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="DNM" ColumnName="DNM" />
+                <ScalarProperty Name="DNC" ColumnName="DNC" />
+                <ScalarProperty Name="DNS" ColumnName="DNS" />
+                <ScalarProperty Name="InterestIn" ColumnName="InterestIn" />
+                <ScalarProperty Name="PotRevenue" ColumnName="PotRevenue" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="AltEmail" ColumnName="AltEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="LeadType" ColumnName="LeadType" />
+                <ScalarProperty Name="LeadRating" ColumnName="LeadRating" />
+                <ScalarProperty Name="LeadSource" ColumnName="LeadSource" />
+                <ScalarProperty Name="LeadStatus" ColumnName="LeadStatus" />
+                <ScalarProperty Name="LeadOwner" ColumnName="LeadOwner" />
+                <ScalarProperty Name="CustomId" ColumnName="CustomId" />
+                <ScalarProperty Name="LeadRecordId" ColumnName="LeadRecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeadRecordAttributes">
+            <EntityTypeMapping TypeName="ScreenPlayCRMModel.LeadRecordAttribute">
+              <MappingFragment StoreEntitySet="LeadRecordAttribute">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LeadAttributeValue" ColumnName="LeadAttributeValue" />
+                <ScalarProperty Name="LeadAttributeName" ColumnName="LeadAttributeName" />
+                <ScalarProperty Name="LeadRecordId" ColumnName="LeadRecordId" />
+                <ScalarProperty Name="LeadRecordAttributeId" ColumnName="LeadRecordAttributeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

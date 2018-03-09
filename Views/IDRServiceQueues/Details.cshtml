@@ -1,0 +1,82 @@
+﻿@model ScreenViewer.Data.IDRServiceQueue
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>IDRServiceQueue</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientCallId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ClientCallId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ServiceQueue)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ServiceQueue)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CreatedDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ModifiedDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ClientId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ContactRecord.ClientCallId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ContactRecord.ClientCallId)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.IDRServiceQueueId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

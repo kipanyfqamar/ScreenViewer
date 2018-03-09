@@ -1,0 +1,29 @@
+﻿
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "myForm" }))
+{
+    <div id="Workflow_Sections">
+        @Html.Action("DisplayByUniqueName", "Section", new { id = ViewBag.NextNode.nodeName })
+        <input type="hidden" name="hdnSectionName" value="@ViewBag.NextNode.nodeName" />
+        <input type="hidden" name="hdnWorkflowId" value="@ViewBag.WorkflowId" />
+        <input type="hidden" name="hdnCurrentNodeId" value="@ViewBag.NextNode.NodeUniqueID" />
+        <input type="hidden" name="hdnExternalPages" value="@ViewBag.ExternalPages" />
+        <input type="hidden" name="hdnSiteURL" value="@if (Session["ScriptURL"] != null) { @Session["ScriptURL"].ToString(); }" />
+    </div>
+    <div id="Workflow_Button">
+        <table>
+            <tr>
+                <td>
+                    @if (ViewBag.IsPreviousButton)
+                    {
+                        <input type="submit" class="btn" name="action:Previous" value="Previous" formnovalidate />
+                    }
+                    @if (ViewBag.IsNextButton)
+                    {
+                        <input type="submit" class="btn" name="action:Next" value="Next" onclick="return SetListBoxText();" />
+                    }
+                    <input id="btnReload" type="submit" name="action:Current" value="Current" style="display:none" formnovalidate />
+                </td>
+            </tr>
+        </table>
+    </div>
+}

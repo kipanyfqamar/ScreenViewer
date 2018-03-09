@@ -1,0 +1,208 @@
+﻿
+<script id="customEditorTemplate" type="text/x-kendo-template">
+    <div class="k-edit-label"><label for="title">Title</label></div>
+    <div data-container-for="title" class="k-edit-field">
+        <input type="text" class="k-input k-textbox" name="title" required="required" data-bind="value:title">
+    </div>
+
+    @if (ViewBag.ShowStartDate)
+    {
+        <div class="k-edit-label">
+            <label for="start">Start</label>
+        </div>
+        <div data-container-for="start" class="k-edit-field">
+            <input type="text"
+                   data-role="datetimepicker"
+                   data-interval="15"
+                   data-type="date"
+                   data-bind="value:start,invisible:isAllDay"
+                   name="start" />
+            <input type="text" data-type="date" data-role="datepicker" data-bind="value:start,visible:isAllDay" name="start" />
+            <span data-bind="text: startTimezone"></span>
+            <span data-for="start" class="k-invalid-msg" style="display: none;"></span>
+        </div>
+    }
+
+    @if (ViewBag.ShowEndDate)
+    {
+        <div class="k-edit-label"><label for="end">End</label></div>
+        <div data-container-for="end" class="k-edit-field">
+            <input type="text" data-type="date" data-role="datetimepicker" data-bind="value:end,invisible:isAllDay" name="end" data-datecompare-msg="End date should be greater than or equal to the start date" />
+            <input type="text" data-type="date" data-role="datepicker" data-bind="value:end,visible:isAllDay" name="end" data-datecompare-msg="End date should be greater than or equal to the start date" />
+            <span data-bind="text: endTimezone"></span>
+            <span data-bind="text: startTimezone, invisible: endTimezone"></span>
+            <span data-for="end" class="k-invalid-msg" style="display: none;"></span>
+        </div>
+    }
+
+    @if (ViewBag.ShowAllDay)
+    {
+        <div class="k-edit-label"><label for="isAllDay">All day event</label></div>
+        <div data-container-for="isAllDay" class="k-edit-field">
+            <input type="checkbox" name="isAllDay" data-type="boolean" data-bind="checked:isAllDay">
+        </div>
+    }
+
+    @if (ViewBag.ShowRepeatRule)
+    {
+        <div class="k-edit-label"><label for="recurrenceRule">Repeat</label></div>
+        <div data-container-for="recurrenceRule" class="k-edit-field">
+            <div data-bind="value:recurrenceRule" name="recurrenceRule" data-role="recurrenceeditor"></div>
+        </div>
+    }
+    <div class="k-edit-label"><label for="description">Description</label></div>
+    <div data-container-for="description" class="k-edit-field">
+        <textarea name="description" class="k-textbox" data-bind="value:description"></textarea>
+    </div>
+    <div class="k-edit-label"><label for="User">User</label></div>
+    <div data-container-for="UserID" class="k-edit-field">
+        <select id="UserID" data-bind="value:UserID" data-role="dropdownlist" data-value-field="UserValue" data-text-field="UserName" required="required">
+        </select>
+    </div>
+    <div data-container-for="LeadID" class="k-edit-field">
+        <input type="hidden" class="k-input k-textbox" id="LeadID" name="LeadID" data-bind="value:LeadID">
+    </div>
+    <div data-container-for="ClientID" class="k-edit-field">
+        <input type="hidden" class="k-input k-textbox" id="ClientID" name="ClientID" data-bind="value:ClientID">
+    </div>
+</script>
+
+<script id="event-template" type="text/x-kendo-template">
+    <div>Title: #: title #</div>
+    <div>
+        <span class="k-scheduler-mark" style="background-color:#=resources[0].color#"></span>
+        # for (var i = 0; i < resources.length; i++) { #
+        #: resources[i].text #
+        # } #
+    </div>
+    <br />
+    <button class="edit-event" data-uid="#=uid#">View</button>
+</script>
+
+@(Html.Kendo().Scheduler<ScreenViewer.Models.ContactTaskViewModel>()
+    .Name("scheduler")
+    .Date(DateTime.Today)
+    .WorkDayStart((DateTime)(ViewBag.WorkDayStart))
+    .WorkDayEnd((DateTime)(ViewBag.WorkDayEnd))
+    .Editable(editable =>
+    {
+        editable.TemplateId("customEditorTemplate");
+    })
+    .Events(e =>
+    {
+        e.Edit("scheduler_edit");
+        e.Add("scheduler_add");
+    })
+    .Views(views =>
+    {
+        views.DayView(dayView => dayView.Selected(ViewBag.DayView));
+        views.WorkWeekView(workWeekView => workWeekView.Selected(ViewBag.WorkWeekView)).ShowWorkHours();
+        views.WeekView(weekView => weekView.Selected(ViewBag.WeekView));
+        views.MonthView(monthView => monthView.Selected(ViewBag.MonthView));
+        views.AgendaView(agendaView => { agendaView.EventTemplateId("event-template"); agendaView.Selected(ViewBag.AgendaView); });
+    })
+    .Timezone((string)ViewBag.Timezone)
+    .Resources(resource =>
+    {
+        resource.Add(m => m.TaskType)
+             .DataTextField("TaskName")
+             .DataValueField("TaskValue")
+             .DataColorField("TaskColor")
+             .DataSource(ds => ds.Read("GetTaskType", "Task"));
+
+        resource.Add(m => m.UserID)
+           .DataTextField("UserName")
+           .DataValueField("UserValue")
+           .DataColorField("UserColor")
+           .DataSource(ds => ds.Read("GetUsers", "Task"))
+           .Multiple(ViewBag.IsMultiUserTask);
+
+    })
+    .DataSource(d => d
+        .Model(m =>
+        {
+            m.Id(f => f.TaskID);
+            m.Field(f => f.Title).DefaultValue("Virtual Tours For " + ViewBag.LeadName);
+            m.Field(f => f.Description).DefaultValue("No title");
+            m.Field(f => f.LeadID);
+            m.Field(f => f.TaskType);
+            m.RecurrenceId(f => f.RecurrenceID);
+        })
+        .Events(events => events.Error("onError"))
+        .ServerOperation(true)
+        .Read(read => read.Action("Read", "Task").Data("getAdditionalData"))
+        .Create("Create", "Task")
+        .Destroy("Destroy", "Task")
+        .Update("Update", "Task")
+    )
+.Editable(z => { z.Destroy(ViewBag.DeleteEnabled); })
+)
+
+<script>
+
+    function scheduler_edit(e) {
+
+         @if (ViewBag.AddCustomButton)
+         {
+                @:if (!e.event.isNew()) {
+                @:$(".k-edit-buttons.k-state-default").prepend('<a class="k-button" id="editasnew">@ViewBag.CustomButtonText</a>');
+                @:    addClickEvent();
+                @:}
+         }
+
+         var UserID = e.container.find("#UserID").data("kendoDropDownList");
+         UserID.dataSource.data(e.sender.resources[1].dataSource.data());
+
+        @if (!ViewBag.UpdateEnabled)
+        {
+            @:$(".k-scheduler-update").hide();
+        }
+    }
+
+    function addClickEvent() {
+        $('#editasnew').click(function () {
+            var userId = $("#UserID").val();
+            var leadId = $("#LeadID").val();
+            var clientId = $("#ClientID").val();
+            var url = '@ViewBag.CustomButtonURL';
+            url = url.replace('{DOMAIN}', '@System.Web.HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)');
+            url = url.replace('{USERID}', userId);
+            url = url.replace('{LEADID}', leadId);
+            url = url.replace('{CLIENTID}', clientId);
+            window.location.href = url;
+        });
+    }
+
+    function scheduler_add(e) {
+
+        var today = new Date();
+        if (e.event.start < today) {
+            setTimeout(function () {
+                alert("Cannot add the event in past date.");
+            }, 0);
+            e.preventDefault();
+        }
+    }
+
+
+    function onError(args) {
+        if (args.errors) {
+
+            var scheduler = $("#scheduler").data("kendoScheduler");
+
+            for (var error in args.errors) {
+                alert(args.errors[error].errors);
+            }
+
+            scheduler.dataSource.cancelChanges();
+        }
+    }
+
+</script>
+
+<script src="/Scripts/jquery-2.0.3.js"></script>
+<script src="/Scripts/kendo/kendo.all.min.js"></script>
+<script src="/Scripts/kendo/kendo.datepicker.min.js"></script>
+<script src="/Scripts/kendo/kendo.aspnetmvc.min.js"></script>
+
+

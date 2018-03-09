@@ -1,0 +1,21 @@
+﻿<h3><u>@ViewBag.Title</u></h3>
+
+<table style="@ViewBag.Tablestyle">
+    <tbody>
+            @foreach (var vals in ViewBag.QuestionLayout)
+             {
+                <tr>
+                    <td align="right">
+                        @vals.QuestionLabelText
+                    </td>
+                    <td>
+                        @Html.Raw(vals.QuestionHTML)
+                    </td>
+                </tr>
+
+
+             }
+     </tbody>
+
+</table>
+<input type="hidden" name="SectionLayout_@ViewBag.QID" id="SectionLayout_@ViewBag.QID" value="@ViewBag.QuestionList" />

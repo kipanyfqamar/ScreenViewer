@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/jquery-2.0.3.js"></script>
+
+</head>
+<body>
+
+    <style>
+        .nopad {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .row-eq-height {
+            display: flex;
+        }
+
+            .row-eq-height [class*="col-"] {
+                padding: 0;
+            }
+
+            .row-eq-height img {
+                width: 100%;
+            }
+
+        .col-md-4 {
+            padding-left: 0px !important;
+            background-color: transparent;
+            border: none;
+            min-height: 20px !important;
+        }
+
+        #Contentx {
+            overflow: auto !important;
+        }
+
+        .fill {
+            min-height: 100%;
+            height: 100%;
+        }
+    </style>
+    <div class="container" style="width:100%">
+        <div class="row row-eq-height" style="padding:0px">
+
+
+
+
+            <div class="col-lg-8" id="theFrame">
+
+            </div>
+
+            <div class="col-lg-4" id="Content" style="background-color:aqua;margin-left:3px;margin-right:3px;overflow-y:auto;padding-left:5px">
+
+                <div class="row" id="header" style="height:25px">
+
+                    <img class="img-responsive" src="/images/_0003_Vector-Smart-Object.png" />
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $("#theFrame").html('<object data="http://builder.screenplaycloud.com">');
+    });
+</script>
+

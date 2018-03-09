@@ -1,0 +1,115 @@
+﻿
+<div id="dialog">@ViewBag.Section</div>
+<div id="dialog2"></div>
+<div id="dialog3"></div>
+
+<div id="KSP_Container" class="container">
+
+</div>
+
+@*@Model ScriptSection*@
+<script>
+    async: false
+    var content;
+    @functions{string putcontainer = "KSP_Container";};
+    @functions{Int32 dropcount=0;};
+    @foreach (var vals in Model)
+    {
+
+        if (vals.SectionLayout.ElementType == "StartContainer")
+        {
+                    @:$("#KSP_Container").append("<div id=\"KSP_Row_@vals.SectionLayout.Sequence.ToString()\"  class=\"row\"></div>");
+
+            putcontainer = "KSP_Row_" + vals.SectionLayout.Sequence.ToString();
+            dropcount = 0;
+        }
+        else if (vals.SectionLayout.ElementType == "EndContainer")
+        {
+            putcontainer = "KSP_Container";
+            dropcount = 0;
+        }
+        else
+        {
+            if (putcontainer == "KSP_Container")
+            {
+                  @:$("#KSP_Container").append("<div id=\"KSP_Row_@vals.SectionLayout.Sequence.ToString()\"  class=\"row\"></div>");
+                              string newputcontainer = "KSP_Row_" + vals.SectionLayout.Sequence.ToString();
+                      @:$("#@newputcontainer").append("<div  id=\"KSP_Col_@vals.SectionLayout.Sequence.ToString()\" class=\"col-md-@vals.SectionLayout.ContainerWidth\"></div>");
+                             dropcount++;
+
+            }
+            else
+            {
+             @:$("#@putcontainer").append("<div  id=\"KSP_Col_@vals.SectionLayout.Sequence.ToString()\" class=\"col-md-@vals.SectionLayout.ContainerWidth\"></div>");
+                                 dropcount++;
+            }
+        }
+
+    }
+
+    @foreach (var vals in Model)
+    {
+        var putwhere = "";
+
+        putwhere = "KSP_Col_" + vals.SectionLayout.Sequence.ToString();
+
+        //putwhere = "KSP_Test";
+
+
+        if (vals.SectionLayout.ElementType == "Question")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@vals.QuestionLayout.QuestionLabelText</td></tr><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+                                                        }
+        else if (vals.SectionLayout.ElementType == "Questionare")
+        {
+            @:$("#@putwhere").append("<div class=\"control\"><table><tr><td>@Html.Raw(vals.QuestionLayout.QuestionHTML)</td></tr></table></div><br />");
+                                                    }
+        else if (vals.SectionLayout.ElementType == "TextHTML" || vals.SectionLayout.ElementType == "Html")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.TextHTMLLayout)</div><br />");
+
+        }
+        else if (vals.SectionLayout.ElementType == "Link")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkLayout)</div><br />");
+                                            }
+        else if (vals.SectionLayout.ElementType == "LinkGroup")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.LinkGroupLayout)</div><br />");
+                                            }
+        else if (vals.SectionLayout.ElementType == "Task")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.TaskLayout)</div><br />");
+                                        }
+        else if (vals.SectionLayout.ElementType == "ItemSelector")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderItemLayout)</div><br />");
+                                        }
+        else if (vals.SectionLayout.ElementType == "OrderCart")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.OrderCartLayout)</div><br />");
+                                        }
+        else if (vals.SectionLayout.ElementType == "DataView")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.DataViewLayout)</div><br />");
+                                        }
+        else if (vals.SectionLayout.ElementType == "Image")
+        {
+               @:$("#@putwhere").append("<div>@Html.Raw(vals.ImageLayout)</div><br />");
+                                        }
+        else if (vals.SectionLayout.ElementType == "Action" && vals.ActionLayout.actionName.ToString().StartsWith("CLICKABLE"))
+        {
+            @:$("#@putwhere").append($("<div id=\"hdnAction\"><button onclick=\"getElementById('hdnAction').style.display = 'block'; this.style.display = 'none'\" type=\"submit\" name=\"ButtonType\" class=\"btn-primary\" value=\"@string.Format("Action_{0}::{1}", vals.ActionLayout.actionId, vals.ActionLayout.actionName)\" formnovalidate >@vals.ActionLayout.actionDisplay</button></div><br />"));
+            //@:$("#@putwhere").append($("<table><tr><td><div id=\"hdnLoad\" style=\"display: none;\"><img src=\"/images/ajax-loader.gif\"></div></td><td><div id=\"hdnAction\"><button onclick=\"PostTMCHangUp('@vals.ActionLayout.AgentId','@vals.ActionLayout.LeadId');return false\" name=\"ButtonType\" class=\"btn-primary\" formnovalidate >@vals.ActionLayout.actionDisplay</button></div></td></tr></table><br />"));
+                                        }
+        else
+        {
+            @:$("#@putwhere").append($("<div class=\"control\">").load("/@vals.SectionLayout.ElementType/Display/@vals.SectionLayout.ElementID/@vals.CriticalElement"));
+                                                                            @:$("#@putwhere").append("<br />")
+                                                        }
+    }
+
+</script>
+<input type="hidden" name="SectionLayout" id="SectionLayout" value="@ViewBag.QuestionList" />
+
+

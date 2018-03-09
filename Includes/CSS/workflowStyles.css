@@ -1,0 +1,191 @@
+﻿ #KSP_MainDisplay {
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        vertical-align: middle;
+        margin: 0 auto;
+        padding: 4px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #Workflow {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    html, body, div {
+        margin: 0;
+    }
+
+   #Workflow_Header {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Footer {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Content {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1225px;
+        position: relative;
+        height: 800px;
+        background-color: #F0F0F0;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Sections {
+        float: left;
+        width: 1225px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #Workflow_Panel {
+        /*margin-left: 925px;*/
+        /*width: 300px;*/
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    #Workflow_Button {
+        width: 1225px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    #Workflow_Menu {
+        width: 600px;
+    }
+
+    .btn {
+        background-color: #286090;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        background-position: 95px 10px;
+        color: #FFFFFF !important;
+        padding: 10px 20px;
+        border: 0px;
+        line-height: 1.33;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-image: none;
+            background-color: #3989e3;
+        }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    .control {
+        /*background-color: #FFFFFF;*/
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+
+    .k-menu .k-link {
+        color: #434E54;
+        font-size: small;
+    }
+
+    k-panelbar {
+        height: 35px;
+    }
+
+    #progress {
+            /*background-color: #F0F0F0;*/
+            left: 50%;
+            top: 40%;
+            width: 240px;
+            height: 60px;
+            margin-top: -30px; /* make this half your image/element height */
+            margin-left: -120px; /* make this half your image/element width */
+            position: absolute;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+            color: #838383;
+            font-weight: bold;
+            line-height: 60px;
+            z-index: 100002 !important;
+        }
+
+    #pollSlider-button {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        right: 350px;
+        /*background: green;*/
+        /*top: 300px;*/
+    }
+
+    .k-panelbar{
+    /*position:fixed;*/
+    height:100%;
+    /*background:red;*/
+    width:285px !important;
+    right: -80px;
+    margin-right: -200px;
+
+    position: absolute;
+    bottom: 0;
+}

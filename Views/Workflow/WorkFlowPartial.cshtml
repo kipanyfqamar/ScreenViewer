@@ -1,0 +1,188 @@
+﻿
+<div id="left">
+    @Html.Action("DisplayByUniqueName", "Section", new { id = ViewBag.NextNode.nodeName })
+    <input type="hidden" name="hdnSectionName" value="@ViewBag.NextNode.nodeName" />
+    <input type="hidden" name="hdnWorkflowId" value="@ViewBag.WorkflowId" />
+    <input type="hidden" name="hdnCurrentNodeId" value="@ViewBag.NextNode.NodeUniqueID" />
+    <input type="hidden" name="hdnExternalPages" value="@ViewBag.ExternalPages" />
+    <input type="hidden" name="hdnSiteURL" value="@if (Session["ScriptURL"] != null) { @Session["ScriptURL"].ToString(); }" />
+</div>
+
+<div id="right">
+    <table>
+        @if (Session["Disposition"] != null)
+        {
+            @:
+            <tr>
+                <td>
+                    @(Html.Kendo().Menu()
+                            .Name("DispositionMenu")
+                            .BindTo("Disposition", (item, siteMapNode) => { })
+                            .Orientation(MenuOrientation.Horizontal)
+                            .Direction(MenuDirection.Bottom)
+                    )
+                </td>
+            </tr>
+            <tr><td><hr /></td></tr>
+        }
+        <tr>
+            <td>
+                @(Html.Kendo().PanelBar()
+                    .Name("panelbar")
+                    .ExpandMode(PanelBarExpandMode.Multiple)
+                    .HtmlAttributes(new { style = "width:290px" })
+                    .Items(panelbar =>
+                    {
+                        panelbar.Add().Text("Notifications")
+                            .Expanded(true)
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("Notification") : false)
+                            .Content(@<div style="padding: 5px;">
+                                <div>
+                                </div>
+                            </div>);
+                        panelbar.Add().Text("Current Workflow")
+                            .Expanded(true)
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("Workflow") : false)
+                            .Content(@<div style="padding: 0px;">
+                                <p class="labelText" style="text-indent:20px">@ViewBag.WorkflowName</p>
+                            </div>);
+                        panelbar.Add().Text("Current Section")
+                            .Expanded(true)
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("Section") : false)
+                            .Content(@<div style="padding: 0px;">
+                                <p class="labelText" style="text-indent:20px">@ViewBag.NextNode.nodeName</p>
+                            </div>);
+                        panelbar.Add().Text("Call Notes")
+                            .Expanded(true)
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("CallNotes") : false)
+                            .Content(@<div style="padding: 5px;">
+                                <div>
+                                    <p>
+                                        <textarea id="SP_Notes" rows="15" name="SP_Notes" cols="32">@ViewBag.CallNotes</textarea>
+                                    </p>
+                                </div>
+                            </div>);
+                        panelbar.Add().Text("Language")
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("ShowLanguage") : false)
+                            .Content(@<div style="padding: 10px;">
+                                <div><br /><input type="submit" name="action:SwitchLanguage" value="Switch Language" formnovalidate /></div>
+                            </div>);
+                        panelbar.Add().Text("Lead Information")
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("LeadInformation") : false)
+                            .LoadContentFrom("/LeadInfo/Index");
+
+                        panelbar.Add().Text("Schedule Callback")
+                            .Expanded(TempData["Expand"] != null ? (bool)TempData["Expand"] : false)
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("ScheduleCallback") : false)
+                            .Content(@<div style="padding: 5px;">
+                                <div>
+                                    <p><b>Callback Date and Time:</b></p>
+                                    <p>
+                                        @(Html.Kendo().DateTimePicker()
+                                                .Name("datetimepicker")
+                                                .Value(DateTime.Now)
+                                                .Min(DateTime.Today)
+                                        )
+                                    </p>
+                                    <p><input type="submit" name="action:Callback" value="Schedule Callback" formnovalidate /></p>
+                                    <p class="labelText" style="text-indent:5px">@ViewBag.Callback</p>
+                                </div>
+                            </div>);
+
+                        panelbar.Add().Text("Call History")
+                            .Visible(Session["ProgramParametes"] != null ? ((Dictionary<string, string>)Session["ProgramParametes"]).ContainsKey("CallHistory") : false)
+                            .LoadContentFrom("/CallHistory/Index");
+
+                        panelbar.Add().Text("")
+                            .Expanded(true)
+                            .Content(@<div style="padding: 5px;">
+                                <div>
+                                    ContactID : @if (Session["ContactId"] != null)
+                                    { @Session["ContactId"].ToString();
+                                    }
+                                </div>
+                            </div>);
+                    }))
+            </td>
+        </tr>
+
+        @*<tr><td><hr /></td></tr>*@
+        @*<tr>
+                <td>
+                    <input type="submit" id="btnSave" name="action:Save" value="Save Response" onclick="return SetListBoxText();" />
+                </td>
+            </tr>*@
+        <tr><td><p style="color: red; font-weight: bold">@ViewBag.SavedMessage</p><hr /></td></tr>
+        <tr>
+            <td>
+                @if (ViewBag.IsPreviousButton)
+                {
+                    <input type="submit" name="action:Previous" value="Previous" formnovalidate />
+                }
+                @if (ViewBag.IsNextButton)
+                {
+                    <input type="submit" name="action:Next" value="Next" onclick="return SetListBoxText();" />
+                }
+
+                <p id="msg"></p>
+
+                <input id="btnReload" type="submit" name="action:Current" value="Current" style="display:none" formnovalidate />
+            </td>
+        </tr>
+        @*<tr><td><hr /></td></tr>*@
+    </table>
+</div>
+
+
+<style type="text/css">
+    .submit {
+        padding: 8px;
+        border: 1px solid grey;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#wrapper").css("height", $(document).height() - 85 + "px");
+
+        $("form").change(function (e) {
+            var controlName = $(e.target).attr('name');
+
+            if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPQuestion") > -1)
+                ReloadSection();
+            else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemquant") > -1)
+                ReloadSection();
+            else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemcheck") > -1)
+                ReloadSection();
+        });
+    });
+
+    $('form').submit(function () {
+        $("input[name*='action:Next']").hide();
+        $("input[name*='action:Previous']").hide();
+        $('#msg').text("Please wait.....").addClass('submit');
+    });
+
+    function ReloadSection() {
+        $('#myForm #btnReload').click();
+    }
+
+    function SetListBoxText() {
+        $("[id$='_ddl']").each(function () {
+            var dropdown = this.id.replace("_ddl", "");
+            $('#' + this.id).val($('#' + dropdown).find('option:selected').text());
+        });
+
+        var selectedText = ''
+        $("[id$='_mddl']").each(function () {
+            var dropdown = this.id.replace("_mddl", "");
+            $('#' + dropdown + '_taglist li').each(function () {
+                selectedText += $(this).find('span').first().html() + ',';
+            })
+            $('#' + this.id).val(selectedText);
+        });
+
+        return true;
+    }
+</script>
+

@@ -1,0 +1,133 @@
+﻿
+<style>
+    #KSP_MainDisplay {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        vertical-align: middle;
+        margin: 0 auto;
+        padding: 4px;
+    }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    html, body, div {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    .control {
+        background-color: #FFFFFF;
+    }
+
+    #header {
+        background-color: #C3D1DF;
+        width: 1200px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+    }
+
+    #footer {
+        background-color: #C3D1DF;
+        width: 1200px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+    }
+
+    #wrapper {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1200px;
+        position: relative;
+        height: 800px;
+        background-color: #F0F0F0;
+    }
+
+    #left {
+        float: left;
+        width: 900px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #right {
+        margin-left: 900px;
+        width: 300px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+</style>
+
+
+
+<div id="wrapper">
+
+    <div id="left">
+        <div id="KSP_MainDisplay">
+            <h2>@ViewBag.RenderedSection</h2>
+            <hr />
+            Sorry, this project does not contain any active Workflow.
+        </div>
+    </div>
+
+    <div id="right">
+        <table>
+            <tr><td class="label"></td></tr>
+        </table>
+    </div>
+
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#wrapper").css("height", $(document).height() - 85 + "px");
+    });
+</script> 
+

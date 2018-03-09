@@ -1,0 +1,560 @@
+﻿
+@model ScreenViewer.Models.WorkflowDisplay
+
+<style>
+    #KSP_MainDisplay {
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        vertical-align: middle;
+        margin: 0 auto;
+        padding: 4px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #Workflow {
+        margin: 0;
+        border: 0 none;
+        padding: 0;
+    }
+
+    html, body, div {
+        margin: 0;
+    }
+
+    #Workflow_Header {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Footer {
+        background-color: #C3D1DF;
+        width: 1225px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        color: #434E54;
+        text-align: center;
+        height: 35px;
+        line-height: 35px;
+        vertical-align: middle;
+        margin: 0 auto;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Content {
+        margin: 0 auto;
+        overflow: hidden;
+        width: 1225px;
+        position: relative;
+        height: 800px;
+        background-color: #F0F0F0;
+        box-shadow: 5px 0px 5px #888888;
+    }
+
+    #Workflow_Sections {
+        float: left;
+        width: 1225px;
+        overflow: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+    }
+
+    #Workflow_Panel {
+        /*margin-left: 925px;*/
+        /*width: 300px;*/
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    #Workflow_Button {
+        width: 1225px;
+        overflow: auto;
+        text-indent: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        max-height: 100%;
+        background-color: #E2E2E2;
+    }
+
+    #Menu {
+        margin: 0 auto;
+    }
+
+    .bttn {
+        background-color: #286090;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        background-position: 95px 10px;
+        color: #FFFFFF !important;
+        padding: 10px 20px;
+        border: 0px;
+        line-height: 1.33;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .bttn:hover {
+            background-image: none;
+            background-color: #3989e3;
+        }
+
+    .Question {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+    }
+
+    hr {
+        border-color: #526068;
+        border-width: 1px;
+    }
+
+    .control {
+        /*background-color: #FFFFFF;*/
+    }
+
+    .label {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: bold;
+        color: #526068;
+    }
+
+    .labelText {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: small;
+        font-weight: normal;
+        color: red;
+    }
+
+    table td {
+        vertical-align: top;
+    }
+
+    .k-menu .k-link {
+        color: #434E54;
+        font-size: small;
+    }
+
+    .k-menu:after /* clear fix to expand content */ {
+        content: '';
+        display: block;
+        width: 99%;
+        height: 0;
+        float: inherit;
+        overflow: hidden;
+    }
+
+    k-panelbar {
+        height: 35px;
+    }
+
+    #progress {
+        background-color: #DADADA;
+        left: 50%;
+        top: 40%;
+        width: 240px;
+        height: 60px;
+        margin-top: -30px; /* make this half your image/element height */
+        margin-left: -120px; /* make this half your image/element width */
+        position: absolute;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: medium;
+        color: #838383;
+        font-weight: bold;
+        line-height: 60px;
+        z-index: 100002 !important;
+    }
+
+    .k-panelbar {
+        /*position:fixed;*/
+        height: 100%;
+        /*background:red;*/
+        width: 285px !important;
+        right: -80px;
+        margin-right: -200px;
+        position: absolute;
+        bottom: 0;
+    }
+
+    .nopad {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .row-eq-height {
+        display: flex;
+    }
+
+        .row-eq-height [class*="col-"] {
+            padding: 0;
+        }
+
+        .row-eq-height img {
+            width: 100%;
+        }
+
+
+    .blink {
+        -webkit-animation-name: blinker;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: blinker;
+        -moz-animation-duration: 2s;
+        -moz-animation-timing-function: linear;
+        -moz-animation-iteration-count: infinite;
+        animation-name: blinker;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+    }
+
+    @@-moz-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@-webkit-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    div#progress {
+        display: none;
+    }
+        .navbar-nav > li > a, .navbar-brand {
+    padding-top:5px !important; padding-bottom:0 !important;
+    height: 30px;
+}
+.navbar {min-height:30px !important;}
+    
+select {
+    overflow-y: auto;
+}
+
+.k-button {
+    margin: 0 5px;
+}
+
+</style>
+
+@using (Ajax.BeginForm("myForm", new AjaxOptions { UpdateTargetId = "Content", LoadingElementId = "progress", OnBegin = "myFormBegin", OnSuccess="maintainScroll", OnFailure = "myFormFailure", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }))
+{  
+    <div id="LayoutTemplate">
+        @Html.Raw(Model.Layout)
+    </div>
+}
+<div id="Workflow_Sections" style="display:none">
+
+    @if (ViewBag.Search != null && ViewBag.Search)
+    {
+        @Html.Action("SearchKnowledgeBase", "TextHTML", new { SearchPhrase = ViewBag.SearchTerm })
+    }
+    else if (ViewBag.Section != null && ViewBag.Section)
+    {
+        @Html.Action("DisplayByUniqueName", "Section", new { id = ViewBag.SectionName })
+    }
+    else
+    {
+        @Html.Action("DisplayByUniqueName", "Section", new { id = Model.nextNode.nodeName })
+    }
+
+    <input type="hidden" name="hdnSectionName" value="@Model.nextNode.nodeName" />
+    <input type="hidden" name="hdnWorkflowId" value="@Model.workflowID" />
+    <input type="hidden" name="hdnCurrentNodeId" value="@Model.nextNode.NodeUniqueID" />
+    @*<input type="hidden" name="hdnExternalPages" value="@ViewBag.ExternalPages" />*@
+    <input type="hidden" name="hdnSiteURL" value="@if (Session["ScriptURL"] != null)
+    { @Session["ScriptURL"].ToString();
+    }" />
+    <input type="hidden" id="div_position" name="div_position" value="@ViewBag.ScrollPosition" />
+    <table>
+        <tr>
+            <td>
+                @if (Model.showPrevious && ViewBag.Search != true && ViewBag.Section != true)
+                {
+                    <input type="submit" class="bttn" name="ButtonType" value="Previous" formnovalidate />
+                }
+                @if (Model.showNext && ViewBag.Search != true && ViewBag.Section != true)
+                {
+                    <input type="submit" class="bttn" name="ButtonType" value="@ViewBag.NextButtonLabel" onclick="return SetListBoxText();" />
+                }
+                @if ((ViewBag.Search != null && ViewBag.Search) || (ViewBag.Section != null && ViewBag.Section))
+                {
+                    <input type="submit" class="bttn" name="ButtonType" value="Return" onclick="return SetListBoxText();" formnovalidate />
+                    <input type="hidden" name="hdnSectionOnlyId" id="hdnSectionOnlyId" value="@ViewBag.SectionId" />
+                }
+                <input id="btnReload" type="submit" name="ButtonType" value="Current" style="display:none" onclick="return SetListBoxText();" formnovalidate />
+                <input id="btnSection" type="submit" name="ButtonType" value="Section" style="display:none" formnovalidate />
+                <input type="hidden" name="hdnSectionId" id="hdnSectionId" />
+
+                <br /><br />
+                <p class="labelText" style="text-indent:5px">@ViewBag.Callback</p>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+<div id="thecallback" style="display:none;padding: 5px;">
+    <div>
+        <p><b>Callback Date and Time:</b></p>
+        <p>
+            @(Html.Kendo().DateTimePicker()
+            .Name("datetimepicker")
+            .Value(DateTime.Now)
+            .Min(DateTime.Today)
+            )
+        </p>
+        <p><input type="submit" class="btn btn-default" name="ButtonType" value="Schedule Callback" formnovalidate /></p>
+    </div>
+</div>
+
+<div id="therecording" style="display:none">
+    <button id="alertBtn" class="k-button">kendo.alert</button>
+    <script>
+        $("#alertBtn").on("click", function () {
+            kendo.alert("Click here to Unpause the recording");
+        });
+    </script>
+</div>
+
+<div id="thesearch" style="display:none">
+    <label>Search: </label>
+    <input id="SearchTerm" name="SearchTerm" value="@ViewBag.SearchTerm" />
+    <input id="btnKBSearch" type="submit" name="ButtonType" value="Search" formnovalidate />
+</div>
+
+<div id="notif" style="display:none">@Html.Raw(Model.Notifications)</div>
+<div id="menubar" style="display:none">@Html.Raw(Model.menuHTML)</div>
+
+<script>
+    var divString = $("#Workflow_Sections").html();
+
+    var html = $(divString.bold());
+    html.find("div[class*='container']").empty();
+
+    $("#Menu").html($("#menubar").html());
+    $("#Workflow").html('Workflow: @Model.workflowName');
+    $("#Section").html('Section: @Model.nextNode.nodeName');
+    $("#Questions").load("/ContactRecordDetails/CallResponses");
+    $("#History").load("/Navigations/Index");
+    $("#Notes").html('<div style="padding: 5px;"><div><p><textarea id="SP_Notes" class="form-control" rows="10" name="SP_Notes" cols="32">@Model.callNotes</textarea></p></div></div>')
+    $("#Lead").load("/LeadInfo/Index");
+    //$("#Site").load("/SiteInfo/Index");
+    //$('#Callback').load("/Callback/Display/");
+    $('#Callback').html($("#thecallback").html());
+    $('#KBSearch').html($("#thesearch").html());
+    $("#Notifications").html($("#notif").html());
+    $("#Notif").empty();
+    $("#thecallback").empty();
+    $("#Message").html('@ViewBag.Critical');
+    $("#Content").html(html.html());
+    $("#Workflow_Sections").empty();
+
+    </script>
+
+<div id="progress">
+    <img src="/Includes/images/loading.gif" /> Loading Please Wait...
+</div>
+
+<script> var sec = -1;function pad(val) { return val > 9 ? val : "0" + val; }setInterval(function () {$("#seconds").html(pad(++sec % 60));$("#minutes").html(pad(parseInt(sec / 60, 10) % 60));$("#hours").html(pad(parseInt(sec / 3600, 10)));}, 1000);</script>
+<script>
+    $(document).ready(function () {
+        var height = $("#Footer").height() + $("#Header").height();
+        $("#Content").css("height", $(document).height() - height + "px");
+
+        $("form").change(function (e) {
+                 var controlName = $(e.target).attr('name');
+
+                 if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPQuestion") > -1)
+                     ReloadSection();
+                 else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemquant") > -1)
+                     ReloadSection();
+                 else if (controlName.indexOf("_C") > -1 && controlName.indexOf("SPitemcheck") > -1)
+                     ReloadSection();
+             });
+
+    });
+
+    var divp = document.getElementById('Content');
+    divp.onscroll = function () {
+        $('#div_position').val(divp.scrollTop);
+    }
+
+
+    $('form').submit(function () {
+        $("input[name*='action:Next']").hide();
+        $("input[name*='action:Previous']").hide();
+    });
+
+    function ReloadSection()
+    {
+        $('#btnReload').click();
+    }
+
+    function SetListBoxText()
+    {
+        $("[id$='_ddl']").each(function () {
+            var dropdown = this.id.replace("_ddl", "");
+            $('#' + this.id).val($('#' + dropdown).find('option:selected').text());
+        });
+
+        var selectedText = ''
+        $("[id$='_mddl']").each(function () {
+            var dropdown = this.id.replace("_mddl", "");
+            $('#' + dropdown + '_taglist li').each(function () {
+                selectedText += $(this).find('span').first().html() + ',';
+            })
+            $('#' + this.id).val(selectedText);
+        });
+        return true;
+    }
+
+    function myFormBegin() {
+        $("#progress").hide();
+    }
+
+    function maintainScroll() {
+        var position = parseInt($('#div_position').val());
+        $("#Content").scrollTop(position);
+        $("#Site").load("/SiteInfo/Index");
+
+    }
+
+    function myFormFailure(ajaxContext) {
+        var response = ajaxContext.responseText;
+        alert("Error Code [" + ajaxContext.ErrorCode + "] " + response);
+        //alert("Sorry, the request is failed");
+    }
+
+    function getAdditionalData() {
+
+        var scheduler = $("#scheduler").data("kendoScheduler");
+
+        if (scheduler != null) {
+
+            var timezone = scheduler.options.timezone;
+            if (timezone != null && scheduler.view() != null) {
+                var startDate = kendo.timezone.convert(scheduler.view().startDate(), timezone, "Etc/UTC");
+                var endDate = kendo.timezone.convert(scheduler.view().endDate(), timezone, "Etc/UTC");
+
+                //optionally add startTime / endTime of the view
+                if (scheduler.view().endTime != null && scheduler.view().startTime != null) {
+
+                    var startTime = kendo.date.getMilliseconds(scheduler.view().startTime());
+                    var endTime = kendo.date.getMilliseconds(scheduler.view().endTime());
+                    endTime = endTime == 0 ? kendo.date.MS_PER_DAY : endTime;
+
+                    var result = {
+                        Start: new Date(startDate.getTime() - (startDate.getTimezoneOffset() * kendo.date.MS_PER_MINUTE) + startTime),
+                        End: new Date(endDate.getTime() - (endDate.getTimezoneOffset() * kendo.date.MS_PER_MINUTE) + endTime)
+                    }
+
+                    return result;
+                }
+            }
+            else
+            {
+                $("div.k-scheduler-toolbar:first").remove();
+            }
+        }
+        else
+        {
+            $("div.k-scheduler-toolbar:first").remove();
+        }
+    }
+
+    $("#scheduler").on("click", ".edit-event", function () {
+        var scheduler = $("#scheduler").data("kendoScheduler");
+        var dataItem = scheduler.occurrenceByUid($(this).data("uid"));
+        scheduler.editEvent(dataItem);
+    });
+
+    function clickSection(id)
+    {
+        $('#hdnSectionId').val(id);
+        $('#btnSection').click();
+    }
+
+    function PostTMCHangUp(agentId, leadId)
+    {
+        //alert("agentId: " + agentId + "  " + "leadId: " + leadId);
+        var proxy = 'https://cors-anywhere.herokuapp.com/';
+        
+        $.ajax({
+
+            type: 'POST',
+            url: proxy + "http://209.208.36.61:63639/call/hangup",
+            beforeSend: function (xhr) {
+                $('#hdnAction').hide();
+                $('#hdnLoad').show();
+                xhr.setRequestHeader("Authorization", "Basic a5a0d818-3406-4756-833f-37e685c8b1aa");
+            },
+            data: JSON.stringify({ "user": agentId, "lead": leadId }),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data) {
+                //alert("Called Hangup Successfully");
+            },
+            error: function (xhRequest, ErrorText, thrownError) {
+                alert("Unable to hangup the call. Please hangup from the dialer.");
+            },
+            complete: function () {
+                $('#hdnAction').show();
+                $('#hdnLoad').hide();
+            }
+        });
+
+        return false;
+    }
+
+</script>
